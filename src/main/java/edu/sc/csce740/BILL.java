@@ -1,8 +1,11 @@
 package edu.sc.csce740;
 
+//Model imports
 import edu.sc.csce740.model.Bill;
 import edu.sc.csce740.model.StudentRecord;
+import edu.sc.csce740.model.User;
 
+//Exception imports
 import edu.sc.csce740.exceptions.BillGenerationException;
 import edu.sc.csce740.exceptions.BillRetrievalException;
 import edu.sc.csce740.exceptions.DataSaveException;
@@ -15,10 +18,33 @@ import edu.sc.csce740.exceptions.UserLoginException;
 import edu.sc.csce740.exceptions.UserLogoutException;
 import edu.sc.csce740.exceptions.UserRetrievalException;
 
+//Helper imports
+import edu.sc.csce740.helpers.UserHelper;
+
+//Java imports
 import java.math.BigDecimal;
 import java.util.List;
 
-public class BILL implements BILLIntf {
+//public class BILL implements BILLIntf {
+public class BILL {
+    /**
+     * A list of users of the system.
+     */
+    private List<User> users;
+
+    /**
+     * The current User.
+     */
+    private User currentUser;
+
+    /**
+     * Constructor to initialize an empty BILL instance.
+     *
+     */
+    public BILL() {
+        currentUser = null;
+    }
+
     /**
      * Loads the list of system usernames and permissions.
      *
@@ -27,7 +53,18 @@ public class BILL implements BILLIntf {
      */
     public void loadUsers(String usersFile)
             throws UserDataLoadException {
+        UserHelper helper = new UserHelper(usersFile);
+        try {
+            users = helper.readUsers();
+            if( users.isEmpty() ) {
+                System.out.println( "no users. this is bad");
+            } else {
+                System.out.println( "There are " + Integer.toString(users.size()) + " users." );
+            }
 
+        } catch (Exception e) {
+            throw new UserDataLoadException();
+        }
     }
 
     /**
@@ -36,10 +73,10 @@ public class BILL implements BILLIntf {
      * @param recordsFile the filename of the transcripts file.
      * @throws Exception for I/O errors.  SEE NOTE IN CLASS HEADER.
      */
-    public void loadRecords(String recordsFile)
-            throws RecordDataLoadException {
-
-    }
+//    public void loadRecords(String recordsFile)
+//            throws RecordDataLoadException {
+//
+//    }
 
     /**
      * Sets the user id of the user currently using the system.
@@ -47,29 +84,29 @@ public class BILL implements BILLIntf {
      * @param userId the id of the user to log in.
      * @throws Exception if the user id is invalid.  SEE NOTE IN CLASS HEADER.
      */
-    public void logIn(String userId)
-            throws UserLoginException {
-
-    }
+//    public void logIn(String userId)
+//            throws UserLoginException {
+//
+//    }
 
     /**
      * Closes the current session, logs the user out, and clears any session data.
      *
      * @throws Exception if the user id is invalid.  SEE NOTE IN CLASS HEADER.
      */
-    public void logOut()
-            throws UserLogoutException {
+//    public void logOut()
+//            throws UserLogoutException {
 
-    }
+//    }
 
     /**
      * Gets the user id of the user currently using the system.
      *
      * @return the user id of the user currently using the system.
      */
-    public String getUser() {
-
-    }
+//    public String getUser() {
+//
+//    }
 
     /**
      * Gets a list of the userIds of the students that an admin can view.
@@ -78,10 +115,10 @@ public class BILL implements BILLIntf {
      * college belonging to the current user
      * @throws Exception is the current user is not an admin.
      */
-    public List<String> getStudentIDs()
-            throws UnauthorizedUserException {
-
-    }
+//    public List<String> getStudentIDs()
+//            throws UnauthorizedUserException {
+//
+//    }
 
     /**
      * Gets the raw student record data for a given userId.
@@ -91,10 +128,10 @@ public class BILL implements BILLIntf {
      * @throws Exception if the form data could not be retrieved. SEE NOTE IN
      *                   CLASS HEADER.
      */
-    public StudentRecord getRecord(String userId)
-            throws UnauthorizedUserException, UserRetrievalException {
-
-    }
+//    public StudentRecord getRecord(String userId)
+//            throws UnauthorizedUserException, UserRetrievalException {
+//
+//    }
 
     /**
      * Saves a new set of student data to the records data.
@@ -106,10 +143,10 @@ public class BILL implements BILLIntf {
      * @throws Exception if the transcript data could not be saved or failed
      *                   a validity check.  SEE NOTE IN CLASS HEADER.
      */
-    public void editRecord(String userId, StudentRecord record, Boolean permanent)
-            throws UnauthorizedUserException, DataSaveException {
-
-    }
+//    public void editRecord(String userId, StudentRecord record, Boolean permanent)
+//            throws UnauthorizedUserException, DataSaveException {
+//
+//    }
 
     /**
      * Generates current bill.
@@ -119,10 +156,10 @@ public class BILL implements BILLIntf {
      *                   SEE NOTE IN CLASS HEADER.
      * @returns the student's bill in a data class matching the I/O file.
      */
-    public Bill generateBill(String userId)
-            throws UnauthorizedUserException, BillGenerationException  {
-
-    }
+//    public Bill generateBill(String userId)
+//            throws UnauthorizedUserException, BillGenerationException  {
+//
+//    }
 
     /**
      * Generates a list of transactions for a chosen period.
@@ -138,11 +175,11 @@ public class BILL implements BILLIntf {
      *                   SEE NOTE IN CLASS HEADER.
      * @returns the student's bill in a data class matching the I/O file.
      */
-    public Bill viewCharges(String userId, int startMonth, int startDay, int startYear,
-                            int endMonth, int endDay, int endYear)
-            throws UnauthorizedUserException, BillRetrievalException {
-
-    }
+//    public Bill viewCharges(String userId, int startMonth, int startDay, int startYear,
+//                            int endMonth, int endDay, int endYear)
+//            throws UnauthorizedUserException, BillRetrievalException {
+//
+//    }
 
     /**
      * Makes a payment for the student
@@ -154,8 +191,8 @@ public class BILL implements BILLIntf {
      *                   or fails to save to file.
      *                   SEE NOTE IN CLASS HEADER.
      */
-    public void applyPayment(String userId, BigDecimal amount, String note)
-            throws UnauthorizedUserException, PaymentException, PaymentSaveException {
-
-    }
+//    public void applyPayment(String userId, BigDecimal amount, String note)
+//            throws UnauthorizedUserException, PaymentException, PaymentSaveException {
+//
+//    }
 }
