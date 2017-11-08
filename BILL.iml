@@ -49,5 +49,32 @@
         <jarDirectory url="file://$MODULE_DIR$/lib/junit" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: com.google:gson:2.8.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/gson-2.8.2/gson-2.8.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.apache:commons:2.6">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/commons-io-2.6/commons-io-2.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.junit:jupiter:4.12">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/junit/junit-4.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
