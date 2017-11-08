@@ -2,25 +2,296 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65738bfe-6413-4a75-ad0a-111d2ba95467" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/commons_io_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/sc/csce740/TestDriver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lib/gson-2.8.2-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lib/gson-2.8.2.jar" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/README" afterPath="$PROJECT_DIR$/resources/README" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/bill.json" afterPath="$PROJECT_DIR$/resources/bill.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/students.json" afterPath="$PROJECT_DIR$/resources/students.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/resources/users.json" afterPath="$PROJECT_DIR$/resources/users.json" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/commons_io_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/LICENSE.txt" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/LICENSE.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/NOTICE.txt" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/NOTICE.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/RELEASE-NOTES.txt" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/RELEASE-NOTES.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/commons-io-2.6-javadoc.jar" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/commons-io-2.6-javadoc.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/commons-io-2.6-sources.jar" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/commons-io-2.6-sources.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/commons-io-2.6-test-sources.jar" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/commons-io-2.6-test-sources.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/commons-io-2.6-tests.jar" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/commons-io-2.6-tests.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/commons-io-2.6.jar" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/commons-io-2.6.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/allclasses-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/allclasses-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/allclasses-noframe.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/allclasses-noframe.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/constant-values.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/constant-values.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/deprecated-list.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/deprecated-list.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/help-doc.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/help-doc.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/index-all.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/index-all.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/index.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/ByteOrderMark.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/ByteOrderMark.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/ByteOrderParser.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/ByteOrderParser.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/Charsets.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/Charsets.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/CopyUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/CopyUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/DirectoryWalker.CancelException.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/DirectoryWalker.CancelException.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/DirectoryWalker.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/DirectoryWalker.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/EndianUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/EndianUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/FileCleaner.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/FileCleaner.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/FileCleaningTracker.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/FileCleaningTracker.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/FileDeleteStrategy.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/FileDeleteStrategy.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/FileExistsException.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/FileExistsException.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/FileSystemUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/FileSystemUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/FileUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/FileUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/FilenameUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/FilenameUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/HexDump.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/HexDump.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/IOCase.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/IOCase.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/IOExceptionWithCause.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/IOExceptionWithCause.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/IOUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/IOUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/LineIterator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/LineIterator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/TaggedIOException.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/TaggedIOException.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/ByteOrderMark.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/ByteOrderMark.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/ByteOrderParser.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/ByteOrderParser.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/Charsets.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/Charsets.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/CopyUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/CopyUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/DirectoryWalker.CancelException.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/DirectoryWalker.CancelException.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/DirectoryWalker.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/DirectoryWalker.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/EndianUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/EndianUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileCleaner.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileCleaner.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileCleaningTracker.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileCleaningTracker.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileDeleteStrategy.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileDeleteStrategy.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileExistsException.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileExistsException.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileSystemUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileSystemUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FileUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FilenameUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/FilenameUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/HexDump.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/HexDump.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/IOCase.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/IOCase.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/IOExceptionWithCause.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/IOExceptionWithCause.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/IOUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/IOUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/LineIterator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/LineIterator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/TaggedIOException.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/class-use/TaggedIOException.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/CompositeFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/CompositeFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/DefaultFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/DefaultFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/DirectoryFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/DirectoryFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/ExtensionFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/ExtensionFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/LastModifiedFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/LastModifiedFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/NameFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/NameFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/PathFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/PathFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/SizeFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/SizeFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/CompositeFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/CompositeFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/DefaultFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/DefaultFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/DirectoryFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/DirectoryFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/ExtensionFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/ExtensionFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/LastModifiedFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/LastModifiedFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/NameFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/NameFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/PathFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/PathFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/SizeFileComparator.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/class-use/SizeFileComparator.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/package-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/package-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/package-summary.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/package-summary.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/package-tree.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/package-tree.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/package-use.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/comparator/package-use.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/AbstractFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/AbstractFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/AgeFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/AgeFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/AndFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/AndFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/CanReadFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/CanReadFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/CanWriteFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/CanWriteFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/ConditionalFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/ConditionalFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/DelegateFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/DelegateFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/DirectoryFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/DirectoryFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/EmptyFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/EmptyFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/FalseFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/FalseFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/FileFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/FileFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/FileFilterUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/FileFilterUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/HiddenFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/HiddenFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/IOFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/IOFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/MagicNumberFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/MagicNumberFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/NameFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/NameFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/NotFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/NotFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/OrFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/OrFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/PrefixFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/PrefixFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/RegexFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/RegexFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/SizeFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/SizeFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/SuffixFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/SuffixFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/TrueFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/TrueFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/WildcardFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/WildcardFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/WildcardFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/WildcardFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/AbstractFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/AbstractFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/AgeFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/AgeFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/AndFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/AndFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/CanReadFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/CanReadFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/CanWriteFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/CanWriteFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/ConditionalFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/ConditionalFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/DelegateFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/DelegateFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/DirectoryFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/DirectoryFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/EmptyFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/EmptyFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/FalseFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/FalseFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/FileFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/FileFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/FileFilterUtils.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/FileFilterUtils.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/HiddenFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/HiddenFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/IOFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/IOFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/MagicNumberFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/MagicNumberFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/NameFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/NameFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/NotFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/NotFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/OrFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/OrFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/PrefixFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/PrefixFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/RegexFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/RegexFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/SizeFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/SizeFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/SuffixFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/SuffixFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/TrueFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/TrueFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/WildcardFileFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/WildcardFileFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/WildcardFilter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/class-use/WildcardFilter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/package-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/package-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/package-summary.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/package-summary.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/package-tree.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/package-tree.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/package-use.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/filefilter/package-use.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/AutoCloseInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/AutoCloseInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/BOMInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/BOMInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/BoundedInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/BoundedInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/BoundedReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/BoundedReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/BrokenInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/BrokenInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/CharSequenceInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/CharSequenceInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/CharSequenceReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/CharSequenceReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/ClassLoaderObjectInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/ClassLoaderObjectInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/CloseShieldInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/CloseShieldInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/ClosedInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/ClosedInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/CountingInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/CountingInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/DemuxInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/DemuxInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/InfiniteCircularInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/InfiniteCircularInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/MessageDigestCalculatingInputStream.MessageDigestMaintainingObserver.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/MessageDigestCalculatingInputStream.MessageDigestMaintainingObserver.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/MessageDigestCalculatingInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/MessageDigestCalculatingInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/NullInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/NullInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/NullReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/NullReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/ObservableInputStream.Observer.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/ObservableInputStream.Observer.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/ObservableInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/ObservableInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/ProxyInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/ProxyInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/ProxyReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/ProxyReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/ReaderInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/ReaderInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/ReversedLinesFileReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/ReversedLinesFileReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/SwappedDataInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/SwappedDataInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/TaggedInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/TaggedInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/Tailer.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/Tailer.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/TailerListener.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/TailerListener.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/TailerListenerAdapter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/TailerListenerAdapter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/TeeInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/TeeInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/UnixLineEndingInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/UnixLineEndingInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/WindowsLineEndingInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/WindowsLineEndingInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/XmlStreamReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/XmlStreamReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/XmlStreamReaderException.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/XmlStreamReaderException.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/AutoCloseInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/AutoCloseInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/BOMInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/BOMInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/BoundedInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/BoundedInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/BoundedReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/BoundedReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/BrokenInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/BrokenInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/CharSequenceInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/CharSequenceInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/CharSequenceReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/CharSequenceReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ClassLoaderObjectInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ClassLoaderObjectInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/CloseShieldInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/CloseShieldInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ClosedInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ClosedInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/CountingInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/CountingInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/DemuxInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/DemuxInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/InfiniteCircularInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/InfiniteCircularInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/MessageDigestCalculatingInputStream.MessageDigestMaintainingObserver.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/MessageDigestCalculatingInputStream.MessageDigestMaintainingObserver.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/MessageDigestCalculatingInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/MessageDigestCalculatingInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/NullInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/NullInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/NullReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/NullReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ObservableInputStream.Observer.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ObservableInputStream.Observer.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ObservableInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ObservableInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ProxyInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ProxyInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ProxyReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ProxyReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ReaderInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ReaderInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ReversedLinesFileReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/ReversedLinesFileReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/SwappedDataInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/SwappedDataInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/TaggedInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/TaggedInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/Tailer.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/Tailer.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/TailerListener.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/TailerListener.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/TailerListenerAdapter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/TailerListenerAdapter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/TeeInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/TeeInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/UnixLineEndingInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/UnixLineEndingInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/WindowsLineEndingInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/WindowsLineEndingInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/XmlStreamReader.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/XmlStreamReader.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/XmlStreamReaderException.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/class-use/XmlStreamReaderException.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/package-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/package-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/package-summary.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/package-summary.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/package-tree.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/package-tree.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/input/package-use.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/input/package-use.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileAlterationListener.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileAlterationListener.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileAlterationListenerAdaptor.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileAlterationListenerAdaptor.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileAlterationMonitor.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileAlterationMonitor.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileAlterationObserver.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileAlterationObserver.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileEntry.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/FileEntry.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileAlterationListener.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileAlterationListener.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileAlterationListenerAdaptor.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileAlterationListenerAdaptor.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileAlterationMonitor.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileAlterationMonitor.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileAlterationObserver.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileAlterationObserver.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileEntry.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/class-use/FileEntry.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/package-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/package-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/package-summary.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/package-summary.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/package-tree.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/package-tree.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/package-use.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/monitor/package-use.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/AppendableOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/AppendableOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/BrokenOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/BrokenOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/ByteArrayOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/ByteArrayOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/ChunkedOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/ChunkedOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/ChunkedWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/ChunkedWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/CloseShieldOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/CloseShieldOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/ClosedOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/ClosedOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/CountingOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/CountingOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/DeferredFileOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/DeferredFileOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/DemuxOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/DemuxOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/FileWriterWithEncoding.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/FileWriterWithEncoding.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/LockableFileWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/LockableFileWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/NullOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/NullOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/NullWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/NullWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/ProxyOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/ProxyOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/ProxyWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/ProxyWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/StringBuilderWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/StringBuilderWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/TaggedOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/TaggedOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/TeeOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/TeeOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/ThresholdingOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/ThresholdingOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/WriterOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/WriterOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/XmlStreamWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/XmlStreamWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/AppendableOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/AppendableOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/BrokenOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/BrokenOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ByteArrayOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ByteArrayOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ChunkedOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ChunkedOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ChunkedWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ChunkedWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/CloseShieldOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/CloseShieldOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ClosedOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ClosedOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/CountingOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/CountingOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/DeferredFileOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/DeferredFileOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/DemuxOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/DemuxOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/FileWriterWithEncoding.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/FileWriterWithEncoding.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/LockableFileWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/LockableFileWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/NullOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/NullOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/NullWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/NullWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ProxyOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ProxyOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ProxyWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ProxyWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/StringBuilderWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/StringBuilderWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/TaggedOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/TaggedOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/TeeOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/TeeOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ThresholdingOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/ThresholdingOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/WriterOutputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/WriterOutputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/XmlStreamWriter.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/class-use/XmlStreamWriter.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/package-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/package-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/package-summary.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/package-summary.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/package-tree.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/package-tree.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/output/package-use.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/output/package-use.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/package-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/package-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/package-summary.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/package-summary.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/package-tree.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/package-tree.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/package-use.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/package-use.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/ClassNameMatcher.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/ClassNameMatcher.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/ValidatingObjectInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/ValidatingObjectInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/class-use/ClassNameMatcher.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/class-use/ClassNameMatcher.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/class-use/ValidatingObjectInputStream.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/class-use/ValidatingObjectInputStream.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/package-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/package-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/package-summary.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/package-summary.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/package-tree.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/package-tree.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/package-use.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/org/apache/commons/io/serialization/package-use.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/overview-frame.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/overview-frame.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/overview-summary.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/overview-summary.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/overview-tree.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/overview-tree.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/package-list" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/package-list" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/script.js" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/script.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/serialized-form.html" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/serialized-form.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/commons-io-2.6/docs/stylesheet.css" afterPath="$PROJECT_DIR$/lib/commons-io-2.6/docs/stylesheet.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/gson-2.8.2/gson-2.8.2-javadoc.jar" afterPath="$PROJECT_DIR$/lib/gson-2.8.2/gson-2.8.2-javadoc.jar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/lib/gson-2.8.2/gson-2.8.2.jar" afterPath="$PROJECT_DIR$/lib/gson-2.8.2/gson-2.8.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/edu/sc/csce740/helpers/UserHelper$1.class" afterPath="$PROJECT_DIR$/target/classes/edu/sc/csce740/helpers/UserHelper$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/edu/sc/csce740/helpers/UserHelper.class" afterPath="$PROJECT_DIR$/target/classes/edu/sc/csce740/helpers/UserHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BILL.iml" afterPath="$PROJECT_DIR$/BILL.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java" afterPath="$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java" afterPath="$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,28 +304,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BILL.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BILL.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="618">
+            <state relative-caret-position="0">
               <caret line="61" column="96" lean-forward="false" selection-start-line="61" selection-start-column="96" selection-end-line="61" selection-end-column="96" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1230#1231#0" expanded="true" />
-                <element signature="e#1264#1265#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserHelper.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="2" lean-forward="false" selection-start-line="44" selection-start-column="2" selection-end-line="44" selection-end-column="2" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,9 +391,10 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/sc/csce740/exceptions/UserLoginException.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/sc/csce740/exceptions/UserLogoutException.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/sc/csce740/exceptions/UserRetrievalException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/sc/csce740/TestDriver.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -163,7 +429,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -175,18 +440,17 @@
             <path>
               <item name="BILL" type="b2602c69:ProjectViewProjectNode" />
               <item name="BILL" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BILL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BILL" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BILL" type="b2602c69:ProjectViewProjectNode" />
               <item name="BILL" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BILL" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BILL" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BILL" type="b2602c69:ProjectViewProjectNode" />
@@ -224,6 +488,7 @@
       </pane>
       <pane id="AndroidView" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -380,14 +645,14 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299578" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299578" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299578" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299578" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -396,8 +661,9 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -416,13 +682,49 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1230#1231#0" expanded="true" />
-            <element signature="e#1264#1265#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="555">
+          <caret line="61" column="96" lean-forward="false" selection-start-line="61" selection-start-column="96" selection-end-line="61" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/TestDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="52" lean-forward="false" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="34" lean-forward="false" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="61" column="96" lean-forward="false" selection-start-line="61" selection-start-column="96" selection-end-line="61" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/TestDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="52" lean-forward="false" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -434,12 +736,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/model/College.java" />
     <entry file="file://$PROJECT_DIR$/resources/bill.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -449,7 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -457,14 +765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#304#305#0" expanded="false" />
-            <element signature="e#332#333#0" expanded="false" />
-            <element signature="e#465#466#0" expanded="false" />
-            <element signature="e#491#492#0" expanded="false" />
-            <element signature="e#617#618#0" expanded="false" />
-            <element signature="e#644#645#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -472,23 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-          <folding>
-            <element signature="e#559#560#0" expanded="false" />
-            <element signature="e#608#609#0" expanded="false" />
-            <element signature="e#640#641#0" expanded="false" />
-            <element signature="e#680#681#0" expanded="false" />
-            <element signature="e#718#719#0" expanded="false" />
-            <element signature="e#778#779#0" expanded="false" />
-            <element signature="e#832#833#0" expanded="false" />
-            <element signature="e#865#866#0" expanded="false" />
-            <element signature="e#894#895#0" expanded="false" />
-            <element signature="e#938#939#0" expanded="false" />
-            <element signature="e#974#975#0" expanded="false" />
-            <element signature="e#1005#1006#0" expanded="false" />
-            <element signature="e#1032#1033#0" expanded="false" />
-            <element signature="e#1072#1073#0" expanded="false" />
-            <element signature="e#1104#1105#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -496,77 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
           <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2181#2182#0" expanded="false" />
-            <element signature="e#2211#2212#0" expanded="false" />
-            <element signature="e#2258#2259#0" expanded="false" />
-            <element signature="e#2296#2297#0" expanded="false" />
-            <element signature="e#2331#2332#0" expanded="false" />
-            <element signature="e#2361#2362#0" expanded="false" />
-            <element signature="e#2408#2409#0" expanded="false" />
-            <element signature="e#2446#2447#0" expanded="false" />
-            <element signature="e#2480#2481#0" expanded="false" />
-            <element signature="e#2512#2513#0" expanded="false" />
-            <element signature="e#2560#2561#0" expanded="false" />
-            <element signature="e#2602#2603#0" expanded="false" />
-            <element signature="e#2643#2644#0" expanded="false" />
-            <element signature="e#2682#2683#0" expanded="false" />
-            <element signature="e#2744#2745#0" expanded="false" />
-            <element signature="e#2800#2801#0" expanded="false" />
-            <element signature="e#2843#2844#0" expanded="false" />
-            <element signature="e#2877#2878#0" expanded="false" />
-            <element signature="e#2936#2937#0" expanded="false" />
-            <element signature="e#2982#2983#0" expanded="false" />
-            <element signature="e#3022#3023#0" expanded="false" />
-            <element signature="e#3058#3059#0" expanded="false" />
-            <element signature="e#3117#3118#0" expanded="false" />
-            <element signature="e#3167#3168#0" expanded="false" />
-            <element signature="e#3208#3209#0" expanded="false" />
-            <element signature="e#3245#3246#0" expanded="false" />
-            <element signature="e#3306#3307#0" expanded="false" />
-            <element signature="e#3358#3359#0" expanded="false" />
-            <element signature="e#3417#3418#0" expanded="false" />
-            <element signature="e#3459#3460#0" expanded="false" />
-            <element signature="e#3639#3640#0" expanded="false" />
-            <element signature="e#3670#3671#0" expanded="false" />
-            <element signature="e#3719#3720#0" expanded="false" />
-            <element signature="e#3759#3760#0" expanded="false" />
-            <element signature="e#3796#3797#0" expanded="false" />
-            <element signature="e#3829#3830#0" expanded="false" />
-            <element signature="e#3882#3883#0" expanded="false" />
-            <element signature="e#3926#3927#0" expanded="false" />
-            <element signature="e#3960#3961#0" expanded="false" />
-            <element signature="e#3990#3991#0" expanded="false" />
-            <element signature="e#4037#4038#0" expanded="false" />
-            <element signature="e#4075#4076#0" expanded="false" />
-            <element signature="e#4113#4114#0" expanded="false" />
-            <element signature="e#4147#4148#0" expanded="false" />
-            <element signature="e#4202#4203#0" expanded="false" />
-            <element signature="e#4248#4249#0" expanded="false" />
-            <element signature="e#4291#4292#0" expanded="false" />
-            <element signature="e#4325#4326#0" expanded="false" />
-            <element signature="e#4384#4385#0" expanded="false" />
-            <element signature="e#4430#4431#0" expanded="false" />
-            <element signature="e#4473#4474#0" expanded="false" />
-            <element signature="e#4507#4508#0" expanded="false" />
-            <element signature="e#4566#4567#0" expanded="false" />
-            <element signature="e#4612#4613#0" expanded="false" />
-            <element signature="e#4662#4663#0" expanded="false" />
-            <element signature="e#4708#4709#0" expanded="false" />
-            <element signature="e#4900#4901#0" expanded="false" />
-            <element signature="e#4939#4940#0" expanded="false" />
-            <element signature="e#5004#5005#0" expanded="false" />
-            <element signature="e#5060#5061#0" expanded="false" />
-            <element signature="e#5096#5097#0" expanded="false" />
-            <element signature="e#5126#5127#0" expanded="false" />
-            <element signature="e#5174#5175#0" expanded="false" />
-            <element signature="e#5212#5213#0" expanded="false" />
-            <element signature="e#5258#5259#0" expanded="false" />
-            <element signature="e#5293#5294#0" expanded="false" />
-            <element signature="e#5356#5357#0" expanded="false" />
-            <element signature="e#5404#5405#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -574,7 +786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -582,19 +793,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding>
-            <element signature="e#381#382#0" expanded="false" />
-            <element signature="e#417#418#0" expanded="false" />
-            <element signature="e#445#446#0" expanded="false" />
-            <element signature="e#481#482#0" expanded="false" />
-            <element signature="e#513#514#0" expanded="false" />
-            <element signature="e#563#564#0" expanded="false" />
-            <element signature="e#605#606#0" expanded="false" />
-            <element signature="e#640#641#0" expanded="false" />
-            <element signature="e#671#672#0" expanded="false" />
-            <element signature="e#719#720#0" expanded="false" />
-            <element signature="e#759#760#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -602,7 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -610,7 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="120" column="26" lean-forward="false" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -618,16 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#471#472#0" expanded="false" />
-            <element signature="e#509#510#0" expanded="false" />
-            <element signature="e#541#542#0" expanded="false" />
-            <element signature="e#576#577#0" expanded="false" />
-            <element signature="e#606#607#0" expanded="false" />
-            <element signature="e#653#654#0" expanded="false" />
-            <element signature="e#691#692#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,10 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="129" column="18" lean-forward="false" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="18" />
-          <folding>
-            <element signature="e#4005#4006#0" expanded="false" />
-            <element signature="e#4032#4033#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -660,7 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="38" lean-forward="false" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -668,7 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -676,7 +856,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -684,7 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -692,7 +870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -700,7 +877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,7 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -716,7 +891,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -724,10 +898,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#693#694#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -736,8 +906,8 @@
         <state relative-caret-position="360">
           <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -746,9 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding>
-            <element signature="e#229#230#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -756,10 +923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#182#183#0" expanded="true" />
-            <element signature="e#232#233#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -767,7 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -775,7 +937,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="17" lean-forward="false" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -783,10 +944,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding>
-            <element signature="e#176#177#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -794,7 +951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,10 +958,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#178#179#0" expanded="true" />
-            <element signature="e#226#227#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -813,10 +965,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#186#187#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -824,10 +972,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#172#173#0" expanded="true" />
-            <element signature="e#217#218#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -835,10 +979,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding>
-            <element signature="e#174#175#0" expanded="true" />
-            <element signature="e#220#221#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,10 +986,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding>
-            <element signature="e#180#181#0" expanded="true" />
-            <element signature="e#229#230#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -857,6 +993,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="61" column="96" lean-forward="false" selection-start-line="61" selection-start-column="96" selection-end-line="61" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -869,25 +1020,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="2" lean-forward="false" selection-start-line="44" selection-start-column="2" selection-end-line="44" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="15">
+          <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/BILL.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/sc/csce740/helpers/UserHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="61" column="96" lean-forward="false" selection-start-line="61" selection-start-column="96" selection-end-line="61" selection-end-column="96" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1230#1231#0" expanded="true" />
-            <element signature="e#1264#1265#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -967,6 +1112,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>gson-2.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

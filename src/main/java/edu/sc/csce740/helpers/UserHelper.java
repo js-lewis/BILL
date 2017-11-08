@@ -1,6 +1,5 @@
 package edu.sc.csce740.helpers;
 
-import edu.sc.csce740.exceptions.UserDataLoadException;
 import edu.sc.csce740.model.User;
 
 import com.google.gson.GsonBuilder;
