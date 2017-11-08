@@ -13,40 +13,29 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
-</project>
 
-<<<<<<< HEAD
-<dependencies>
-  <dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.13</version>
-    <scope>test</scope>
-  </dependency>
-</dependencies>
-=======
-    <dependencies>
-        <dependency>
-            <groupId>com.google</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.2</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/gson-2.8.2/gson-2.8.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.apache</groupId>
-            <artifactId>commons</artifactId>
-            <version>2.6</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/commons-io-2.6/commons-io-2.6.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.junit</groupId>
-            <artifactId>jupiter</artifactId>
-            <version>4.12</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/junit/junit-4.12.jar</systemPath>
-        </dependency>
-    </dependencies>
+  <dependencies>
+      <dependency>
+          <groupId>com.google</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.8.2</version>
+          <scope>system</scope>
+          <systemPath>${basedir}/lib/gson-2.8.2/gson-2.8.2.jar</systemPath>
+      </dependency>
+      <dependency>
+          <groupId>org.apache</groupId>
+          <artifactId>commons</artifactId>
+          <version>2.6</version>
+          <scope>system</scope>
+          <systemPath>${basedir}/lib/commons-io-2.6/commons-io-2.6.jar</systemPath>
+      </dependency>
+      <dependency>
+          <groupId>org.junit</groupId>
+          <artifactId>jupiter</artifactId>
+          <version>4.12</version>
+          <scope>system</scope>
+          <systemPath>${basedir}/lib/junit/junit-4.12.jar</systemPath>
+      </dependency>
+  </dependencies>
 </project>
 >>>>>>> 006e48aab58c387d197d96ab05e30217b1ba5862
