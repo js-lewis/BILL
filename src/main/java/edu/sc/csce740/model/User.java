@@ -31,4 +31,11 @@ public class User extends Person{
     public void setCollege(College college) {
         this.college = college;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+               "role: " + getRole() + "\n" +
+               "college: " + getCollege() + "\n";
+    }
 }

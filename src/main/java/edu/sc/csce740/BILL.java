@@ -54,14 +54,15 @@ public class BILL {
     public void loadUsers(String usersFile)
             throws UserDataLoadException {
         UserHelper helper = new UserHelper(usersFile);
+
         try {
             users = helper.readUsers();
             if( users.isEmpty() ) {
                 System.out.println( "no users. this is bad");
             } else {
                 System.out.println( "There are " + Integer.toString(users.size()) + " users." );
+                helper.printUsers();
             }
-
         } catch (Exception e) {
             throw new UserDataLoadException();
         }

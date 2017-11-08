@@ -37,4 +37,11 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @Override
+    public String toString() {
+        return "id: " + this.getId() + "\n" +
+               "firstName: " + this.getFirstName() + "\n" +
+               "lastName: " + this.getLastName();
+    }
 }
