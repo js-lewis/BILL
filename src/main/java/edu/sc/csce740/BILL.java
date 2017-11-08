@@ -59,6 +59,7 @@ public class BILL {
             users = helper.readUsers();
             if( users.isEmpty() ) {
                 System.out.println( "no users. this is bad");
+                throw new UserDataLoadException();
             } else {
                 System.out.println( "There are " + Integer.toString(users.size()) + " users." );
                 helper.printUsers();

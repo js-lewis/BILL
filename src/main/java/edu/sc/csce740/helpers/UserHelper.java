@@ -37,10 +37,24 @@ public class UserHelper {
         return users;
     }
 
-//    public void writeUsers( List<User> users )
-//            throws UserDataLoadException {
-//
-//    }
+    public void writeUsers()
+            throws IOException {
+        Gson gson = builder.create();
+
+        File file;
+        file = new File(fileName);
+
+        FileUtils.writeStringToFile(file, gson.toJson(users), "UTF-8");
+    }
+
+    public void addUser(User newUser) {
+        users.add(newUser);
+    }
+
+    public void removeUser(User newUser) {
+        users.remove(newUser);
+    }
+
     public void printUsers() {
         for (User user : users) {
             System.out.println(user);
