@@ -105,29 +105,46 @@ public class BILL {
      * @param userId the id of the user to log in.
      * @throws Exception if the user id is invalid.  SEE NOTE IN CLASS HEADER.
      */
-//    public void logIn(String userId)
-//            throws UserLoginException {
-//
-//    }
+    public void logIn(String userId)
+            throws UserLoginException {
+        if( currentUser == null ) {
+            throw new UserLoginException();
+        }
+
+        for(User user: users) {
+            if( user.getId().equalsIgnoreCase(userId) ) {
+                currentUser = user;
+                return;
+            }
+        }
+
+        throw new UserLoginException();
+    }
 
     /**
      * Closes the current session, logs the user out, and clears any session data.
      *
-     * @throws Exception if the user id is invalid.  SEE NOTE IN CLASS HEADER.
+     * @throws Exception if no one is logged in.  SEE NOTE IN CLASS HEADER.
      */
-//    public void logOut()
-//            throws UserLogoutException {
+     public void logOut()
+            throws UserLogoutException {
 
-//    }
+         if( currentUser == null ) {
+             throw new UserLogoutException();
+         } else {
+             currentUser = null;
+         }
+
+    }
 
     /**
      * Gets the user id of the user currently using the system.
      *
      * @return the user id of the user currently using the system.
      */
-//    public String getUser() {
-//
-//    }
+    public String getUser() {
+        return currentUser.getId();
+    }
 
     /**
      * Gets a list of the userIds of the students that an admin can view.
