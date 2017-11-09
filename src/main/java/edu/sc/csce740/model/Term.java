@@ -29,4 +29,10 @@ public class Term {
     public void setYear(int year) {
         this.year = year;
     }
+
+    @Override
+    public String toString() {
+        return "semester: " + getSemester() + "\n" +
+                "year: " + getYear() + "\n";
+    }
 }

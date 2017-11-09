@@ -5,6 +5,7 @@ import edu.sc.csce740.defines.ClassStatus;
 import edu.sc.csce740.defines.InternationalStatus;
 import edu.sc.csce740.defines.Scholarship;
 import edu.sc.csce740.defines.StudyAbroad;
+import edu.sc.csce740.helpers.PrintHelper;
 
 public class StudentRecord {
     private Student student;
@@ -13,7 +14,7 @@ public class StudentRecord {
     private Term capstoneEnrolled;
     private ClassStatus classStatus;
     private boolean gradAssistant;
-    private boolean internaltional;
+    private boolean international;
     private InternationalStatus internationalStatus;
     private boolean resident;
     private boolean activeDuty;
@@ -29,14 +30,14 @@ public class StudentRecord {
     public StudentRecord() {
     }
 
-    public StudentRecord(Student student, College college, Term termBegan, Term capstoneEnrolled, ClassStatus classStatus, boolean gradAssistant, boolean internaltional, InternationalStatus internationalStatus, boolean resident, boolean activeDuty, boolean veteran, boolean freeTuition, Scholarship scholarship, StudyAbroad studyAbroad, boolean nationalStudentExchange, boolean outsideInsurance, Course[] courses, Transaction[] transactions) {
+    public StudentRecord(Student student, College college, Term termBegan, Term capstoneEnrolled, ClassStatus classStatus, boolean gradAssistant, boolean international, InternationalStatus internationalStatus, boolean resident, boolean activeDuty, boolean veteran, boolean freeTuition, Scholarship scholarship, StudyAbroad studyAbroad, boolean nationalStudentExchange, boolean outsideInsurance, Course[] courses, Transaction[] transactions) {
         this.student = student;
         this.college = college;
         this.termBegan = termBegan;
         this.capstoneEnrolled = capstoneEnrolled;
         this.classStatus = classStatus;
         this.gradAssistant = gradAssistant;
-        this.internaltional = internaltional;
+        this.international = international;
         this.internationalStatus = internationalStatus;
         this.resident = resident;
         this.activeDuty = activeDuty;
@@ -98,12 +99,12 @@ public class StudentRecord {
         this.gradAssistant = gradAssistant;
     }
 
-    public boolean isInternaltional() {
-        return internaltional;
+    public boolean isInternational() {
+        return international;
     }
 
-    public void setInternaltional(boolean internaltional) {
-        this.internaltional = internaltional;
+    public void setInternational(boolean international) {
+        this.international = international;
     }
 
     public InternationalStatus getInternationalStatus() {
@@ -196,6 +197,23 @@ public class StudentRecord {
 
     @Override
     public String toString() {
-        return "student: \n" + getStudent() + "\n";
+        return "student: \n" + getStudent() + "\n" +
+                "college: " + getCollege() + "\n" +
+                "termBegan: \n" + getTermBegan() + "\n" +
+                "capstoneEnrolled: \n" + getCapstoneEnrolled() + "\n" +
+                "classStatus: " + getClassStatus() + "\n" +
+                "gradAssistant: " + isGradAssistant() + "\n" +
+                "international: " + isInternational() + "\n" +
+                "internationalStatus: " + getInternationalStatus() + "\n" +
+                "resident: " + isResident() + "\n" +
+                "activeDuty: " + isActiveDuty() + "\n" +
+                "veteran: " + isVeteran() + "\n" +
+                "freeTuition: " + isFreeTuition() + "\n" +
+                "scholarship: " + getScholarship() + "\n" +
+                "studyAbroad: " + getStudyAbroad() + "\n" +
+                "nationalStudentExchange: " + isNationalStudentExchange() + "\n" +
+                "outsideInsurance: " + isOutsideInsurance() + "\n" +
+                "courses: \n " + PrintHelper.courseListToString(getCourses()) + "\n" +
+                "transactions: \n" + PrintHelper.transactionListToString(getTransactions()) + "\n";
     }
 }

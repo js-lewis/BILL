@@ -23,6 +23,7 @@ import edu.sc.csce740.exceptions.UserRetrievalException;
 //Helper imports
 import edu.sc.csce740.helpers.UserHelper;
 import edu.sc.csce740.helpers.StudentHelper;
+import edu.sc.csce740.helpers.BillHelper;
 
 //Java imports
 import java.io.IOException;
@@ -89,6 +90,7 @@ public class BILL {
      */
     public void loadRecords(String recordsFile)
             throws RecordDataLoadException {
+
         studentHelper.setFileName(recordsFile);
 
         try {
@@ -101,6 +103,7 @@ public class BILL {
                 studentHelper.printStudentRecords();
             }
         } catch (Exception e) {
+            System.out.println(e);
             throw new RecordDataLoadException();
         }
     }

@@ -3,6 +3,8 @@ package edu.sc.csce740.model;
 import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.ClassStatus;
 
+import edu.sc.csce740.helpers.PrintHelper;
+
 public class Bill {
     private Student student;
     private College college;
@@ -59,5 +61,14 @@ public class Bill {
 
     public void setTransactions(Transaction[] transactions) {
         this.transactions = transactions;
+    }
+
+    @Override
+    public String toString() {
+        return "student: \n" + getStudent() + "\n" +
+                "college: " + getCollege() + "\n" +
+                "classStatus: " + getClassStatus() + "\n" +
+                "balance: " + getBalance() + "\n" +
+                "transaction : \n" + PrintHelper.transactionListToString(getTransactions());
     }
 }

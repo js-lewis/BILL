@@ -47,4 +47,12 @@ public class Course {
     public void setOnline(boolean online) {
         this.online = online;
     }
+
+    @Override
+    public String toString() {
+        return "name: " + getName() + "\n" +
+                "id: " + getId() + "\n" +
+                "numCredits: " + getNumCredits() + "\n" +
+                "online: " + isOnline() + "\n";
+    }
 }
