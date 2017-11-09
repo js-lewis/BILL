@@ -39,7 +39,7 @@ public class UserHelper {
 
     public void writeUsers()
             throws IOException {
-        Gson gson = builder.create();
+        Gson gson = builder.setPrettyPrinting().create();
 
         File file;
         file = new File(fileName);

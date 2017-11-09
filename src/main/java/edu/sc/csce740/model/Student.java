@@ -68,4 +68,15 @@ public class Student extends Person {
     public void setAddressPostalCode(String addressPostalCode) {
         this.addressPostalCode = addressPostalCode;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+               "phone: " + getPhone() + "\n" +
+               "emailAddress: " + getEmailAddress() + "\n" +
+               "addressStreet: " + getAddressStreet() + "\n" +
+               "addressCity: " + getAddressCity() + "\n" +
+               "addressState: " + getAddressStreet() + "\n" +
+               "addressPostalCode: " + getAddressPostalCode() + "\n";
+    }
 }

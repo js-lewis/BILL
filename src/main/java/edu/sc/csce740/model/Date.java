@@ -40,4 +40,11 @@ public class Date {
         //TODO: Add range checks
         this.year = year;
     }
+
+    @Override
+    public String toString() {
+        return "month: " + getMonth() + "\n" +
+               "day: " + getDay() + "\n" +
+               "year: " + getYear() + "\n";
+    }
 }

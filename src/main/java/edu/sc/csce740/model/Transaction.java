@@ -49,4 +49,12 @@ public class Transaction {
     public void setNote(String note) {
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+        return "type: " + getType() + "\n" +
+                "transactionDate: " + getTransactionDate() + "\n" +
+                "amount: " + getAmount() + "\n" +
+                "note: " + getNote() + "\n";
+    }
 }

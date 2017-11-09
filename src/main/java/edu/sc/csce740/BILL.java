@@ -20,6 +20,7 @@ import edu.sc.csce740.exceptions.UserRetrievalException;
 
 //Helper imports
 import edu.sc.csce740.helpers.UserHelper;
+import edu.sc.csce740.helpers.StudentHelper;
 
 //Java imports
 import java.math.BigDecimal;
@@ -31,6 +32,11 @@ public class BILL {
      * A list of users of the system.
      */
     private List<User> users;
+
+    /**
+     * A list of users of the system.
+     */
+    private List<StudentRecord> students;
 
     /**
      * The current User.
@@ -75,10 +81,23 @@ public class BILL {
      * @param recordsFile the filename of the transcripts file.
      * @throws Exception for I/O errors.  SEE NOTE IN CLASS HEADER.
      */
-//    public void loadRecords(String recordsFile)
-//            throws RecordDataLoadException {
-//
-//    }
+    public void loadRecords(String recordsFile)
+            throws RecordDataLoadException {
+        StudentHelper helper = new StudentHelper(recordsFile);
+
+        try {
+            students = helper.readStudentRecords();
+            if( students.isEmpty() ) {
+                System.out.println( "no students. this is bad");
+                throw new RecordDataLoadException();
+            } else {
+                System.out.println( "There are " + Integer.toString(students.size()) + " students." );
+                helper.printStudentRecords();
+            }
+        } catch (Exception e) {
+            throw new RecordDataLoadException();
+        }
+    }
 
     /**
      * Sets the user id of the user currently using the system.

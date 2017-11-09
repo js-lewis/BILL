@@ -193,4 +193,9 @@ public class StudentRecord {
     public void setTransactions(Transaction[] transactions) {
         this.transactions = transactions;
     }
+
+    @Override
+    public String toString() {
+        return "student: \n" + getStudent() + "\n";
+    }
 }
