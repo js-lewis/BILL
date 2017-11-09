@@ -1,6 +1,7 @@
 package edu.sc.csce740;
 
 //Model imports
+import edu.sc.csce740.defines.Role;
 import edu.sc.csce740.model.Bill;
 import edu.sc.csce740.model.StudentRecord;
 import edu.sc.csce740.model.User;
@@ -13,6 +14,7 @@ import edu.sc.csce740.exceptions.PaymentException;
 import edu.sc.csce740.exceptions.PaymentSaveException;
 import edu.sc.csce740.exceptions.RecordDataLoadException;
 import edu.sc.csce740.exceptions.UnauthorizedUserException;
+import edu.sc.csce740.exceptions.UnknownUserException;
 import edu.sc.csce740.exceptions.UserDataLoadException;
 import edu.sc.csce740.exceptions.UserLoginException;
 import edu.sc.csce740.exceptions.UserLogoutException;
@@ -23,20 +25,22 @@ import edu.sc.csce740.helpers.UserHelper;
 import edu.sc.csce740.helpers.StudentHelper;
 
 //Java imports
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.ArrayList;
 
 //public class BILL implements BILLIntf {
 public class BILL {
     /**
-     * A list of users of the system.
+     * A helper to access the Users of the system.
      */
-    private List<User> users;
+    private UserHelper userHelper;
 
     /**
-     * A list of users of the system.
+     * A helper to access the Student Record data of the system.
      */
-    private List<StudentRecord> students;
+    private StudentHelper studentHelper;
 
     /**
      * The current User.
@@ -48,6 +52,8 @@ public class BILL {
      *
      */
     public BILL() {
+        userHelper = new UserHelper();
+        studentHelper = new StudentHelper();
         currentUser = null;
     }
 
@@ -59,16 +65,16 @@ public class BILL {
      */
     public void loadUsers(String usersFile)
             throws UserDataLoadException {
-        UserHelper helper = new UserHelper(usersFile);
+        userHelper.setFileName(usersFile);
 
         try {
-            users = helper.readUsers();
-            if( users.isEmpty() ) {
+            userHelper.readUsers();
+            if( userHelper.getUsers().isEmpty() ) {
                 System.out.println( "no users. this is bad");
                 throw new UserDataLoadException();
             } else {
-                System.out.println( "There are " + Integer.toString(users.size()) + " users." );
-                helper.printUsers();
+                System.out.println( "There are " + Integer.toString(userHelper.getUsers().size()) + " users." );
+                userHelper.printUsers();
             }
         } catch (Exception e) {
             throw new UserDataLoadException();
@@ -83,16 +89,16 @@ public class BILL {
      */
     public void loadRecords(String recordsFile)
             throws RecordDataLoadException {
-        StudentHelper helper = new StudentHelper(recordsFile);
+        studentHelper.setFileName(recordsFile);
 
         try {
-            students = helper.readStudentRecords();
-            if( students.isEmpty() ) {
+            studentHelper.readStudentRecords();
+            if( studentHelper.getStudents().isEmpty() ) {
                 System.out.println( "no students. this is bad");
                 throw new RecordDataLoadException();
             } else {
-                System.out.println( "There are " + Integer.toString(students.size()) + " students." );
-                helper.printStudentRecords();
+                System.out.println( "There are " + Integer.toString(studentHelper.getStudents().size()) + " students." );
+                studentHelper.printStudentRecords();
             }
         } catch (Exception e) {
             throw new RecordDataLoadException();
@@ -107,18 +113,17 @@ public class BILL {
      */
     public void logIn(String userId)
             throws UserLoginException {
-        if( currentUser == null ) {
+        //If there's a user logged in already, throw an exception
+        if( currentUser != null ) {
             throw new UserLoginException();
         }
 
-        for(User user: users) {
-            if( user.getId().equalsIgnoreCase(userId) ) {
-                currentUser = user;
-                return;
-            }
-        }
+        currentUser = userHelper.findUser(userId);
 
-        throw new UserLoginException();
+        //If no user was found, throw an exception
+        if(currentUser == null) {
+            throw new UserLoginException();
+        }
     }
 
     /**
@@ -129,6 +134,7 @@ public class BILL {
      public void logOut()
             throws UserLogoutException {
 
+         //If no user was logged in, throw an exception
          if( currentUser == null ) {
              throw new UserLogoutException();
          } else {
@@ -153,10 +159,22 @@ public class BILL {
      * college belonging to the current user
      * @throws Exception is the current user is not an admin.
      */
-//    public List<String> getStudentIDs()
-//            throws UnauthorizedUserException {
-//
-//    }
+    public List<String> getStudentIDs()
+            throws UnauthorizedUserException {
+        List<String> studentList = null;
+
+        switch(currentUser.getRole()) {
+            case STUDENT: throw new UnauthorizedUserException();
+            case ADMIN:
+                studentList = studentHelper.getStudentsByCollege(currentUser.getCollege().toString());
+                break;
+            case GRADUATE_PROGRAM_COORDINATOR:
+                studentList = studentHelper.getGraduateStudents();
+                break;
+        }
+
+        return studentList;
+    }
 
     /**
      * Gets the raw student record data for a given userId.
@@ -166,10 +184,21 @@ public class BILL {
      * @throws Exception if the form data could not be retrieved. SEE NOTE IN
      *                   CLASS HEADER.
      */
-//    public StudentRecord getRecord(String userId)
-//            throws UnauthorizedUserException, UserRetrievalException {
-//
-//    }
+    public StudentRecord getRecord(String userId)
+            throws UnauthorizedUserException, UserRetrievalException {
+        StudentRecord result = studentHelper.findStudentRecord(userId);
+
+        //If no user was found, throw an exception
+        if(result == null) {
+            throw new UserRetrievalException();
+        }
+
+        if( result.getCollege() != currentUser.getCollege() ) {
+            throw new UnauthorizedUserException();
+        }
+
+        return result;
+    }
 
     /**
      * Saves a new set of student data to the records data.
@@ -181,10 +210,29 @@ public class BILL {
      * @throws Exception if the transcript data could not be saved or failed
      *                   a validity check.  SEE NOTE IN CLASS HEADER.
      */
-//    public void editRecord(String userId, StudentRecord record, Boolean permanent)
-//            throws UnauthorizedUserException, DataSaveException {
-//
-//    }
+    public void editRecord(String userId, StudentRecord record, Boolean permanent)
+            throws UnauthorizedUserException, UnknownUserException, DataSaveException {
+        StudentRecord toChange = studentHelper.findStudentRecord(userId);
+
+        if( toChange == null ) {
+            throw new UnknownUserException();
+        }
+
+        if( toChange.getCollege() != currentUser.getCollege() ) {
+            throw new UnauthorizedUserException();
+        }
+
+        studentHelper.removeStudentRecord(toChange);
+        studentHelper.addStudentRecord(record);
+
+        if( permanent ) {
+            try{
+                studentHelper.writeStudentRecords();
+            } catch (IOException e) {
+                throw new DataSaveException();
+            }
+        }
+    }
 
     /**
      * Generates current bill.

@@ -18,13 +18,35 @@ public class UserHelper {
     GsonBuilder builder;
     List<User> users;
 
-    public UserHelper(String fileName) {
-        this.fileName = fileName;
-        users = null;
-        builder = new GsonBuilder();
+    public UserHelper() {
+        this.fileName = "";
+        this.users = null;
+        this.builder = new GsonBuilder();
     }
 
-    public List<User> readUsers()
+    public UserHelper(String fileName) {
+        this.fileName = fileName;
+        this.users = null;
+        this.builder = new GsonBuilder();
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void readUsers()
             throws IOException {
         Type userType = new TypeToken<List<User>>() {}.getType();
         Gson gson = builder.create();
@@ -33,8 +55,6 @@ public class UserHelper {
         file = new File(fileName);
 
         users = gson.fromJson(FileUtils.readFileToString(file, "UTF-8"), userType);
-
-        return users;
     }
 
     public void writeUsers()
@@ -48,16 +68,33 @@ public class UserHelper {
     }
 
     public void addUser(User newUser) {
-        users.add(newUser);
+        if( users != null ) {
+            users.add(newUser);
+        }
     }
 
     public void removeUser(User newUser) {
-        users.remove(newUser);
+        if( users != null ) {
+            users.remove(newUser);
+        }
+    }
+
+    public User findUser(String userId) {
+        if( users != null ) {
+            for (User user : users) {
+                if (user.getId().equalsIgnoreCase(userId)) {
+                    return user;
+                }
+            }
+        }
+        return null;
     }
 
     public void printUsers() {
-        for (User user : users) {
-            System.out.println(user);
+        if(users != null) {
+            for (User user : users) {
+                System.out.println(user);
+            }
         }
     }
 }
