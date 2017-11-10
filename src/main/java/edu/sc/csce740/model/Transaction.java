@@ -7,49 +7,112 @@ import edu.sc.csce740.defines.TransactionType;
  * This class represents a Transaction in the BILL system.
  */
 public class Transaction {
+    /**
+     * The type of the Transaction.
+     */
     private TransactionType type;
+
+    /**
+     * The Date the Transaction took place.
+     */
     private Date transactionDate;
+
+    /**
+     * The amount of the Transaction.
+     */
     private double amount;
+
+    /**
+     * A note with details about the Transaction.
+     */
     private String note;
 
+    /**
+     * The default constructor for a Transaction.
+     */
     public Transaction() {
+        this.type = TransactionType.PAYMENT;
+        this.transactionDate = new Date();
+        this.amount = 0.0;
+        this.note = "";
     }
 
+    /**
+     * The constructor for a Transaction.
+     * @param type              the type of the Transaction.
+     * @param transactionDate   the Date of the Transaction.
+     * @param amount            the positive amount of the Transaction.
+     * @param note              a note that describes the Transaction.
+     */
     public Transaction(TransactionType type, Date transactionDate, double amount, String note) {
         this.type = type;
         this.transactionDate = transactionDate;
-        this.amount = amount;
+        setAmount(amount);
         this.note = note;
     }
 
+    /**
+     * Gets the type of the Transaction.
+     * @return the type of the Transaction.
+     */
     public TransactionType getType() {
         return type;
     }
 
+    /**
+     * Sets the type of the Transaction.
+     * @param type  the new type of the Transaction.
+     */
     public void setType(TransactionType type) {
         this.type = type;
     }
 
+    /**
+     * Gets the Date of the Transaction.
+     * @return the Date of the Transaction.
+     */
     public Date getTransactionDate() {
         return transactionDate;
     }
 
+    /**
+     * Sets the Date of the Transaction.
+     * @param transactionDate   the new Date of the Transaction.
+     */
     public void setTransactionDate(Date transactionDate) {
         this.transactionDate = transactionDate;
     }
 
+    /**
+     * Gets the amount of the Transaction.
+     * @return the amount of the Transaction as a positive number.
+     */
     public double getAmount() {
         return amount;
     }
 
+    /**
+     * Sets the amount of the transaction as a positive number. If the number is negative, no change will be made.
+     * @param amount    the positive amount of the Transaction.
+     */
     public void setAmount(double amount) {
-        this.amount = amount;
+        if(amount >= 0) {
+            this.amount = amount;
+        }
     }
 
+    /**
+     * Gets a note about the Transaction.
+     * @return  A note about the Transaction.
+     */
     public String getNote() {
         return note;
     }
 
+    /**
+     * Sets a note about the Transaction.
+     * @param note  The new note to add to the Transaction.
+     */
     public void setNote(String note) {
         this.note = note;
     }

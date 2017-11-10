@@ -101,7 +101,7 @@ public class Bill {
     }
 
     /**
-     * Get the Class Status of the Student.
+     * Gets the Class Status of the Student.
      * @return the Class Status of the Student.
      */
     public ClassStatus getClassStatus() {
@@ -133,23 +133,31 @@ public class Bill {
     }
 
     /**
-     * Get an array of all of the transactions associated with a Student's account.
+     * Gets an array of all of the transactions associated with a Student's account.
      * @return an array of Transactions performed on the Student's account.
      */
-    public Transaction[] getTransactionArray() {
+    public Transaction[] getTransactions() {
         return transactions.toArray(new Transaction[transactions.size()]);
     }
 
     /**
-     * Get an array of all of the transactions associated with a Student's account.
+     * Sets the list of transactions associated with a Student's account.
+     * @param transactions  an array of Transactions performed on the Student's account.
+     */
+    public void setTransactions(Transaction[] transactions) {
+        this.transactions = new ArrayList<Transaction>(Arrays.asList(transactions));
+    }
+
+    /**
+     * Gets an array of all of the transactions associated with a Student's account.
      * @return an array of Transactions performed on the Student's account.
      */
-    public List<Transaction> getTransactions() {
+    public List<Transaction> getTransactionList() {
         return transactions;
     }
 
     /**
-     * Add a transaction to the current transaction array.
+     * Adds a transaction to the current transaction array.
      * @param transaction   A new transaction to add to the bill.
      */
     public void addTransaction(Transaction transaction) {
@@ -166,6 +174,6 @@ public class Bill {
                 "college: " + getCollege() + "\n" +
                 "classStatus: " + getClassStatus() + "\n" +
                 "balance: " + getBalance() + "\n" +
-                "transaction : \n" + PrintHelper.transactionListToString(getTransactionArray());
+                "transaction : \n" + PrintHelper.transactionListToString(getTransactions());
     }
 }
