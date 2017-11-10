@@ -58,6 +58,23 @@ public class BILL {
         currentUser = null;
     }
 
+
+    protected UserHelper getUserHelper() {
+        return userHelper;
+    }
+
+    protected void setUserHelper(UserHelper userHelper) {
+        this.userHelper = userHelper;
+    }
+
+    protected StudentHelper getStudentHelper() {
+        return studentHelper;
+    }
+
+    protected void setStudentHelper(StudentHelper studentHelper) {
+        this.studentHelper = studentHelper;
+    }
+
     /**
      * Loads the list of system usernames and permissions.
      *
@@ -66,18 +83,14 @@ public class BILL {
      */
     public void loadUsers(String usersFile)
             throws UserDataLoadException {
+        //Set the filename to load the users from
         userHelper.setFileName(usersFile);
 
+        //Load the users
         try {
             userHelper.readUsers();
-            if( userHelper.getUsers().isEmpty() ) {
-                System.out.println( "no users. this is bad");
-                throw new UserDataLoadException();
-            } else {
-                System.out.println( "There are " + Integer.toString(userHelper.getUsers().size()) + " users." );
-                userHelper.printUsers();
-            }
-        } catch (Exception e) {
+        //If an IO Exception occurs, throw an exception specific to this function
+        } catch (IOException e) {
             throw new UserDataLoadException();
         }
     }
@@ -93,17 +106,11 @@ public class BILL {
 
         studentHelper.setFileName(recordsFile);
 
+        //Load the Student Records
         try {
             studentHelper.readStudentRecords();
-            if( studentHelper.getStudents().isEmpty() ) {
-                System.out.println( "no students. this is bad");
-                throw new RecordDataLoadException();
-            } else {
-                System.out.println( "There are " + Integer.toString(studentHelper.getStudents().size()) + " students." );
-                studentHelper.printStudentRecords();
-            }
-        } catch (Exception e) {
-            System.out.println(e);
+        //If an IO Exception occurs, throw an exception specific to this function
+        } catch (IOException e) {
             throw new RecordDataLoadException();
         }
     }

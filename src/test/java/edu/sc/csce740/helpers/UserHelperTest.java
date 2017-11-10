@@ -2,13 +2,17 @@ package edu.sc.csce740.helpers;
 
 import edu.sc.csce740.model.User;
 
+//JUnit includes
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.Assert;
 
+//To catch IOExceptions
 import java.io.IOException;
+
+//To support the User List
 import java.util.List;
 
 public class UserHelperTest {
@@ -31,7 +35,7 @@ public class UserHelperTest {
      */
     @Test
     public void testReadUsers()
-            throws Exception {
+            throws IOException {
         userHelper = new UserHelper();
         userHelper.setFileName("resources/users.json");
         userHelper.readUsers();
@@ -47,7 +51,7 @@ public class UserHelperTest {
      */
     @Test(expected = IOException.class)
     public void testReadUsersWithExc()
-            throws Exception {
+            throws IOException {
         userHelper = new UserHelper();
         userHelper.setFileName("resources/noFile");
         userHelper.readUsers();
