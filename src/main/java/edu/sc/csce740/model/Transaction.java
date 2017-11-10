@@ -1,7 +1,11 @@
 package edu.sc.csce740.model;
 
+//Import required enumerications
 import edu.sc.csce740.defines.TransactionType;
 
+/**
+ * This class represents a Transaction in the BILL system.
+ */
 public class Transaction {
     private TransactionType type;
     private Date transactionDate;
@@ -50,6 +54,10 @@ public class Transaction {
         this.note = note;
     }
 
+    /**
+     * A String representation of a Transaction object.
+     * @return a String with the Transaction data.
+     */
     @Override
     public String toString() {
         return "type: " + getType() + "\n" +

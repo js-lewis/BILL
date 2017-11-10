@@ -1,5 +1,6 @@
 package edu.sc.csce740.model;
 
+//Import required enumerications
 import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.ClassStatus;
 import edu.sc.csce740.defines.InternationalStatus;
@@ -7,6 +8,9 @@ import edu.sc.csce740.defines.Scholarship;
 import edu.sc.csce740.defines.StudyAbroad;
 import edu.sc.csce740.helpers.PrintHelper;
 
+/**
+ * This class represents a Student Record in the BILL system.
+ */
 public class StudentRecord {
     private Student student;
     private College college;
@@ -195,6 +199,10 @@ public class StudentRecord {
         this.transactions = transactions;
     }
 
+    /**
+     * A String representation of a Student Record object.
+     * @return a String with the Student Record data.
+     */
     @Override
     public String toString() {
         return "student: \n" + getStudent() + "\n" +
