@@ -3,6 +3,8 @@ package edu.sc.csce740.model;
 //Import required enumerications
 import edu.sc.csce740.defines.TransactionType;
 
+import java.math.BigDecimal;
+
 /**
  * This class represents a Transaction in the BILL system.
  */
@@ -20,7 +22,7 @@ public class Transaction {
     /**
      * The amount of the Transaction.
      */
-    private double amount;
+    private BigDecimal amount;
 
     /**
      * A note with details about the Transaction.
@@ -33,7 +35,7 @@ public class Transaction {
     public Transaction() {
         this.type = TransactionType.PAYMENT;
         this.transactionDate = new Date();
-        this.amount = 0.0;
+        this.amount = BigDecimal.ZERO;
         this.note = "";
     }
 
@@ -44,7 +46,7 @@ public class Transaction {
      * @param amount            the positive amount of the Transaction.
      * @param note              a note that describes the Transaction.
      */
-    public Transaction(TransactionType type, Date transactionDate, double amount, String note) {
+    public Transaction(TransactionType type, Date transactionDate, BigDecimal amount, String note) {
         this.type = type;
         this.transactionDate = transactionDate;
         setAmount(amount);
@@ -87,18 +89,17 @@ public class Transaction {
      * Gets the amount of the Transaction.
      * @return the amount of the Transaction as a positive number.
      */
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
     /**
-     * Sets the amount of the transaction as a positive number. If the number is negative, no change will be made.
+     * Sets the amount of the transaction as a positive number. If the number is negative, the absolute value will be
+     * used.
      * @param amount    the positive amount of the Transaction.
      */
-    public void setAmount(double amount) {
-        if(amount >= 0) {
-            this.amount = amount;
-        }
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount.abs();
     }
 
     /**

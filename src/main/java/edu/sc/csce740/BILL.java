@@ -1,9 +1,16 @@
 package edu.sc.csce740;
 
-//Model imports
+//Enumeration imports
+import edu.sc.csce740.defines.ClassStatus;
+import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.Role;
+import edu.sc.csce740.defines.TransactionType;
+
+//Model imports
 import edu.sc.csce740.model.Bill;
+import edu.sc.csce740.model.Date;
 import edu.sc.csce740.model.StudentRecord;
+import edu.sc.csce740.model.Transaction;
 import edu.sc.csce740.model.User;
 
 //Exception imports
@@ -28,6 +35,7 @@ import edu.sc.csce740.helpers.BillHelper;
 //Java imports
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -50,7 +58,6 @@ public class BILL {
 
     /**
      * Constructor to initialize an empty BILL instance.
-     *
      */
     public BILL() {
         userHelper = new UserHelper();
@@ -59,20 +66,54 @@ public class BILL {
     }
 
 
+    /**
+     * Method for test validation to get the UserHelper that is used by BILL.
+     *
+     * @return the UserHelper being used by BILL to manipulate User Records.
+     */
     protected UserHelper getUserHelper() {
         return userHelper;
     }
 
-    protected void setUserHelper(UserHelper userHelper) {
-        this.userHelper = userHelper;
-    }
-
+    /**
+     * Method for test validation to get the StudentHelper that is used by BILL.
+     *
+     * @return the StudentHelper being used by BILL to manipulate Student Records.
+     */
     protected StudentHelper getStudentHelper() {
         return studentHelper;
     }
 
-    protected void setStudentHelper(StudentHelper studentHelper) {
-        this.studentHelper = studentHelper;
+    /**
+     * Mehtod for test validation to get the User who is currently logged into the system.
+     *
+     * @return the User currently logged in.
+     */
+    protected User getCurrentUser() {
+        return currentUser;
+    }
+
+    protected boolean canBeAccessed(StudentRecord student) {
+
+        // The User is editing themselves
+        if (currentUser.getId().equalsIgnoreCase(student.getStudent().getId())) {
+            return true;
+        }
+        // The User is an admin and editing a user in their College
+        if (currentUser.getCollege() == student.getCollege() && currentUser.getRole() == Role.ADMIN) {
+            return true;
+        }
+
+        // The User is an admin and editing a grad student
+        if (currentUser.getCollege() == College.GRADUATE_SCHOOL) {
+            switch (student.getClassStatus()) {
+                case MASTERS:
+                case PHD:
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -83,13 +124,14 @@ public class BILL {
      */
     public void loadUsers(String usersFile)
             throws UserDataLoadException {
+
         //Set the filename to load the users from
         userHelper.setFileName(usersFile);
 
         //Load the users
         try {
             userHelper.readUsers();
-        //If an IO Exception occurs, throw an exception specific to this function
+            //If an IO Exception occurs, throw an exception specific to this function
         } catch (IOException e) {
             throw new UserDataLoadException();
         }
@@ -109,7 +151,7 @@ public class BILL {
         //Load the Student Records
         try {
             studentHelper.readStudentRecords();
-        //If an IO Exception occurs, throw an exception specific to this function
+            //If an IO Exception occurs, throw an exception specific to this function
         } catch (IOException e) {
             throw new RecordDataLoadException();
         }
@@ -122,17 +164,18 @@ public class BILL {
      * @throws Exception if the user id is invalid.  SEE NOTE IN CLASS HEADER.
      */
     public void logIn(String userId)
-            throws UserLoginException {
+            throws UnknownUserException, UserLoginException {
+
         //If there's a user logged in already, throw an exception
-        if( currentUser != null ) {
+        if (currentUser != null) {
             throw new UserLoginException();
         }
 
         currentUser = userHelper.findUser(userId);
 
         //If no user was found, throw an exception
-        if(currentUser == null) {
-            throw new UserLoginException();
+        if (currentUser == null) {
+            throw new UnknownUserException();
         }
     }
 
@@ -141,16 +184,15 @@ public class BILL {
      *
      * @throws Exception if no one is logged in.  SEE NOTE IN CLASS HEADER.
      */
-     public void logOut()
+    public void logOut()
             throws UserLogoutException {
 
-         //If no user was logged in, throw an exception
-         if( currentUser == null ) {
-             throw new UserLogoutException();
-         } else {
-             currentUser = null;
-         }
-
+        //If no user was logged in, throw an exception
+        if (currentUser == null) {
+            throw new UserLogoutException();
+        } else {
+            currentUser = null;
+        }
     }
 
     /**
@@ -173,13 +215,19 @@ public class BILL {
             throws UnauthorizedUserException {
         List<String> studentList = null;
 
-        switch(currentUser.getRole()) {
-            case STUDENT: throw new UnauthorizedUserException();
+        switch (currentUser.getRole()) {
+            case STUDENT:
+                throw new UnauthorizedUserException();
             case ADMIN:
-                studentList = studentHelper.getStudentsByCollege(currentUser.getCollege().toString());
-                break;
-            case GRADUATE_PROGRAM_COORDINATOR:
-                studentList = studentHelper.getGraduateStudents();
+                switch (currentUser.getCollege()) {
+                    case GRADUATE_SCHOOL:
+                        studentList = studentHelper.getGraduateStudents();
+                        break;
+                    case ENGINEERING_AND_COMPUTING:
+                    case ARTS_AND_SCIENCES:
+                        studentList = studentHelper.getStudentsByCollege(currentUser.getCollege().toString());
+                        break;
+                }
                 break;
         }
 
@@ -199,11 +247,12 @@ public class BILL {
         StudentRecord result = studentHelper.findStudentRecord(userId);
 
         //If no user was found, throw an exception
-        if(result == null) {
+        if (result == null) {
             throw new UserRetrievalException();
         }
 
-        if( result.getCollege() != currentUser.getCollege() ) {
+        if (canBeAccessed(result)) {
+        } else {
             throw new UnauthorizedUserException();
         }
 
@@ -224,23 +273,27 @@ public class BILL {
             throws UnauthorizedUserException, UnknownUserException, DataSaveException {
         StudentRecord toChange = studentHelper.findStudentRecord(userId);
 
-        if( toChange == null ) {
+        if (toChange == null) {
             throw new UnknownUserException();
         }
 
-        if( toChange.getCollege() != currentUser.getCollege() ) {
-            throw new UnauthorizedUserException();
-        }
-
-        studentHelper.removeStudentRecord(toChange);
-        studentHelper.addStudentRecord(record);
-
-        if( permanent ) {
-            try{
-                studentHelper.writeStudentRecords();
-            } catch (IOException e) {
-                throw new DataSaveException();
+        if (canBeAccessed(toChange)) {
+            //TODO: Do we need to check to only save the parts of a student that the student can modify? Check to see if this is correct.
+            if(currentUser.getRole() == Role.STUDENT) {
+                toChange.setStudent(record.getStudent());
+            } else {
+                studentHelper.removeStudentRecord(toChange);
+                studentHelper.addStudentRecord(record);
             }
+            if (permanent) {
+                try {
+                    studentHelper.writeStudentRecords();
+                } catch (IOException e) {
+                    throw new DataSaveException();
+                }
+            }
+        } else {
+            throw new UnauthorizedUserException();
         }
     }
 
@@ -287,8 +340,30 @@ public class BILL {
      *                   or fails to save to file.
      *                   SEE NOTE IN CLASS HEADER.
      */
-//    public void applyPayment(String userId, BigDecimal amount, String note)
-//            throws UnauthorizedUserException, PaymentException, PaymentSaveException {
-//
-//    }
+    public void applyPayment(String userId, BigDecimal amount, String note)
+            throws UnknownUserException, UnauthorizedUserException, PaymentException, PaymentSaveException {
+        StudentRecord toChange = studentHelper.findStudentRecord(userId);
+
+        if (toChange == null) {
+            throw new UnknownUserException();
+        }
+
+        //If the user can modify the student
+        if (canBeAccessed(toChange)) {
+            //Get today's date
+            Calendar today = Calendar.getInstance();
+            //Create the payment
+            Transaction newPayment = new Transaction( TransactionType.PAYMENT,
+                    new Date( today.get(Calendar.MONTH)+1, today.get(Calendar.DATE), today.get(Calendar.YEAR) ),
+                    amount,
+                    note );
+
+            //TODO: Add Payment to Student Record - Exception on Failure
+            System.out.println(newPayment);
+
+            //TODO: Write Records to File - Exception on Failure
+        } else {
+            throw new UnauthorizedUserException();
+        }
+    }
 }
