@@ -33,5 +33,19 @@
         "lastName": "Smith",
         "role": "ADMIN",
         "college": "ARTS_AND_SCIENCES"
+    },
+    {
+        "id": "kmurph",
+        "firstName": "Karin",
+        "lastName": "Murph",
+        "role": "STUDENT",
+        "college": "ARTS_AND_SCIENCES"
+    },
+    {
+        "id": "jtrahan",
+        "firstName": "Jamal",
+        "lastName": "Trahan",
+        "role": "STUDENT",
+        "college": "ENGINEERING_AND_COMPUTING"
     }
 ]

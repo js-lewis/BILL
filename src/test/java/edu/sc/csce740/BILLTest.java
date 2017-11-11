@@ -26,9 +26,9 @@ public class BILLTest {
     public void setup() {
 
     }
-
+//TODO: Comments and change test names to begin with test
     @Test
-    public void loadUsersTest()
+    public void testLoadUsers()
             throws Exception {
         BILL billInst = new BILL();
 
@@ -36,11 +36,11 @@ public class BILLTest {
 
         UserHelper userHelper = billInst.getUserHelper();
         List<User> users = userHelper.getUsers();
-        Assert.assertEquals( users.size(), 5 );
+        Assert.assertEquals( users.size(), Constants.BASE_NUMBER_OF_USERS );
     }
 
     @Test
-    public void loadRecordsTest()
+    public void testLoadRecords()
             throws Exception {
         BILL billInst = new BILL();
 
@@ -48,11 +48,11 @@ public class BILLTest {
 
         StudentHelper studentHelper = billInst.getStudentHelper();
         List<StudentRecord> studentRecords = studentHelper.getStudents();
-        Assert.assertEquals( studentRecords.size(), 2 );
+        Assert.assertEquals( studentRecords.size(), Constants.BASE_NUMBER_OF_RECORDS );
     }
 
     @Test
-    public void logInTest()
+    public void testLogIn()
             throws Exception {
         BILL billInst = new BILL();
 
@@ -60,13 +60,13 @@ public class BILLTest {
         billInst.loadUsers(Constants.USERS_BASE_FILE);
         billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
-        billInst.logIn( "ggay");
+        billInst.logIn( Constants.ADMIN_GRAD);
 
-        Assert.assertEquals(billInst.getCurrentUser(), billInst.getUserHelper().findUser("ggay"));
+        Assert.assertEquals(billInst.getCurrentUser(), billInst.getUserHelper().findUser(Constants.ADMIN_GRAD));
     }
 
     @Test
-    public void logOutTest()
+    public void testLogOut()
             throws Exception {
         BILL billInst = new BILL();
 
@@ -74,17 +74,17 @@ public class BILLTest {
         billInst.loadUsers(Constants.USERS_BASE_FILE);
         billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
-        billInst.logIn( "mmatthews");
+        billInst.logIn( Constants.STUDENT_EAC_UNDER);
 
-        Assert.assertEquals(billInst.getCurrentUser(), billInst.getUserHelper().findUser("mmatthews"));
+        Assert.assertEquals(billInst.getCurrentUser(), billInst.getUserHelper().findUser(Constants.STUDENT_EAC_UNDER));
 
         billInst.logOut();
 
-        Assert.assertEquals(billInst.getCurrentUser(), null);
+        Assert.assertNull(billInst.getCurrentUser());
     }
 
     @Test
-    public void getUserTest()
+    public void testGetUser()
             throws Exception {
         BILL billInst = new BILL();
 
@@ -92,14 +92,14 @@ public class BILLTest {
         billInst.loadUsers(Constants.USERS_BASE_FILE);
         billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
-        billInst.logIn( "rbob");
+        billInst.logIn( Constants.ADMIN_EAC);
 
-        Assert.assertEquals(billInst.getCurrentUser(), billInst.getUserHelper().findUser("rbob"));
-        Assert.assertEquals(billInst.getUser(), "rbob");
+        Assert.assertEquals(billInst.getCurrentUser(), billInst.getUserHelper().findUser(Constants.ADMIN_EAC));
+        Assert.assertEquals(billInst.getUser(), Constants.ADMIN_EAC);
     }
 
     @Test
-    public void getStudentIDsTestUndergrad()
+    public void testGetStudentIDsAAS()
             throws Exception {
         BILL billInst = new BILL();
 
@@ -107,16 +107,22 @@ public class BILLTest {
         billInst.loadUsers(Constants.USERS_BASE_FILE);
         billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
-        billInst.logIn( "rbob");
+        billInst.logIn( Constants.ADMIN_AAS);
 
-        Assert.assertEquals(billInst.getCurrentUser(), billInst.getUserHelper().findUser("rbob"));
-        Assert.assertEquals(billInst.getUser(), "rbob");
-        Assert.assertEquals(billInst.getStudentIDs().size(), 1);
-        Assert.assertEquals(billInst.getStudentIDs().get(0),"ggay");
+        Assert.assertEquals(billInst.getStudentIDs().size(), Constants.BASE_NUMBER_AAS);
+
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.AAS_SOPHOMORE));
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.AAS_JUNIOR));
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.AAS_PHD));
+
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.EAC_FRESHMAN));
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.EAC_SENIOR));
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.EAC_MASTERS));
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.EAC_PHD));
     }
 
     @Test
-    public void getStudentIDsTestGrad()
+    public void testGetStudentIDsEAC()
             throws Exception {
         BILL billInst = new BILL();
 
@@ -124,16 +130,45 @@ public class BILLTest {
         billInst.loadUsers(Constants.USERS_BASE_FILE);
         billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
-        billInst.logIn( "mmatthews");
+        billInst.logIn( Constants.ADMIN_EAC);
 
-        Assert.assertEquals(billInst.getCurrentUser(), billInst.getUserHelper().findUser("mmatthews"));
-        Assert.assertEquals(billInst.getUser(), "mmatthews");
-        Assert.assertEquals(billInst.getStudentIDs().size(), 1);
-        Assert.assertEquals(billInst.getStudentIDs().get(0),"mhunt");
+        Assert.assertEquals(billInst.getStudentIDs().size(), Constants.BASE_NUMBER_EAC);
+
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.EAC_FRESHMAN));
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.EAC_SENIOR));
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.EAC_MASTERS));
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.EAC_PHD));
+
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.AAS_SOPHOMORE));
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.AAS_JUNIOR));
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.AAS_PHD));
     }
 
     @Test
-    public void getRecordTest()
+    public void testGetStudentIDsGrad()
+            throws Exception {
+        BILL billInst = new BILL();
+
+        //load the data
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
+
+        billInst.logIn(Constants.ADMIN_GRAD);
+
+        Assert.assertEquals(billInst.getStudentIDs().size(), Constants.BASE_NUMBER_GRAD);
+
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.EAC_MASTERS));
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.EAC_PHD));
+        Assert.assertTrue(billInst.getStudentIDs().contains(Constants.AAS_PHD));
+
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.AAS_SOPHOMORE));
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.AAS_JUNIOR));
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.EAC_FRESHMAN));
+        Assert.assertFalse(billInst.getStudentIDs().contains(Constants.EAC_SENIOR));
+    }
+
+    @Test
+    public void testGetRecord()
             throws Exception {
 
         BILL billInst = new BILL();
@@ -142,23 +177,24 @@ public class BILLTest {
         billInst.loadUsers(Constants.USERS_BASE_FILE);
         billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
-        billInst.logIn( "jsmith");
+        billInst.logIn(Constants.ADMIN_AAS);
 
-        Assert.assertEquals(billInst.getRecord("mhunt"), billInst.getStudentHelper().findStudentRecord("mhunt"));
+        Assert.assertEquals(billInst.getRecord(Constants.STUDENT_AAS_GRAD),
+                billInst.getStudentHelper().findStudentRecord(Constants.STUDENT_AAS_GRAD));
     }
 
     @Test
-    public void applyPaymentTest()
+    public void testApplyPayment()
             throws Exception {
 
         BILL billInst = new BILL();
 
         //load the data
-        billInst.loadUsers(Constants.USERS_BASE_FILE);
-        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
+        billInst.loadUsers(Constants.USERS_MOD_FILE);
+        billInst.loadRecords(Constants.RECORDS_MOD_FILE);
 
-        billInst.logIn( "jsmith");
-        billInst.applyPayment( "mhunt", new BigDecimal(50.00), "Just a test.");
+        billInst.logIn(Constants.STUDENT_EAC_UNDER);
+        billInst.applyPayment( Constants.STUDENT_EAC_UNDER, new BigDecimal(50.00), "Just a test.");
     }
 
     @After

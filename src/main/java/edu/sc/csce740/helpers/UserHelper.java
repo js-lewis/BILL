@@ -159,7 +159,7 @@ public class UserHelper {
     /**
      * Finds a User in the Users List by ID. This is currently done by iterating through the list.
      * @param userId    the ID of the User to find
-     * @return the User object whose
+     * @return the User object whose ID matches the input parameter. Null if there's no match.
      */
     public User findUser(String userId) {
         //Check to make sure the list isn't null
@@ -176,7 +176,7 @@ public class UserHelper {
     }
 
     /**
-     * Print out the Users in the User list. This is for debugging purposes.
+     * Print out the Users in the User List. This is for debugging purposes.
      */
     public void printUsers() {
         if(users != null) {

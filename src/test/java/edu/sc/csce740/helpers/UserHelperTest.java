@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class UserHelperTest {
-    private UserHelper userHelper;
-
     /**
      * Method to test the readUsers method happy path. This reads in the provided users.txt file and checks to ensure
      *  that 5 users were loaded.
@@ -31,7 +29,7 @@ public class UserHelperTest {
 
     }
 
-    //Tests for readUsers function.
+    //Tests for readUsers
 
     /**
      * Method to test the readUsers method happy path. This reads in the provided file and checks to ensure
@@ -41,7 +39,7 @@ public class UserHelperTest {
     @Test
     public void testReadUsers()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.USERS_BASE_FILE);
         userHelper.readUsers();
         List<User> users = userHelper.getUsers();
@@ -56,7 +54,7 @@ public class UserHelperTest {
     @Test
     public void testReadUsersEmptyFile()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.EMPTY_FILE);
         userHelper.readUsers();
         List<User> users = userHelper.getUsers();
@@ -71,23 +69,23 @@ public class UserHelperTest {
     @Test(expected = IOException.class)
     public void testReadUsersWithExc()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.NO_FILE);
         userHelper.readUsers();
     }
 
     //TODO: Add test for malformed JSON file.
 
-    //Tests for addUser
-
+    //Tests for writeUsers()
     /**
-     * Method to test the addUser's method behavior. This should just add a User to the User's List
-     * @throws IOException if there's error reading from the file.
+     * Method to test the writeUsers method behavior to write JSON to a file. Methods adds a user and writes the List
+     * to a new file. Then imports the new file to ensure the new user was written and the file imports ok.
+     * @throws IOException if there's error writing to the file.
      */
     @Test
-    public void testAddUserWhenNew()
+    public void testWriteUsers()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.USERS_BASE_FILE);
         userHelper.readUsers();
         List<User> users = userHelper.getUsers();
@@ -95,8 +93,43 @@ public class UserHelperTest {
         Assert.assertEquals( users.size(), Constants.BASE_NUMBER_OF_USERS );
         //Check to make sure the user isn't in there.
         Assert.assertNull( userHelper.findUser(Constants.NEW_USER_FIRST_NAME));
-        User newUser = new User(Constants.NEW_USER_ID, Constants.NEW_USER_ID, Constants.NEW_USER_LAST_NAME,
+        User newUser = new User(Constants.NEW_USER_ID, Constants.NEW_USER_FIRST_NAME, Constants.NEW_USER_LAST_NAME,
                 Constants.NEW_USER_ROLE, Constants.NEW_USER_COLLEGE);
+        //Add the user and check to make sure the new user is there.
+        userHelper.addUser(newUser);
+        Assert.assertEquals(users.size(), Constants.BASE_NUMBER_OF_USERS+1);
+        Assert.assertEquals( userHelper.findUser(Constants.NEW_USER_ID), newUser);
+        //Write the new Users list to a new file.
+        userHelper.setFileName(Constants.USERS_MOD_FILE);
+        userHelper.writeUsers();
+        //Read the new user file into a new Helper.
+        UserHelper secondUserHelper = new UserHelper();
+        secondUserHelper.setFileName(Constants.USERS_MOD_FILE);
+        secondUserHelper.readUsers();
+        Assert.assertEquals( userHelper.getUsers().size(), Constants.BASE_NUMBER_OF_USERS+1 );
+    }
+
+    //TODO: Add negative writeUsers tests
+
+    //Tests for addUser
+    /**
+     * Method to test the addUser's method behavior. This should just add a User to the User's List
+     * @throws IOException if there's error reading from the file.
+     */
+    @Test
+    public void testAddUserWhenNew()
+            throws IOException {
+        UserHelper userHelper = new UserHelper();
+        userHelper.setFileName(Constants.USERS_BASE_FILE);
+        userHelper.readUsers();
+        List<User> users = userHelper.getUsers();
+        //Check the number of users.
+        Assert.assertEquals( users.size(), Constants.BASE_NUMBER_OF_USERS );
+        //Check to make sure the user isn't in there.
+        Assert.assertNull( userHelper.findUser(Constants.NEW_USER_FIRST_NAME));
+        User newUser = new User(Constants.NEW_USER_ID, Constants.NEW_USER_FIRST_NAME, Constants.NEW_USER_LAST_NAME,
+                Constants.NEW_USER_ROLE, Constants.NEW_USER_COLLEGE);
+        //Add the user and check to make sure the new user is there.
         userHelper.addUser(newUser);
         Assert.assertEquals(users.size(), Constants.BASE_NUMBER_OF_USERS+1);
         Assert.assertEquals( userHelper.findUser(Constants.NEW_USER_ID), newUser);
@@ -109,7 +142,7 @@ public class UserHelperTest {
     @Test
     public void testAddUserWhenExists()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.USERS_BASE_FILE);
         userHelper.readUsers();
         List<User> users = userHelper.getUsers();
@@ -130,7 +163,6 @@ public class UserHelperTest {
     }
 
     //Tests for removeUser
-
     /**
      * Method to test the removeUser's method behavior. Finds an existing user and removes them. Then searches to ensure
      * that the User is no longer in the list.
@@ -139,7 +171,7 @@ public class UserHelperTest {
     @Test
     public void testRemoveUser()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.USERS_BASE_FILE);
         userHelper.readUsers();
         List<User> users = userHelper.getUsers();
@@ -152,13 +184,12 @@ public class UserHelperTest {
         userHelper.removeUser(toRemove);
         //Check the number of users.
         Assert.assertEquals( users.size(), Constants.BASE_NUMBER_OF_USERS-1 );
-        //Check to make sure the user exists.
+        //Check to make sure the user no longer exists.
         User existing = userHelper.findUser(Constants.STUDENT_AAS_GRAD);
         Assert.assertNull(existing);
     }
 
     //Tests for findUser
-
     /**
      * Method to test the findUser's method behavior. Returns the User if found. Null if not found. User is found in
      * this test.
@@ -167,7 +198,7 @@ public class UserHelperTest {
     @Test
     public void testFindUserWhenExists()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.USERS_BASE_FILE);
         userHelper.readUsers();
         //Check to see if the user is found and the ID is correct.
@@ -184,7 +215,7 @@ public class UserHelperTest {
     @Test
     public void testFindUserWhenNotExists()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.USERS_BASE_FILE);
         userHelper.readUsers();
         //The new user shouldn't be in the list and shouldn't be found.
@@ -199,7 +230,7 @@ public class UserHelperTest {
     @Test
     public void testPrintUsers()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.USERS_BASE_FILE);
         userHelper.readUsers();
         //userHelper.printUsers();
@@ -213,7 +244,7 @@ public class UserHelperTest {
     @Test
     public void testPrintUsersEmptyList()
             throws IOException {
-        userHelper = new UserHelper();
+        UserHelper userHelper = new UserHelper();
         userHelper.setFileName(Constants.EMPTY_FILE);
         userHelper.readUsers();
         userHelper.printUsers();

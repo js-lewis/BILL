@@ -224,7 +224,7 @@ public class BILL {
                         break;
                     case ENGINEERING_AND_COMPUTING:
                     case ARTS_AND_SCIENCES:
-                        studentList = studentHelper.getStudentsByCollege(currentUser.getCollege().toString());
+                        studentList = studentHelper.getStudentsByCollege(currentUser.getCollege());
                         break;
                 }
                 break;
@@ -277,7 +277,8 @@ public class BILL {
         }
 
         if (canBeAccessed(toChange)) {
-            //TODO: Do we need to check to only save the parts of a student that the student can modify? Check to see if this is correct.
+            //TODO: Do we need to check to only save the parts of a student that the student can modify?
+            //TODO: Check to see if this is correct.
             if(currentUser.getRole() == Role.STUDENT) {
                 toChange.setStudent(record.getStudent());
             } else {
@@ -357,10 +358,21 @@ public class BILL {
                     amount,
                     note );
 
-            //TODO: Add Payment to Student Record - Exception on Failure
-            System.out.println(newPayment);
+            //If the Transaction amount is negative, the payment cannot be made.
+            if(amount.compareTo(BigDecimal.ZERO) == -1) {
+                throw new PaymentException();
+            }
 
-            //TODO: Write Records to File - Exception on Failure
+            //Add the transaction
+            toChange.addTransaction(newPayment);
+
+            //Save the record
+            try {
+                studentHelper.writeStudentRecords();
+            } catch (IOException e) {
+                throw new PaymentSaveException();
+            }
+
         } else {
             throw new UnauthorizedUserException();
         }
