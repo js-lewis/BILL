@@ -263,167 +263,168 @@ public class StudentRecord {
 
     /**
      * Sets the Student's graduate assistant status.
-     * @param gradAssistant true if the Student is a graduate assistant. False otherwise.
+     * @param gradAssistant set to true if the Student is a graduate assistant. False otherwise.
      */
     public void setGradAssistant(boolean gradAssistant) {
         this.gradAssistant = gradAssistant;
     }
 
     /**
-     *
-     * @return
+     * Indicates if the Student is an international student.
+     * @return  true if the Student is an international student. False otherwise.
      */
     public boolean isInternational() {
         return international;
     }
 
     /**
-     *
-     * @param international
+     * Sets the Student's international status.
+     * @param international set to true if the Student is an international student. False otherwise.
      */
     public void setInternational(boolean international) {
         this.international = international;
     }
 
     /**
-     *
-     * @return
+     * Gets an international student's status. Only applicable if isInternational is true.
+     * @return  the status of an international student.
      */
     public InternationalStatus getInternationalStatus() {
         return internationalStatus;
     }
 
     /**
-     *
-     * @param internationalStatus
+     * Sets an international student's status.
+     * @param internationalStatus   the new status of an international student.
      */
     public void setInternationalStatus(InternationalStatus internationalStatus) {
         this.internationalStatus = internationalStatus;
     }
 
     /**
-     *
-     * @return
+     * Indicates if the Student is an in-state resident.
+     * @return  true if the Student lives in-state. False if the Student lives out-of-state.
      */
     public boolean isResident() {
         return resident;
     }
 
     /**
-     *
-     * @param resident
+     * Sets the Student's resident status.
+     * @param resident  set to true if the Student is in-state. False if the Student is out-of-state.
      */
     public void setResident(boolean resident) {
         this.resident = resident;
     }
 
     /**
-     *
-     * @return
+     * Indicates if the Student is active duty military.
+     * @return  true if the Student is on active duty. False if the Student is not.
      */
     public boolean isActiveDuty() {
         return activeDuty;
     }
 
     /**
-     *
-     * @param activeDuty
+     * Sets the Student's active duty flag.
+     * @param activeDuty    set to true if the Student is on active duty. False otherwise.
      */
     public void setActiveDuty(boolean activeDuty) {
         this.activeDuty = activeDuty;
     }
 
     /**
-     *
-     * @return
+     * Indicates if the Student is a military veteran.
+     * @return  true if the Student is a military veteran. False if the Student is not.
      */
     public boolean isVeteran() {
         return veteran;
     }
 
     /**
-     *
-     * @param veteran
+     * Sets the Student's veteran flag.
+     * @param veteran   set to true if the Student is a military veteran. False otherwise.
      */
     public void setVeteran(boolean veteran) {
         this.veteran = veteran;
     }
 
     /**
-     *
-     * @return
+     * Indicated the Student receives free tuition.
+     * @return  true if the Student receives free tuition. False otherwise.
      */
     public boolean isFreeTuition() {
         return freeTuition;
     }
 
     /**
-     *
-     * @param freeTuition
+     * Sets the Student's free tuition flag.
+     * @param freeTuition   set to true if the Student receives free tuition or does not need to pay tuition.
      */
     public void setFreeTuition(boolean freeTuition) {
         this.freeTuition = freeTuition;
     }
 
     /**
-     *
-     * @return
+     * Gets the Scholarship that the student has been awarded.
+     * @return  the Scholarship that the Student has been awarded.
      */
     public Scholarship getScholarship() {
         return scholarship;
     }
 
     /**
-     *
-     * @param scholarship
+     * Sets the Scholarship that the student has been awarded.
+     * @param scholarship   that the student has earned.
      */
     public void setScholarship(Scholarship scholarship) {
         this.scholarship = scholarship;
     }
 
     /**
-     *
-     * @return
+     * Gets the Study Abroad program the Student is in if any.
+     * @return the study abroad program the Student is participating in.
      */
     public StudyAbroad getStudyAbroad() {
         return studyAbroad;
     }
 
     /**
-     *
-     * @param studyAbroad
+     * Sets the Study Abroad program the Student is participating in.
+     * @param studyAbroad   set to the Student's Study Abroad program.
      */
     public void setStudyAbroad(StudyAbroad studyAbroad) {
         this.studyAbroad = studyAbroad;
     }
 
     /**
-     *
-     * @return
+     * Indicates the Student is part of the national student exchange.
+     * @return true if the Student is part of the national student exchange. False otherwise.
      */
     public boolean isNationalStudentExchange() {
         return nationalStudentExchange;
     }
 
     /**
-     *
-     * @param nationalStudentExchange
+     * Sets the National Student Exchange flag for a student.
+     * @param nationalStudentExchange   set to true if the Student is part of the National Student Exchange.
      */
     public void setNationalStudentExchange(boolean nationalStudentExchange) {
         this.nationalStudentExchange = nationalStudentExchange;
     }
 
     /**
-     *
-     * @return
+     * Indicates a Student has outside Insurance.
+     * @return  true if the Student has insurance outside the school.
      */
     public boolean isOutsideInsurance() {
         return outsideInsurance;
     }
 
     /**
-     *
-     * @param outsideInsurance
+     * Sets the Student's insurance flag.
+     * @param outsideInsurance  set to true if the Student has insurance outside the school. False if they need
+     *                          insurance through the school.
      */
     public void setOutsideInsurance(boolean outsideInsurance) {
         this.outsideInsurance = outsideInsurance;

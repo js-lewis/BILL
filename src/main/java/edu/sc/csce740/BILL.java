@@ -1,7 +1,6 @@
 package edu.sc.csce740;
 
 //Enumeration imports
-import edu.sc.csce740.defines.ClassStatus;
 import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.Role;
 import edu.sc.csce740.defines.TransactionType;
@@ -37,8 +36,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
-import java.util.ArrayList;
 
+//TODO: Implement Interface
 //public class BILL implements BILLIntf {
 public class BILL {
     /**
