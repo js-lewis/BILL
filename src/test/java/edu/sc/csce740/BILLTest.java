@@ -1,8 +1,7 @@
 package edu.sc.csce740;
 
-// Exception imports
-import edu.sc.csce740.exceptions.RecordDataLoadException;
-import edu.sc.csce740.exceptions.UserDataLoadException;
+//Files for testing
+import edu.sc.csce740.defines.Constants;
 
 // Helper imports
 import edu.sc.csce740.exceptions.UserLoginException;
@@ -33,7 +32,7 @@ public class BILLTest {
             throws Exception {
         BILL billInst = new BILL();
 
-        billInst.loadUsers("resources/users.json");
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
 
         UserHelper userHelper = billInst.getUserHelper();
         List<User> users = userHelper.getUsers();
@@ -45,7 +44,7 @@ public class BILLTest {
             throws Exception {
         BILL billInst = new BILL();
 
-        billInst.loadRecords("resources/students.json");
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
         StudentHelper studentHelper = billInst.getStudentHelper();
         List<StudentRecord> studentRecords = studentHelper.getStudents();
@@ -58,8 +57,8 @@ public class BILLTest {
         BILL billInst = new BILL();
 
         //load the data
-        billInst.loadUsers("resources/users.json");
-        billInst.loadRecords("resources/students.json");
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
         billInst.logIn( "ggay");
 
@@ -72,8 +71,8 @@ public class BILLTest {
         BILL billInst = new BILL();
 
         //load the data
-        billInst.loadUsers("resources/users.json");
-        billInst.loadRecords("resources/students.json");
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
         billInst.logIn( "mmatthews");
 
@@ -90,8 +89,8 @@ public class BILLTest {
         BILL billInst = new BILL();
 
         //load the data
-        billInst.loadUsers("resources/users.json");
-        billInst.loadRecords("resources/students.json");
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
         billInst.logIn( "rbob");
 
@@ -105,8 +104,8 @@ public class BILLTest {
         BILL billInst = new BILL();
 
         //load the data
-        billInst.loadUsers("resources/users.json");
-        billInst.loadRecords("resources/students.json");
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
         billInst.logIn( "rbob");
 
@@ -122,8 +121,8 @@ public class BILLTest {
         BILL billInst = new BILL();
 
         //load the data
-        billInst.loadUsers("resources/users.json");
-        billInst.loadRecords("resources/students.json");
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
         billInst.logIn( "mmatthews");
 
@@ -140,8 +139,8 @@ public class BILLTest {
         BILL billInst = new BILL();
 
         //load the data
-        billInst.loadUsers("resources/users.json");
-        billInst.loadRecords("resources/students.json");
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
         billInst.logIn( "jsmith");
 
@@ -155,8 +154,8 @@ public class BILLTest {
         BILL billInst = new BILL();
 
         //load the data
-        billInst.loadUsers("resources/users.json");
-        billInst.loadRecords("resources/students.json");
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
         billInst.logIn( "jsmith");
         billInst.applyPayment( "mhunt", new BigDecimal(50.00), "Just a test.");

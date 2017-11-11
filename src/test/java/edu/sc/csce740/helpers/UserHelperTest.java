@@ -2,6 +2,9 @@ package edu.sc.csce740.helpers;
 
 import edu.sc.csce740.model.User;
 
+//Files for testing
+import edu.sc.csce740.defines.Constants;
+
 //JUnit includes
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -37,11 +40,10 @@ public class UserHelperTest {
     public void testReadUsers()
             throws IOException {
         userHelper = new UserHelper();
-        userHelper.setFileName("resources/users.json");
+        userHelper.setFileName(Constants.USERS_BASE_FILE);
         userHelper.readUsers();
         List<User> users = userHelper.getUsers();
-        Assert.assertEquals( users.size(), 5 );
-        //assert( users.size() == 5 );
+        Assert.assertEquals( users.size(), Constants.BASE_NUMBER_OF_USERS );
     }
 
     /**
@@ -53,9 +55,8 @@ public class UserHelperTest {
     public void testReadUsersWithExc()
             throws IOException {
         userHelper = new UserHelper();
-        userHelper.setFileName("resources/noFile");
+        userHelper.setFileName(Constants.NO_FILE);
         userHelper.readUsers();
-        List<User> users = userHelper.getUsers();
     }
 
     @After

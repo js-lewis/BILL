@@ -1,6 +1,11 @@
 package edu.sc.csce740.helpers;
 
+//Files for testing
+import edu.sc.csce740.defines.Constants;
+
 import edu.sc.csce740.model.StudentRecord;
+
+//JUnit imports
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -33,18 +38,17 @@ public class StudentHelperTest {
     public void testReadStudents()
             throws IOException {
         studentHelper = new StudentHelper();
-        studentHelper.setFileName("resources/students.json");
+        studentHelper.setFileName(Constants.RECORDS_BASE_FILE);
         studentHelper.readStudentRecords();
         List<StudentRecord> records = studentHelper.getStudents();
-        Assert.assertEquals(records.size(), 2);
-        //assert( users.size() == 5 );
+        Assert.assertEquals(records.size(), Constants.BASE_NUMBER_OF_RECORDS);
     }
 
     @Test
     public void testFindStudentRecord()
             throws IOException {
         studentHelper = new StudentHelper();
-        studentHelper.setFileName("resources/students.json");
+        studentHelper.setFileName(Constants.RECORDS_BASE_FILE);
         studentHelper.readStudentRecords();
         StudentRecord sampleRec = studentHelper.findStudentRecord("mhunt");
         Assert.assertEquals(sampleRec.getStudent().getPhone(), "999-999-9999");
@@ -59,9 +63,8 @@ public class StudentHelperTest {
     public void testReadStudentsWithExc()
             throws IOException {
         studentHelper = new StudentHelper();
-        studentHelper.setFileName("resources/noFile");
+        studentHelper.setFileName(Constants.NO_FILE);
         studentHelper.readStudentRecords();
-        List<StudentRecord> records = studentHelper.getStudents();
     }
 
     @After
