@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Fees {
     private List<Fee> residentUnderGradTuition;
-    private List<Fee> nonResidentTUnderGraduation;
-    private List<Fee> activeDuty;
+    private List<Fee> nonResidentUnderGradTuition;
+    private List<Fee> activeDutyTuition;
     private List<Fee> residentGraduateTuition;
     private List<Fee> nonResidentGraduateTuition;
     private List<Fee> generalFees;
@@ -14,8 +14,8 @@ public class Fees {
 
     public Fees() {
         residentUnderGradTuition = new ArrayList<Fee>();
-        nonResidentTUnderGraduation = new ArrayList<Fee>();
-        activeDuty = new ArrayList<Fee>();
+        nonResidentUnderGradTuition = new ArrayList<Fee>();
+        activeDutyTuition = new ArrayList<Fee>();
         residentGraduateTuition = new ArrayList<Fee>();
         nonResidentGraduateTuition = new ArrayList<Fee>();
         generalFees = new ArrayList<Fee>();
@@ -30,20 +30,20 @@ public class Fees {
         this.residentUnderGradTuition = residentUnderGradTuition;
     }
 
-    public List<Fee> getNonResidentTUnderGraduation() {
-        return nonResidentTUnderGraduation;
+    public List<Fee> getNonResidentUnderGradTuition() {
+        return nonResidentUnderGradTuition;
     }
 
-    public void setNonResidentTUnderGraduation(List<Fee> nonResidentTUnderGraduation) {
-        this.nonResidentTUnderGraduation = nonResidentTUnderGraduation;
+    public void setNonResidentUnderGradTuition(List<Fee> nonResidentUnderGradTuition) {
+        this.nonResidentUnderGradTuition = nonResidentUnderGradTuition;
     }
 
-    public List<Fee> getActiveDuty() {
-        return activeDuty;
+    public List<Fee> getActiveDutyTuition() {
+        return activeDutyTuition;
     }
 
-    public void setActiveDuty(List<Fee> activeDuty) {
-        this.activeDuty = activeDuty;
+    public void setActiveDutyTuition(List<Fee> activeDutyTuition) {
+        this.activeDutyTuition = activeDutyTuition;
     }
 
     public List<Fee> getResidentGraduateTuition() {

@@ -14,11 +14,13 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
-public class BillHelper {
-    private static String feeFile = "resources/data/fee.json";
-    private boolean feesLoaded;
+//TODO: Reset files in mod directory before tests
 
-    Fees fees;
+public class BillHelper {
+    private static String feeFile = "resources/data/fees.json";
+    private boolean feesLoaded;
+    private Fees fees;
+
     public BillHelper() {
         fees = new Fees();
         try {
@@ -32,7 +34,7 @@ public class BillHelper {
     private void readFees()
             throws IOException {
         //Gets the object that the JSON should match.
-        Type feeType = new TypeToken<Fees>() {}.getType();
+        Type feeType = new TypeToken<Fees>(){}.getType();
         //Create the GSON object.
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
@@ -47,7 +49,10 @@ public class BillHelper {
         if(fees == null) {
             fees = new Fees();
         }
+    }
 
+    protected Fees getFees() {
+        return fees;
     }
 
     public Bill generateBill()
