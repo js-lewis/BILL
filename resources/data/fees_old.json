@@ -1,0 +1,61 @@
+{
+  "under_grad": {
+  },
+  "grad": {
+    "resident": {
+      "base": 552.25,
+      "over": 80.0
+    },
+    "nonresident": {
+      "base": 1182.00,
+      "over": 170.00
+    },
+    "health": {
+      "insurance": 2020.00,
+      "part1": 123.00,
+      "part2": 184.00,
+      "part_ga": 184.00
+    },
+    "application": 50,
+    "app_readmit": 15,
+    "status_change": 15,
+    "bench_fees": 3750
+  },
+  "college": {
+    "1": {
+      "apogee": {
+        "part": 220
+      },
+      "program": {
+        "full": 918,
+        "part": 76.5
+      },
+      "mhit": {
+        "full": 900,
+        "part": 75
+      },
+      "lab_CSCE_101_102": {
+        "full": 148
+      },
+      "exec_master": {
+        "part": 412
+      },
+      "sys_design": {
+        "part": 292
+      }
+    },
+    "2": {
+      "language": 130,
+      "art_education_lab": 80,
+      "art_history_lab": 80,
+      "dance_lab": 150,
+      "media_lab": 200,
+      "sudio_lab": 200,
+      "marine_sci": 300,
+      "math_lab": 210,
+      "field": 75,
+      "high_school_drama": 2500
+    }
+  }
+}
+

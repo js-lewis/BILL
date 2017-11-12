@@ -1,0 +1,376 @@
+{
+  "residentUnderGradTuition": [
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "NONE",
+      "frequency": "SEMESTER",
+      "amount": 5931
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "NONE",
+      "frequency": "HOUR",
+      "amount": 494.25
+    }
+  ],
+  "nonResidentTUnderGraduation": [
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "NONE",
+      "frequency": "SEMESTER",
+      "amount": 15981.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "NONE",
+      "frequency": "HOUR",
+      "amount": 1331.75
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "WOODROW",
+      "frequency": "SEMESTER",
+      "amount": 8802.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "WOODROW",
+      "frequency": "HOUR",
+      "amount": 733.50
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "DEPARTMENTAL",
+      "frequency": "SEMESTER",
+      "amount": 8802.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "DEPARTMENTAL",
+      "frequency": "HOUR",
+      "amount": 733.50
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "GENERAL",
+      "frequency": "SEMESTER",
+      "amount": 5931.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "GENERAL",
+      "frequency": "HOUR",
+      "amount": 494.25
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "ATHLETIC",
+      "frequency": "SEMESTER",
+      "amount": 8802.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "ATHLETIC",
+      "frequency": "HOUR",
+      "amount": 733.50
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "SIMS",
+      "frequency": "SEMESTER",
+      "amount": 11352.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "SIMS",
+      "frequency": "HOUR",
+      "amount": 946.00
+    }
+  ],
+  "activeDuty": [
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "NONE",
+      "frequency": "SEMESTER",
+      "amount": 3474.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "NONE",
+      "frequency": "HOUR",
+      "amount": 289.50
+    }
+  ],
+  "residentGraduateTuition": [
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "NONE",
+      "frequency": "SEMESTER",
+      "amount": 6627
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "NONE",
+      "frequency": "HOUR",
+      "amount": 522.25
+    }
+  ],
+  "nonResidentGraduateTuition": [
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "NONE",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "NONE",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    }
+  ],
+  "generalFees": [
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "TECHNOLOGY",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "TECHNOLOGY",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "CAPSTONE",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "CAPSTONE",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "INSURANCE",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "INSURANCE",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "HEALTH_CENTER_6_8",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "HEALTH_CENTER_6_8",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "HEALTH_CENTER_9_11",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "HEALTH_CENTER_9_11",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "HEALTH_CENTER_GA",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "HEALTH_CENTER_GA",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "INTERNATIONAL",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "INTERNATIONAL",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "INTERNATIONAL_SHORT_TERM",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "INTERNATIONAL_SHORT_TERM",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "INTERNATIONAL_SPONSORED",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "INTERNATIONAL_SPONSORED",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "STUDY_ABROAD",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "STUDY_ABROAD",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "COHORT",
+      "frequency": "SEMESTER",
+      "amount": 14184.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "COHORT",
+      "frequency": "HOUR",
+      "amount": 1182.00
+    }
+  ],
+  "collegeFees": [
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_LANGUAGE",
+      "frequency": "SEMESTER",
+      "amount": 130.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_AE_LAB",
+      "frequency": "SEMESTER",
+      "amount": 80.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_AH_LAB",
+      "frequency": "SEMESTER",
+      "amount": 80.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_DANCE_LAB",
+      "frequency": "SEMESTER",
+      "amount": 150.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_MEDIA_LAB",
+      "frequency": "SEMESTER",
+      "amount": 200.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_STUDIO_LAB",
+      "frequency": "SEMESTER",
+      "amount": 200.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_MATH_LAB",
+      "frequency": "SEMESTER",
+      "amount": 210.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_MARINE_SCIENCE",
+      "frequency": "SEMESTER",
+      "amount": 300.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_FIELD",
+      "frequency": "SEMESTER",
+      "amount": 75.00
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "AAS_HS_DRAMA",
+      "frequency": "SEMESTER",
+      "amount": 2500.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "EAC_APOGEE",
+      "frequency": "SEMESTER",
+      "amount": 220.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "EAC_PROGRAM",
+      "frequency": "SEMESTER",
+      "amount": 918.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "EAC_PROGRAM",
+      "frequency": "HOUR",
+      "amount": 76.50
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "EAC_MHIT",
+      "frequency": "SEMESTER",
+      "amount": 900.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "EAC_MHIT",
+      "frequency": "HOUR",
+      "amount": 75.00
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "EAC_CSCE_101_102_LAB",
+      "frequency": "SEMESTER",
+      "amount": 148.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "EAC_EXEC_MASTER",
+      "frequency": "SEMESTER",
+      "amount": 412.00
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "EAC_SYS_DESIGN",
+      "frequency": "SEMESTER",
+      "amount": 292.00
+    }
+  ]
+}

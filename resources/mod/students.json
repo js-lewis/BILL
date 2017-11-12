@@ -360,6 +360,16 @@
         },
         "amount": 50,
         "note": "Just a test."
+      },
+      {
+        "type": "PAYMENT",
+        "transactionDate": {
+          "month": 11,
+          "day": 12,
+          "year": 2017
+        },
+        "amount": 50,
+        "note": "Just a test."
       }
     ]
   }

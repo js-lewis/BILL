@@ -1,5 +1,8 @@
 package edu.sc.csce740.helpers;
 
-public class BillHelperTest {
+import org.junit.Test;
 
+public class BillHelperTest {
+    @Test
+    public void test readFees
 }
