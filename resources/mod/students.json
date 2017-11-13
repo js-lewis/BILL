@@ -102,56 +102,6 @@
         },
         "amount": 2000.00,
         "note": "Final total Spring 2016"
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
       }
     ]
   },
@@ -220,317 +170,289 @@
         "online": false
       }
     ],
-    "transactions": [
+    "transactions": []
+  },
+  {
+    "student": {
+      "phone": "999-123-4567",
+      "emailAddress": "kcook@mailbox.sc.edu",
+      "addressStreet": "1600 Pennsylvania Ave",
+      "addressCity": "Columbia",
+      "addressState": "SC",
+      "addressPostalCode": "29205",
+      "id": "kcook",
+      "firstName": "Kimberly",
+      "lastName": "Cook"
+    },
+    "college": "ARTS_AND_SCIENCES",
+    "termBegan": {
+      "semester": "FALL",
+      "year": 2016
+    },
+    "classStatus": "SOPHOMORE",
+    "gradAssistant": false,
+    "international": false,
+    "internationalStatus": "NONE",
+    "resident": true,
+    "activeDuty": false,
+    "veteran": true,
+    "freeTuition": true,
+    "scholarship": "NONE",
+    "studyAbroad": "NONE",
+    "nationalStudentExchange": false,
+    "outsideInsurance": true,
+    "courses": [
       {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
+        "name": "Intro to Computer Science",
+        "id": "CSCE 101",
+        "numCredits": 3,
+        "online": false
       },
       {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
+        "name": "Underwater Basket Weaving",
+        "id": "STUFF 150",
+        "numCredits": 3,
+        "online": false
       },
       {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
+        "name": "Napping in Class",
+        "id": "SLEEP 201",
+        "numCredits": 3,
+        "online": true
       },
       {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 11,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
-      },
-      {
-        "type": "PAYMENT",
-        "transactionDate": {
-          "month": 11,
-          "day": 12,
-          "year": 2017
-        },
-        "amount": 50,
-        "note": "Just a test."
+        "name": "Why Did I Take This? A Course on Regret",
+        "id": "PSYCHOLOGY 190",
+        "numCredits": 3,
+        "online": false
       }
-    ]
+    ],
+    "transactions": []
+  },
+  {
+    "student": {
+      "phone": "999-867-5309",
+      "emailAddress": "eray@mailbox.sc.edu",
+      "addressStreet": "1902 Leatherton Dr.",
+      "addressCity": "Boulder",
+      "addressState": "CO",
+      "addressPostalCode": "80503",
+      "id": "eray",
+      "firstName": "Evander",
+      "lastName": "Ray"
+    },
+    "college": "ENGINEERING_AND_COMPUTING",
+    "termBegan": {
+      "semester": "FALL",
+      "year": 2015
+    },
+    "capstoneEnrolled": {
+      "semester": "FALL",
+      "year": 2017
+    },
+    "classStatus": "PHD",
+    "gradAssistant": false,
+    "international": true,
+    "internationalStatus": "SPONSORED",
+    "resident": false,
+    "activeDuty": false,
+    "veteran": false,
+    "freeTuition": false,
+    "scholarship": "NONE",
+    "studyAbroad": "NONE",
+    "nationalStudentExchange": true,
+    "outsideInsurance": false,
+    "courses": [
+      {
+        "name": "Directed Study and Research",
+        "id": "CSCE 798",
+        "numCredits": 3,
+        "online": false
+      },
+      {
+        "name": "Pattern Recognition and Classification",
+        "id": "CSCE 768",
+        "numCredits": 3,
+        "online": false
+      },
+      {
+        "name": "Machine Learning",
+        "id": "CSCE  883",
+        "numCredits": 3,
+        "online": false
+      }
+    ],
+    "transactions": []
+  },
+  {
+    "student": {
+      "phone": "999-281-2244",
+      "emailAddress": "kmurph@mailbox.sc.edu",
+      "addressStreet": "1026 E. Rainbow Ridge Cir.",
+      "addressCity": "Fort Mill",
+      "addressState": "SC",
+      "addressPostalCode": "29715",
+      "id": "kmurph",
+      "firstName": "Karin",
+      "lastName": "Murph"
+    },
+    "college": "ARTS_AND_SCIENCES",
+    "termBegan": {
+      "semester": "FALL",
+      "year": 2014
+    },
+    "capstoneEnrolled": {
+      "semester": "FALL",
+      "year": 2017
+    },
+    "classStatus": "JUNIOR",
+    "gradAssistant": false,
+    "international": false,
+    "internationalStatus": "NONE",
+    "resident": true,
+    "activeDuty": true,
+    "veteran": true,
+    "freeTuition": false,
+    "scholarship": "NONE",
+    "studyAbroad": "NONE",
+    "nationalStudentExchange": false,
+    "outsideInsurance": true,
+    "courses": [
+      {
+        "name": "Advanced Music History",
+        "id": "MUS 311",
+        "numCredits": 3,
+        "online": false
+      },
+      {
+        "name": "Advanced Composition",
+        "id": "MUS 434",
+        "numCredits": 4,
+        "online": false
+      },
+      {
+        "name": "Soothing the Savage Beast",
+        "id": "PHI  286",
+        "numCredits": 3,
+        "online": false
+      },
+      {
+        "name": "Advanced Music Theory",
+        "id": "MUS 322",
+        "numCredits": 3,
+        "online": false
+      },
+      {
+        "name": "Running in Circles",
+        "id": "PHY  177",
+        "numCredits": 1,
+        "online": false
+      }
+    ],
+    "transactions": []
+  },
+  {
+    "student": {
+      "phone": "999-986-4321",
+      "emailAddress": "jwest@mailbox.sc.edu",
+      "addressStreet": "102 Cheyenne Ct.",
+      "addressCity": "Austin",
+      "addressState": "TX",
+      "addressPostalCode": "78724",
+      "id": "jwest",
+      "firstName": "John",
+      "lastName": "Westerman"
+    },
+    "college": "ENGINEERING_AND_COMPUTING",
+    "termBegan": {
+      "semester": "FALL",
+      "year": 2013
+    },
+    "capstoneEnrolled": {
+      "semester": "FALL",
+      "year": 2016
+    },
+    "classStatus": "SENIOR",
+    "gradAssistant": false,
+    "international": false,
+    "internationalStatus": "NONE",
+    "resident": false,
+    "activeDuty": false,
+    "veteran": false,
+    "freeTuition": false,
+    "scholarship": "SIMS",
+    "studyAbroad": "COHORT",
+    "nationalStudentExchange": false,
+    "outsideInsurance": false,
+    "courses": [
+      {
+        "name": "Advanced Composition",
+        "id": "MUS 434",
+        "numCredits": 4,
+        "online": false
+      },
+      {
+        "name": "Running in Circles",
+        "id": "PHY  177",
+        "numCredits": 1,
+        "online": false
+      },
+      {
+        "name": "Underwater Basket Weaving",
+        "id": "STUFF 150",
+        "numCredits": 3,
+        "online": false
+      }
+    ],
+    "transactions": []
+  },
+  {
+    "student": {
+      "phone": "987-654-4321",
+      "emailAddress": "jtrahan@mailbox.sc.edu",
+      "addressStreet": "19 Shelly Dr.",
+      "addressCity": "Fort MIll",
+      "addressState": "SC",
+      "addressPostalCode": "29715",
+      "id": "jtrahan",
+      "firstName": "Jamal",
+      "lastName": "Trahan"
+    },
+    "college": "ENGINEERING_AND_COMPUTING",
+    "termBegan": {
+      "semester": "FALL",
+      "year": 2012
+    },
+    "capstoneEnrolled": {
+      "semester": "FALL",
+      "year": 2015
+    },
+    "classStatus": "MASTERS",
+    "gradAssistant": true,
+    "international": false,
+    "internationalStatus": "NONE",
+    "resident": true,
+    "activeDuty": false,
+    "veteran": false,
+    "freeTuition": false,
+    "scholarship": "NONE",
+    "studyAbroad": "NONE",
+    "nationalStudentExchange": false,
+    "outsideInsurance": false,
+    "courses": [
+      {
+        "name": "Analysis of Algorothms",
+        "id": "CSCE 750",
+        "numCredits": 4,
+        "online": false
+      },
+      {
+        "name": "Running in Circles",
+        "id": "PHY  177",
+        "numCredits": 1,
+        "online": false
+      }
+    ],
+    "transactions": []
   }
 ]

@@ -154,14 +154,14 @@
       "studentType": "FULL_TIME",
       "feeType": "TECHNOLOGY",
       "frequency": "SEMESTER",
-      "amount": 14184.00,
+      "amount": 200.00,
       "note": "Technology fee - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "TECHNOLOGY",
       "frequency": "HOUR",
-      "amount": 1182.00,
+      "amount": 17.00,
       "note": "Technology fee - part time."
     },
     {
@@ -179,46 +179,46 @@
       "note": "Capstone fee - part time."
     },
     {
-      "studentType": "FULL_TIME",
+      "studentType": "ALL",
       "feeType": "INSURANCE",
       "frequency": "SEMESTER",
-      "amount": 14184.00,
+      "amount": 2020.00,
       "note": "Health Insurance - full time"
     },
     {
       "studentType": "PART_TIME",
-      "feeType": "INSURANCE",
+      "feeType": "HEALTH_CENTER_UNDERGRAD_6_11",
       "frequency": "HOUR",
-      "amount": 1182.00,
-      "note": "Health Insurance - part time"
-    },
-    {
-      "studentType": "PART_TIME",
-      "feeType": "HEALTH_CENTER_6_8",
-      "frequency": "HOUR",
-      "amount": 1182.00,
+      "amount": 123.00,
       "note": "Health Center 6 to 8 hours - part time"
     },
     {
       "studentType": "PART_TIME",
-      "feeType": "HEALTH_CENTER_9_11",
+      "feeType": "HEALTH_CENTER_GRAD_6_8",
       "frequency": "HOUR",
-      "amount": 1182.00,
+      "amount": 123.00,
+      "note": "Health Center 6 to 8 hours - part time"
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "HEALTH_CENTER_GRAD_9_11",
+      "frequency": "HOUR",
+      "amount": 184.00,
       "note": "Health Center 9 to 11 hours - part time"
     },
     {
       "studentType": "FULL_TIME",
       "feeType": "HEALTH_CENTER_GA",
       "frequency": "SEMESTER",
-      "amount": 14184.00,
-      "note": "Health Center Graduate Assistant - part time"
+      "amount": 2020.00,
+      "note": "Health Center Graduate Assistant - full time"
     },
     {
       "studentType": "PART_TIME",
       "feeType": "HEALTH_CENTER_GA",
       "frequency": "HOUR",
-      "amount": 1182.00,
-      "note": "Health Center Graduate Assistant - full time"
+      "amount": 184.00,
+      "note": "Health Center Graduate Assistant - part time"
     },
     {
       "studentType": "FULL_TIME",
