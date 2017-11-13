@@ -176,7 +176,7 @@ public class Student extends Person {
                "emailAddress: " + getEmailAddress() + "\n" +
                "addressStreet: " + getAddressStreet() + "\n" +
                "addressCity: " + getAddressCity() + "\n" +
-               "addressState: " + getAddressStreet() + "\n" +
+               "addressState: " + getAddressState() + "\n" +
                "addressPostalCode: " + getAddressPostalCode() + "\n";
     }
 }

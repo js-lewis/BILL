@@ -18,6 +18,9 @@ import java.lang.reflect.Type;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This class contains the business logic associated with getting, modifying and saving Users in the BILL system.
+ */
 public class UserHelper {
     /**
      * The name of the file to read from and write to. This is expected to be a JSON file.

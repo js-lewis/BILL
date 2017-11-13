@@ -10,7 +10,6 @@ package edu.sc.csce740.defines;
  * <li>{@link #PHD}</li>
  * <li>{@link #GRADUATED}</li>
  */
-
 public enum ClassStatus {
     /**
      * Freshman: Students typically in their first year with less than 30 hours.

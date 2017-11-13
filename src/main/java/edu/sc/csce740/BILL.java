@@ -3,7 +3,6 @@ package edu.sc.csce740;
 //Enumeration imports
 import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.Role;
-import edu.sc.csce740.defines.TransactionType;
 
 //Model imports
 import edu.sc.csce740.model.Bill;
@@ -34,12 +33,9 @@ import edu.sc.csce740.helpers.BillHelper;
 //Java imports
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.List;
 
-//TODO: Implement Interface
-//public class BILL implements BILLIntf {
-public class BILL {
+public class BILL implements BILLIntf {
     /**
      * A helper to access the Users of the system.
      */
@@ -350,11 +346,25 @@ public class BILL {
      *                   SEE NOTE IN CLASS HEADER.
      * @returns the student's bill in a data class matching the I/O file.
      */
-//    public Bill viewCharges(String userId, int startMonth, int startDay, int startYear,
-//                            int endMonth, int endDay, int endYear)
-//            throws UnauthorizedUserException, BillRetrievalException {
-//
-//    }
+    public Bill viewCharges(String userId, int startMonth, int startDay, int startYear,
+                            int endMonth, int endDay, int endYear)
+            throws UnauthorizedUserException, UnknownUserException, BillRetrievalException {
+        StudentRecord student = studentHelper.findStudentRecord(userId);
+
+        if (student == null) {
+            throw new UnknownUserException();
+        }
+
+        Bill bill = null;
+        if (canBeAccessed(student)) {
+            Date startDate = new Date(startMonth, startDay, startYear);
+            Date endDate = new Date(endMonth, endDay, endYear);
+            billHelper.retrieveBill(student, startDate, endDate);
+        } else {
+            throw new UnauthorizedUserException();
+        }
+        return bill;
+    }
 
     /**
      * Makes a payment for the student

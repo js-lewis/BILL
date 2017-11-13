@@ -19,6 +19,10 @@ import java.io.IOException;
 //Apache commons File Util imports
 import org.apache.commons.io.FileUtils;
 
+/**
+ * This class contains the business logic associated with getting, modifying and saving StudentRecords in the BILL
+ * system. This includes adding transactions to the Student's record.
+ */
 public class StudentHelper {
     /**
      * The name of the file to read from and write to. This is expected to be a JSON file.

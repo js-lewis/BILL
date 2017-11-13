@@ -1,21 +1,34 @@
 package edu.sc.csce740.helpers;
 
+//GSON imports
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import edu.sc.csce740.defines.*;
-import edu.sc.csce740.exceptions.BillGenerationException;
+//Enumerations
+import edu.sc.csce740.defines.FeeType;
+import edu.sc.csce740.defines.College;
+import edu.sc.csce740.defines.StudentType;
+import edu.sc.csce740.defines.InternationalStatus;
+import edu.sc.csce740.defines.StudyAbroad;
 
+//Import the new Exception
+import edu.sc.csce740.exceptions.BillGenerationException;
+import edu.sc.csce740.exceptions.BillRetrievalException;
+
+//Model imports
 import edu.sc.csce740.model.Bill;
 import edu.sc.csce740.model.Course;
+import edu.sc.csce740.model.Date;
 import edu.sc.csce740.model.Fee;
 import edu.sc.csce740.model.Fees;
 import edu.sc.csce740.model.StudentRecord;
 import edu.sc.csce740.model.Transaction;
 
+//Apache IO import
 import org.apache.commons.io.FileUtils;
 
+//General Java imports
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -25,6 +38,10 @@ import java.util.ArrayList;
 
 //TODO: Reset files in mod directory before tests
 
+/**
+ * This class contains the business logic for generating a Bill in the BILL system. This includes business logic
+ * pertaining to when a fee is charged.
+ */
 public class BillHelper {
     private static String feeFile = "resources/data/fees.json";
     private boolean feesLoaded;
@@ -74,6 +91,21 @@ public class BillHelper {
 
     protected Fees getFees() {
         return fees;
+    }
+
+
+    public Bill retrieveBill(StudentRecord student, Date startDate, Date endDate)
+            throws BillRetrievalException {
+        Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
+                0.00, new ArrayList<Transaction>()) ;
+
+        if( !feesLoaded || student == null) {
+            throw new BillRetrievalException();
+        }
+
+        //TODO: Spin through charges and actually pull the correct ones out ...
+
+        return returnBill;
     }
 
     public Bill generateBill(StudentRecord student)
@@ -134,38 +166,38 @@ public class BillHelper {
                         case GENERAL:
                             if (fee.getFeeType() == FeeType.GENERAL && fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
                             break;
                         case DEPARTMENTAL:
                             if (fee.getFeeType() == FeeType.DEPARTMENTAL && fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
                             break;
                         case ATHLETIC:
                             if (fee.getFeeType() == FeeType.ATHLETIC && fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
                             break;
                         case WOODROW:
                             if (fee.getFeeType() == FeeType.WOODROW && fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
                             break;
                         case SIMS:
                             if (fee.getFeeType() == FeeType.SIMS && fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
                             break;
                         case NONE:
                         default:
                             if (fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
 
                     }
@@ -174,38 +206,38 @@ public class BillHelper {
                         case GENERAL:
                             if (fee.getFeeType() == FeeType.GENERAL && fee.getStudentType() == StudentType.PART_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                             }
                             break;
                         case DEPARTMENTAL:
                             if (fee.getFeeType() == FeeType.DEPARTMENTAL && fee.getStudentType() == StudentType.PART_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                             }
                             break;
                         case ATHLETIC:
                             if (fee.getFeeType() == FeeType.ATHLETIC && fee.getStudentType() == StudentType.PART_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                             }
                             break;
                         case WOODROW:
                             if (fee.getFeeType() == FeeType.WOODROW && fee.getStudentType() == StudentType.PART_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                             }
                             break;
                         case SIMS:
                             if (fee.getFeeType() == FeeType.SIMS && fee.getStudentType() == StudentType.PART_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                             }
                             break;
                         case NONE:
                         default:
                             if (fee.getStudentType() == StudentType.PART_TIME) {
                                 bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                             }
 
                     }
@@ -226,89 +258,96 @@ public class BillHelper {
                 case STUDY_ABROAD:
                     if(student.getStudyAbroad() == StudyAbroad.REGULAR) {
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 case COHORT:
                     if(student.getStudyAbroad() == StudyAbroad.COHORT) {
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 case HEALTH_CENTER_UNDERGRAD_6_11: //TODO: FIX THIS!!!
                     if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
                         int hoursToCharge = totalHours-8 > 0 ? 3 : totalHours-5;
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                     }
                     break;
                 case HEALTH_CENTER_GRAD_6_8: //TODO: FIX THIS!!!
                     if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
                         int hoursToCharge = totalHours-8 > 0 ? 3 : totalHours-5;
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                     }
                     break;
                 case HEALTH_CENTER_GRAD_9_11: //TODO: FIX THIS!!!
                     if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
                         int hoursToCharge = totalHours-11 > 0 ? 3 : totalHours-8;
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                     }
                     break;
                 case HEALTH_CENTER_GA:
                     if(student.isGradAssistant() && !student.isOutsideInsurance()) {
                         if(isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
                             bill.addTransaction(
-                                    Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote()));
                         }
                         if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
                             bill.addTransaction(
-                                    Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                    Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                         }
                     }
                     break;
                 case INSURANCE:
                     if(!student.isOutsideInsurance()) {
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 case INTERNATIONAL:
                     //TODO: Check for one time international fee
+                    if(student.isInternational()) {
+
+                    }
                     break;
                 case INTERNATIONAL_SHORT_TERM:
-                    if(student.getInternationalStatus() == InternationalStatus.SHORT_TERM) {
-                        if(isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
-                            bill.addTransaction(
-                                    Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
-                        }
-                        if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                            bill.addTransaction(
-                                    Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                    if(student.isInternational()) {
+                        if (student.getInternationalStatus() == InternationalStatus.SHORT_TERM) {
+                            if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                            }
+                            if (!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
+                            }
                         }
                     }
                     break;
                 case INTERNATIONAL_SPONSORED:
-                    if(student.getInternationalStatus() == InternationalStatus.SPONSORED) {
-                        if(isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
-                            bill.addTransaction(
-                                    Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
-                        }
-                        if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                            bill.addTransaction(
-                                    Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                    if(student.isInternational()) {
+                        if (student.getInternationalStatus() == InternationalStatus.SPONSORED) {
+                            if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                            }
+                            if (!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
+                            }
                         }
                     }
                     break;
                 case TECHNOLOGY:
                     if(isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(totalHours*fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                     }
                     break;
                 default: //TODO: throw exception here?
@@ -368,10 +407,10 @@ public class BillHelper {
                                 //TODO: Check Courses for this fee?
                                 break;
                             case EAC_CSCE_101_102_LAB:
-                                if(searchCourses(student.getCourseList(), "CSCE 101")
-                                        || searchCourses(student.getCourseList(), "CSCE 102") ) {
+                                if(searchCourses(student.getCourses(), "CSCE 101")
+                                        || searchCourses(student.getCourses(), "CSCE 102") ) {
                                     bill.addTransaction(
-                                            Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                            Transaction.createCharge(fee.getAmount(), fee.getNote()));
                                 }
                                 break;
                             case EAC_EXEC_MASTER:
@@ -383,11 +422,11 @@ public class BillHelper {
                             case EAC_PROGRAM:
                                 if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
                                     bill.addTransaction(
-                                            Transaction.createCharge(BigDecimal.valueOf(fee.getAmount()), fee.getNote()));
+                                            Transaction.createCharge(fee.getAmount(), fee.getNote()));
                                 }
                                 if (!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
                                     bill.addTransaction(
-                                            Transaction.createCharge(BigDecimal.valueOf(totalHours * fee.getAmount()), fee.getNote()));
+                                            Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                                 }
                                 break;
                             case EAC_SYS_DESIGN:
@@ -418,7 +457,7 @@ public class BillHelper {
 
     protected void processCourses(StudentRecord student) {
 
-        for(Course course: student.getCourseList()) {
+        for(Course course: student.getCourses()) {
             this.totalHours += course.getNumCredits();
             if(course.isOnline()) {
                 this.onlineClasses = true;

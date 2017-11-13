@@ -1,6 +1,6 @@
 package edu.sc.csce740.model;
 
-//Import required enumerications
+//Import required enumerations
 import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.Role;
 

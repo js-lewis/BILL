@@ -1,6 +1,6 @@
 package edu.sc.csce740.model;
 
-//Import required enumerications
+//Import required enumerations
 import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.ClassStatus;
 
@@ -10,7 +10,6 @@ import edu.sc.csce740.helpers.PrintHelper;
 //Import to support an Array List for the transactions.
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * This class represents a Student's Bill in the BILL system.
@@ -136,24 +135,16 @@ public class Bill {
      * Gets an array of all of the transactions associated with a Student's account.
      * @return an array of Transactions performed on the Student's account.
      */
-    public Transaction[] getTransactions() {
-        return transactions.toArray(new Transaction[transactions.size()]);
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
     /**
      * Sets the list of transactions associated with a Student's account.
      * @param transactions  an array of Transactions performed on the Student's account.
      */
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = new ArrayList<Transaction>(Arrays.asList(transactions));
-    }
-
-    /**
-     * Gets an array of all of the transactions associated with a Student's account.
-     * @return an array of Transactions performed on the Student's account.
-     */
-    public List<Transaction> getTransactionList() {
-        return transactions;
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     /**
@@ -174,6 +165,6 @@ public class Bill {
                 "college: " + getCollege() + "\n" +
                 "classStatus: " + getClassStatus() + "\n" +
                 "balance: " + getBalance() + "\n" +
-                "transaction : \n" + PrintHelper.transactionListToString(getTransactions());
+                "transaction: \n" + PrintHelper.transactionListToString(getTransactions());
     }
 }

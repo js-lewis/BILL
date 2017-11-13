@@ -1,6 +1,6 @@
 package edu.sc.csce740.model;
 
-//Import required enumerications
+//Import required enumerations
 import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.ClassStatus;
 import edu.sc.csce740.defines.InternationalStatus;
@@ -11,7 +11,6 @@ import edu.sc.csce740.helpers.PrintHelper;
 //Import to support an Array List for the courses and transactions.
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * This class represents a Student Record in the BILL system.
@@ -152,7 +151,7 @@ public class StudentRecord {
      * @param courses                   courses the Student has enrolled in
      * @param transactions              transactions made on the Student's account.
      */
-    public StudentRecord(Student student, College college, Term termBegan, Term capstoneEnrolled, ClassStatus classStatus, boolean gradAssistant, boolean international, InternationalStatus internationalStatus, boolean resident, boolean activeDuty, boolean veteran, boolean freeTuition, Scholarship scholarship, StudyAbroad studyAbroad, boolean nationalStudentExchange, boolean outsideInsurance, Course[] courses, Transaction[] transactions) {
+    public StudentRecord(Student student, College college, Term termBegan, Term capstoneEnrolled, ClassStatus classStatus, boolean gradAssistant, boolean international, InternationalStatus internationalStatus, boolean resident, boolean activeDuty, boolean veteran, boolean freeTuition, Scholarship scholarship, StudyAbroad studyAbroad, boolean nationalStudentExchange, boolean outsideInsurance, List<Course> courses, List<Transaction> transactions) {
         this.student = student;
         this.college = college;
         this.termBegan = termBegan;
@@ -169,8 +168,8 @@ public class StudentRecord {
         this.studyAbroad = studyAbroad;
         this.nationalStudentExchange = nationalStudentExchange;
         this.outsideInsurance = outsideInsurance;
-        this.courses = new ArrayList<Course>(Arrays.asList(courses));
-        this.transactions = new ArrayList<Transaction>(Arrays.asList(transactions));
+        this.courses = courses;
+        this.transactions = transactions;
     }
 
     /**
@@ -434,24 +433,16 @@ public class StudentRecord {
      * Gets an array of all of the courses associated with a Student's account.
      * @return an array of Courses the Student has enrolled in.
      */
-    public Course[] getCourses() {
-        return courses.toArray(new Course[courses.size()]);
+    public List<Course> getCourses() {
+        return courses;
     }
 
     /**
      * Sets the list of courses the Student has enrolled in.
      * @param courses   an array of Courses the Student has enrolled in.
      */
-    public void setCourses(Course[] courses) {
-        this.courses = new ArrayList<Course>(Arrays.asList(courses));
-    }
-
-    /**
-     * Get a list of all of the Courses a Student's has enrolled in.
-     * @return a list of Courses performed on the Student's account.
-     */
-    public List<Course> getCourseList() {
-        return courses;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     /**
@@ -466,24 +457,16 @@ public class StudentRecord {
      * Gets an array of all of the transactions associated with a Student's account.
      * @return an array of Transactions performed on the Student's account.
      */
-    public Transaction[] getTransactions() {
-        return transactions.toArray(new Transaction[transactions.size()]);
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
     /**
      * Sets the list of transactions associated with a Student's account.
      * @param transactions  an array of Transactions performed on the Student's account.
      */
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = new ArrayList<Transaction>(Arrays.asList(transactions));
-    }
-
-    /**
-     * Get a list of all of the transactions associated with a Student's account.
-     * @return a list of Transactions performed on the Student's account.
-     */
-    public List<Transaction> getTransactionList() {
-        return transactions;
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     /**
@@ -500,7 +483,7 @@ public class StudentRecord {
      */
     @Override
     public String toString() {
-        return "student: \n" + getStudent() + "\n" +
+        return "student: \n" + getStudent() +
                 "college: " + getCollege() + "\n" +
                 "termBegan: \n" + getTermBegan() + "\n" +
                 "capstoneEnrolled: \n" + getCapstoneEnrolled() + "\n" +
