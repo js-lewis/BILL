@@ -60,12 +60,12 @@ public class Bill {
      * @param balance       the Student's current account balance.
      * @param transactions  the list of transactions that have been made on the Student's account.
      */
-    public Bill(Student student, College college, ClassStatus classStatus, double balance, Transaction[] transactions) {
+    public Bill(Student student, College college, ClassStatus classStatus, double balance, List<Transaction> transactions) {
         this.student = student;
         this.college = college;
         this.classStatus = classStatus;
         this.balance = balance;
-        this.transactions = new ArrayList<Transaction>(Arrays.asList(transactions));
+        this.transactions = transactions;
     }
 
     /**

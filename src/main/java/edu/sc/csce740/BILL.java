@@ -51,6 +51,11 @@ public class BILL {
     private StudentHelper studentHelper;
 
     /**
+     * A helper manipulate the Bill data of the system.
+     */
+    private BillHelper billHelper;
+
+    /**
      * The current User.
      */
     private User currentUser;
@@ -61,6 +66,7 @@ public class BILL {
     public BILL() {
         userHelper = new UserHelper();
         studentHelper = new StudentHelper();
+        billHelper = new BillHelper();
         currentUser = null;
     }
 
@@ -84,7 +90,14 @@ public class BILL {
     }
 
     /**
-     * Mehtod for test validation to get the User who is currently logged into the system.
+     * Method for test validation to get the BillHelper that is used by BILL.
+     *
+     * @return the StudentHelper being used by BILL to manipulate Bill Records.
+     */
+    protected BillHelper getBillHelper() { return billHelper; }
+
+    /**
+     * Method for test validation to get the User who is currently logged into the system.
      *
      * @return the User currently logged in.
      */
@@ -305,10 +318,23 @@ public class BILL {
      *                   SEE NOTE IN CLASS HEADER.
      * @returns the student's bill in a data class matching the I/O file.
      */
-//    public Bill generateBill(String userId)
-//            throws UnauthorizedUserException, BillGenerationException  {
-//
-//    }
+    public Bill generateBill(String userId)
+            throws UnknownUserException, UnauthorizedUserException, BillGenerationException  {
+
+        StudentRecord student = studentHelper.findStudentRecord(userId);
+
+        if (student == null) {
+            throw new UnknownUserException();
+        }
+
+        Bill bill = null;
+        if (canBeAccessed(student)) {
+            billHelper.generateBill(student);
+        } else {
+            throw new UnauthorizedUserException();
+        }
+        return bill;
+    }
 
     /**
      * Generates a list of transactions for a chosen period.
@@ -343,28 +369,20 @@ public class BILL {
     public void applyPayment(String userId, BigDecimal amount, String note)
             throws UnknownUserException, UnauthorizedUserException, PaymentException, PaymentSaveException {
         StudentRecord toChange = studentHelper.findStudentRecord(userId);
-
+//TODO: Refactor this to move transaction creation logic to StudentHelper
         if (toChange == null) {
             throw new UnknownUserException();
         }
 
         //If the user can modify the student
         if (canBeAccessed(toChange)) {
-            //Get today's date
-            Calendar today = Calendar.getInstance();
-            //Create the payment
-            Transaction newPayment = new Transaction( TransactionType.PAYMENT,
-                    new Date( today.get(Calendar.MONTH)+1, today.get(Calendar.DATE), today.get(Calendar.YEAR) ),
-                    amount,
-                    note );
-
             //If the Transaction amount is negative, the payment cannot be made.
             if(amount.compareTo(BigDecimal.ZERO) == -1) {
                 throw new PaymentException();
             }
 
             //Add the transaction
-            toChange.addTransaction(newPayment);
+            toChange.addTransaction(Transaction.createPayment(amount, note));
 
             //Save the record
             try {

@@ -4,6 +4,7 @@ package edu.sc.csce740.model;
 import edu.sc.csce740.defines.TransactionType;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 /**
  * This class represents a Transaction in the BILL system.
@@ -116,6 +117,30 @@ public class Transaction {
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public static Transaction createPayment(BigDecimal amount, String note) {
+        //Get today's date
+        Calendar today = Calendar.getInstance();
+        //Create the payment
+        Transaction newPayment = new Transaction( TransactionType.PAYMENT,
+                new Date( today.get(Calendar.MONTH)+1, today.get(Calendar.DATE), today.get(Calendar.YEAR) ),
+                amount,
+                note );
+
+        return newPayment;
+    }
+
+    public static Transaction createCharge(BigDecimal amount, String note) {
+        //Get today's date
+        Calendar today = Calendar.getInstance();
+        //Create the payment
+        Transaction newCharge = new Transaction( TransactionType.CHARGE,
+                new Date( today.get(Calendar.MONTH)+1, today.get(Calendar.DATE), today.get(Calendar.YEAR) ),
+                amount,
+                note );
+
+        return newCharge;
     }
 
     /**

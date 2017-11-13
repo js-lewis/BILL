@@ -9,15 +9,17 @@ public class Fee {
     private FeeType feeType;
     private Frequency frequency;
     private double amount;
+    private String note;
 
     public Fee() {
     }
 
-    public Fee(StudentType studentType, FeeType feeType, Frequency frequency, double amount) {
+    public Fee(StudentType studentType, FeeType feeType, Frequency frequency, double amount, String note) {
         this.studentType = studentType;
         this.feeType = feeType;
         this.frequency = frequency;
         this.amount = amount;
+        this.note = note;
     }
 
     public StudentType getStudentType() {
@@ -50,5 +52,13 @@ public class Fee {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

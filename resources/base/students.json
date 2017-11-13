@@ -258,7 +258,7 @@
     "activeDuty": false,
     "veteran": false,
     "freeTuition": false,
-    "scholarship": "GENERAL",
+    "scholarship": "NONE",
     "studyAbroad": "NONE",
     "nationalStudentExchange": true,
     "outsideInsurance": false,
@@ -435,7 +435,7 @@
     "activeDuty": false,
     "veteran": false,
     "freeTuition": false,
-    "scholarship": "GENERAL",
+    "scholarship": "NONE",
     "studyAbroad": "NONE",
     "nationalStudentExchange": false,
     "outsideInsurance": false,
@@ -451,7 +451,7 @@
         "id": "PHY  177",
         "numCredits": 1,
         "online": false
-      },
+      }
     ],
     "transactions": []
   }
