@@ -15,13 +15,13 @@ public class BillHelperTest {
     public void testReadFees() {
         BillHelper billHelper = new BillHelper();
         Fees fees = billHelper.getFees();
-        Assert.assertEquals(fees.getResidentUnderGradTuition().size(), 2);
-        Assert.assertEquals(fees.getNonResidentUnderGradTuition().size(), 12);
-        Assert.assertEquals(fees.getActiveDutyTuition().size(), 2);
-        Assert.assertEquals(fees.getResidentGraduateTuition().size(), 2);
-        Assert.assertEquals(fees.getNonResidentGraduateTuition().size(), 2);
-        Assert.assertEquals(fees.getGeneralFees().size(), 20);
-        Assert.assertEquals(fees.getCollegeFees().size(), 18);
+        Assert.assertEquals(3, fees.getResidentUnderGradTuition().size());
+        Assert.assertEquals(14, fees.getNonResidentUnderGradTuition().size());
+        Assert.assertEquals(3, fees.getActiveDutyTuition().size());
+        Assert.assertEquals(3, fees.getResidentGraduateTuition().size());
+        Assert.assertEquals(4, fees.getNonResidentGraduateTuition().size());
+        Assert.assertEquals(17, fees.getGeneralFees().size());
+        Assert.assertEquals(18, fees.getCollegeFees().size());
     }
 
     @Test

@@ -6,11 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 //Enumerations
-import edu.sc.csce740.defines.FeeType;
-import edu.sc.csce740.defines.College;
-import edu.sc.csce740.defines.StudentType;
-import edu.sc.csce740.defines.InternationalStatus;
-import edu.sc.csce740.defines.StudyAbroad;
+import edu.sc.csce740.defines.*;
 
 //Import the new Exception
 import edu.sc.csce740.exceptions.BillGenerationException;
@@ -44,10 +40,13 @@ import java.util.ArrayList;
  */
 public class BillHelper {
     private static String feeFile = "resources/data/fees.json";
+    private static int OVERTIME_STUDENT_HOURS = 17;
+    private static int GRAD_FULL_TIME_STUDENT_HOURS = 6;
+    private static int UNDERGRAD_FULL_TIME_STUDENT_HOURS = 12;
     private boolean feesLoaded;
     private Fees fees;
     private boolean isFullTime;
-    private boolean onlineClasses;
+    private int onlineHours;
     private int totalHours;
 
     public BillHelper() {
@@ -59,13 +58,13 @@ public class BillHelper {
             feesLoaded = false;
         }
         isFullTime = false;
-        onlineClasses = false;
+        onlineHours = 0;
         totalHours = 0;
     }
 
     protected void reset() {
         isFullTime = false;
-        onlineClasses = false;
+        onlineHours = 0;
         totalHours = 0;
     }
 
@@ -93,7 +92,6 @@ public class BillHelper {
         return fees;
     }
 
-
     public Bill retrieveBill(StudentRecord student, Date startDate, Date endDate)
             throws BillRetrievalException {
         Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
@@ -117,12 +115,15 @@ public class BillHelper {
             throw new BillGenerationException();
         }
 
+        //check courses and compute the total number of hours a student it taking.
         processCourses(student);
+
+        //process all of the tuition charges
         returnBill = generateTuitionCharges(student, returnBill);
         returnBill = generateGeneralCharges(student, returnBill);
         returnBill = generateCollegeCharges(student, returnBill);
 
-        //TODO: Add total Charge from Bill to the Student Record
+        //Per Dr. Gay, Bill Generation should not add charges to the Student Record
         System.out.println(returnBill);
         reset();
         return returnBill;
@@ -131,16 +132,18 @@ public class BillHelper {
     protected Bill generateTuitionCharges(StudentRecord student, Bill bill)
             throws BillGenerationException {
         List<Fee> tuitionFees = new ArrayList<Fee>();
-        //if the student is active duty, then use the active duty list
+
         switch( student.getClassStatus() ) {
             case FRESHMAN:
             case SOPHOMORE:
             case JUNIOR:
             case SENIOR:
+                //if the student is active duty, then use the active duty list
                 if( student.isActiveDuty() ){
                     tuitionFees = fees.getActiveDutyTuition();
                 } else {
-                    if(student.isResident()) {
+                    //otherwise check for residence and use that list
+                    if(student.isResident() || student.isVeteran()) {
                         tuitionFees = fees.getResidentUnderGradTuition();
                     } else {
                         tuitionFees = fees.getNonResidentUnderGradTuition();
@@ -149,18 +152,30 @@ public class BillHelper {
                 break;
             case MASTERS:
             case PHD:
-                if(student.isResident()) {
+                //Check here and if a Graduate Student has a Scholarship, throw an exception because there's a problem
+                // with the data. Scholarships are only for tuition modification.
+                if(student.getScholarship() != Scholarship.NONE) {
+                    throw new BillGenerationException();
+                }
+
+                //check residence and load the correct tuition fees
+                if(student.isResident() || student.isVeteran()) {
                     tuitionFees = fees.getResidentGraduateTuition();
                 } else {
                     tuitionFees = fees.getNonResidentGraduateTuition();
                 }
                 break;
-                //TODO: Check to see if a graduated student should generate no bill or an exception?
-            case GRADUATED: throw new BillGenerationException();
+            case GRADUATED:
+                //Graduated student should have no tuition in a bill.
+                break;
         }
 
+        //only need to calculate tuition if the student is not being given free tuition
         if(!student.isFreeTuition()) {
+            //process each tuition fee one at a time
             for (Fee fee : tuitionFees) {
+                //if they're a full time student, add the correct tuition based on scholarship/modifiers and then check
+                // to see if they're an overtime student taking more than 17 hours and add that fee too.
                 if (isFullTime) {
                     switch (student.getScholarship()) {
                         case GENERAL:
@@ -168,11 +183,19 @@ public class BillHelper {
                                 bill.addTransaction(
                                         Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
+                            if (fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL && totalHours >= OVERTIME_STUDENT_HOURS) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                            }
                             break;
                         case DEPARTMENTAL:
                             if (fee.getFeeType() == FeeType.DEPARTMENTAL && fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
                                         Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                            }
+                            if (fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL && totalHours >= OVERTIME_STUDENT_HOURS) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
                             }
                             break;
                         case ATHLETIC:
@@ -180,11 +203,19 @@ public class BillHelper {
                                 bill.addTransaction(
                                         Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
+                            if (fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL && totalHours >= OVERTIME_STUDENT_HOURS) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                            }
                             break;
                         case WOODROW:
                             if (fee.getFeeType() == FeeType.WOODROW && fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
                                         Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                            }
+                            if (fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL && totalHours >= OVERTIME_STUDENT_HOURS) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
                             }
                             break;
                         case SIMS:
@@ -192,16 +223,30 @@ public class BillHelper {
                                 bill.addTransaction(
                                         Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
+                            if (fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL && totalHours >= OVERTIME_STUDENT_HOURS) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                            }
                             break;
                         case NONE:
-                        default:
                             if (fee.getStudentType() == StudentType.FULL_TIME) {
                                 bill.addTransaction(
                                         Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
-
+                            if ((student.isActiveDuty() || student.isVeteran() || student.isResident() )
+                                    && fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL && totalHours >= OVERTIME_STUDENT_HOURS) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                            }
+                            if (! (student.isActiveDuty() || student.isVeteran() || student.isResident() )
+                                    && fee.getFeeType() == FeeType.TUITION_OVER_17_NON_RES && totalHours >= OVERTIME_STUDENT_HOURS) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                            }
+                        default:
                     }
                 } else {
+                    //if they're a part time student, add the correct tuition based on scholarship/modifiers by hour.
                     switch (student.getScholarship()) {
                         case GENERAL:
                             if (fee.getFeeType() == FeeType.GENERAL && fee.getStudentType() == StudentType.PART_TIME) {
@@ -234,12 +279,16 @@ public class BillHelper {
                             }
                             break;
                         case NONE:
-                        default:
                             if (fee.getStudentType() == StudentType.PART_TIME) {
-                                bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
+                                if (fee.getFeeType() == FeeType.ONLINE) {
+                                    bill.addTransaction(
+                                            Transaction.createCharge(BigDecimal.valueOf(onlineHours).multiply(fee.getAmount()), fee.getNote()));
+                                } else {
+                                    bill.addTransaction(
+                                            Transaction.createCharge(BigDecimal.valueOf(totalHours-onlineHours).multiply(fee.getAmount()), fee.getNote()));
+                                }
                             }
-
+                        default:
                     }
                 }
             }
@@ -350,7 +399,8 @@ public class BillHelper {
                                 Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                     }
                     break;
-                default: //TODO: throw exception here?
+                default: System.out.println("Unhandled fee type: " + fee.getFeeType());
+                    //TODO: throw exception here?
 
             }
 
@@ -396,7 +446,7 @@ public class BillHelper {
                             case AAS_STUDIO_LAB:
                                 //TODO: Check Courses for this fee?
                                 break;
-                            default:
+                            default: System.out.println("Unhandled fee type: " + fee.getFeeType());
                         }
                     }
                     break;
@@ -432,7 +482,7 @@ public class BillHelper {
                             case EAC_SYS_DESIGN:
                                 //TODO: Check Courses for this fee?
                                 break;
-                            default:
+                            default: System.out.println("Unhandled fee type: " + fee.getFeeType());
                         }
                     }
                     break;
@@ -458,22 +508,27 @@ public class BillHelper {
     protected void processCourses(StudentRecord student) {
 
         for(Course course: student.getCourses()) {
-            this.totalHours += course.getNumCredits();
+            //if the course is online, add it to the online hours
             if(course.isOnline()) {
-                this.onlineClasses = true;
+                this.onlineHours += course.getNumCredits();
             }
+
+            //add the hours to the total number of hours
+            this.totalHours += course.getNumCredits();
+
         }
 
+        //figure out if the student is full time or not
         switch(student.getClassStatus()) {
             case FRESHMAN:
             case SOPHOMORE:
             case JUNIOR:
             case SENIOR:
-                this.isFullTime = (totalHours >= 12);
+                this.isFullTime = (totalHours >= UNDERGRAD_FULL_TIME_STUDENT_HOURS);
                 break;
             case MASTERS:
             case PHD:
-                this.isFullTime = (totalHours >= 6);
+                this.isFullTime = (totalHours >= GRAD_FULL_TIME_STUDENT_HOURS);
                 break;
             case GRADUATED:
             default:

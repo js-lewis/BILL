@@ -184,9 +184,24 @@ public enum FeeType {
     INTERNATIONAL_SPONSORED,
 
     /**
+     * This is the matriculation fee.
+     */
+    MATRICULATION,
+
+    /**
+     * This is the fee for the national student exchange.
+     */
+    NATIONAL_STUDENT_EXCHANGE,
+
+    /**
      * This is the tuition with no Scholarship.
      */
     NONE,
+
+    /**
+     * This is the tuition for online graduate courses.
+     */
+    ONLINE,
 
     /**
      * This is the tuition on a SIMS Scholarship.
@@ -199,6 +214,16 @@ public enum FeeType {
     STUDY_ABROAD,
 
     /**
+     * This is a fee for the Study Abroad Exchange program.
+     */
+    STUDY_ABROAD_EXCHANGE,
+
+    /**
+     * This is a fee for the mandatory Study Abroad insurance.
+     */
+    STUDY_ABROAD_INSURANCE,
+
+    /**
      * This is the technology fee for all students.
      */
     TECHNOLOGY,
@@ -206,7 +231,17 @@ public enum FeeType {
     /**
      * This is the tuition on a Woodrow Scholarship.
      */
-    WOODROW;
+    WOODROW,
+
+    /**
+     * This is a tuition addon for non-resident undergraduates with 17 hours or more
+     */
+    TUITION_OVER_17_NON_RES,
+
+    /**
+     * This is a tuition addon for resident undergraduates with 17 hours or more or for undergrads on scholarship
+     */
+    TUITION_OVER_17_RES_SS_MIL;
 
     /**
      * Convert a FeeType to a string.
@@ -224,7 +259,7 @@ public enum FeeType {
             case AAS_FIELD:
                 return "AAS_FIELD";
             case AAS_HS_DRAMA:
-                return "AS_HS_DRAMA";
+                return "AAS_HS_DRAMA";
             case AAS_LANGUAGE:
                 return "AAS_LANGUAGE";
             case AAS_MARINE_SCIENCE:
@@ -246,7 +281,7 @@ public enum FeeType {
             case EAC_APOGEE:
                 return "EAC_APOGEE";
             case EAC_CSCE_101_102_LAB:
-                return "AC_CSCE_101_102_LAB";
+                return "EAC_CSCE_101_102_LAB";
             case EAC_EXEC_MASTER:
                 return "EAC_EXEC_MASTER";
             case EAC_MHIT:
@@ -273,16 +308,30 @@ public enum FeeType {
                 return "INTERNATIONAL_SHORT_TERM";
             case INTERNATIONAL_SPONSORED:
                 return "INTERNATIONAL_SPONSORED";
+            case MATRICULATION:
+                return "MATRICULATION";
+            case NATIONAL_STUDENT_EXCHANGE:
+                return "NATIONAL_STUDENT_EXCHANGE:";
             case NONE:
                 return "NONE";
+            case ONLINE:
+                return "ONLINE";
             case SIMS:
                 return "SIMS";
             case STUDY_ABROAD:
                 return "STUDY_ABROAD";
+            case STUDY_ABROAD_EXCHANGE:
+                return "STUDY_ABROAD_EXCHANGE";
+            case STUDY_ABROAD_INSURANCE:
+                return "STUDY_ABROAD_INSURANCE";
             case TECHNOLOGY:
                 return "TECHNOLOGY";
             case WOODROW:
                 return "WOODROW";
+            case TUITION_OVER_17_NON_RES:
+                return "TUITION_OVER_17_NON_RES";
+            case TUITION_OVER_17_RES_SS_MIL:
+                return "TUITION_OVER_17_RES_SS_MIL";
             default:
                 return super.toString();
         }

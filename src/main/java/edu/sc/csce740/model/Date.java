@@ -1,5 +1,8 @@
 package edu.sc.csce740.model;
 
+import edu.sc.csce740.defines.Semester;
+import edu.sc.csce740.exceptions.InvalidDateException;
+
 /**
  * This class represents a Date in the BILL system.
  */
@@ -95,6 +98,85 @@ public class Date {
     public void setYear(int year) {
         if(year >= 0 && year <= 9999) {
             this.year = year;
+        }
+    }
+
+    /**
+     * Determine if this date falls between two other dates
+     * @param start the beginning of the Date range
+     * @param end   the end of the Date range
+     * @return  true if this Date is between the parameters. False otherwise.
+     */
+    public boolean isBetween(Date start, Date end) {
+        return this.isBefore(end) && this.isAfter(start);
+    }
+
+    /**
+     * Determine if this date is before/earlier than a given date.
+     * @param d some Date
+     * @return true if this Date is earlier than the given Date.
+     */
+    public boolean isBefore(Date d) {
+        if(this.year < d.year) {
+            return true;
+        }
+
+        if(this.year == d.year && this.month < d.month) {
+            return true;
+        }
+
+        if(this.year == d.year && this.month == d.month && this.day < d.day) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Determine if this date is after/later than a given date.
+     * @param d some Date
+     * @return true if this Date is later than the given Date.
+     */
+    public boolean isAfter(Date d) {
+        if(this.year > d.year) {
+            return true;
+        }
+
+        if(this.year == d.year && this.month > d.month) {
+            return true;
+        }
+
+        if(this.year == d.year && this.month == d.month && this.day > d.day) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Gets the Semester that corresponds to a date.
+     * @return a Semester that corresponds to the date.
+     * @throws InvalidDateException
+     */
+    public Semester getSemeter() throws InvalidDateException {
+        switch(this.month) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                return Semester.SPRING;
+            case 6:
+            case 7:
+                return Semester.SUMMER;
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                return Semester.FALL;
+            default:
+                throw new InvalidDateException();
         }
     }
 

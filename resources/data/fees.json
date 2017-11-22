@@ -4,15 +4,22 @@
       "studentType": "FULL_TIME",
       "feeType": "NONE",
       "frequency": "SEMESTER",
-      "amount": 5931,
+      "amount": 5727.00,
       "note": "Undergrad tuition for resident - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "NONE",
       "frequency": "HOUR",
-      "amount": 494.25,
+      "amount": 477.25,
       "note": "Undergrad tuition for resident - part time."
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "TUITION_OVER_17_RES_SS_MIL",
+      "frequency": "HOUR",
+      "amount": 80.00,
+      "note": "Undergrad tuition for resident over 17 hours."
     }
   ],
   "nonResidentUnderGradTuition": [
@@ -20,85 +27,99 @@
       "studentType": "FULL_TIME",
       "feeType": "NONE",
       "frequency": "SEMESTER",
-      "amount": 15981.00,
+      "amount": 15441.00,
       "note": "Undergrad tuition for non-resident - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "NONE",
       "frequency": "HOUR",
-      "amount": 1331.75,
+      "amount": 1286.75,
       "note": "Undergrad tuition for non-resident - part time."
     },
     {
       "studentType": "FULL_TIME",
       "feeType": "WOODROW",
       "frequency": "SEMESTER",
-      "amount": 8802.00,
+      "amount": 8502.00,
       "note": "Undergrad tuition for non-resident with Woodrow scholarship - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "WOODROW",
       "frequency": "HOUR",
-      "amount": 733.50,
+      "amount": 708.50,
       "note": "Undergrad tuition for non-resident with Woodrow scholarship - part time."
     },
     {
       "studentType": "FULL_TIME",
       "feeType": "DEPARTMENTAL",
       "frequency": "SEMESTER",
-      "amount": 8802.00,
+      "amount": 8502.00,
       "note": "Undergrad tuition for non-resident with Departmental scholarship - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "DEPARTMENTAL",
       "frequency": "HOUR",
-      "amount": 733.50,
+      "amount": 708.50,
       "note": "Undergrad tuition for non-resident with Departmental scholarship - part time."
     },
     {
       "studentType": "FULL_TIME",
       "feeType": "GENERAL",
       "frequency": "SEMESTER",
-      "amount": 5931.00,
+      "amount": 5727.00,
       "note": "Undergrad tuition for non-resident with General scholarship - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "GENERAL",
       "frequency": "HOUR",
-      "amount": 494.25,
+      "amount": 477.25,
       "note": "Undergrad tuition for non-resident with General scholarship - part time."
     },
     {
       "studentType": "FULL_TIME",
       "feeType": "ATHLETIC",
       "frequency": "SEMESTER",
-      "amount": 8802.00,
+      "amount": 8502.00,
       "note": "Undergrad tuition for non-resident with Athletic scholarship - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "ATHLETIC",
       "frequency": "HOUR",
-      "amount": 733.50,
+      "amount": 708.50,
       "note": "Undergrad tuition for non-resident with Athletic scholarship - part time."
     },
     {
       "studentType": "FULL_TIME",
       "feeType": "SIMS",
       "frequency": "SEMESTER",
-      "amount": 11352.00,
+      "amount": 10965.00,
       "note": "Undergrad tuition for non-resident with SIMS scholarship - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "SIMS",
       "frequency": "HOUR",
-      "amount": 946.00,
+      "amount": 913.75,
       "note": "Undergrad tuition for non-resident with SIMS scholarship - part time."
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "TUITION_OVER_17_NON_RES",
+      "frequency": "HOUR",
+      "amount": 208.00,
+      "note": "Undergrad tuition for resident over 17 hours."
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "TUITION_OVER_17_RES_SS_MIL",
+      "frequency": "HOUR",
+      "amount": 80.00,
+      "note": "Undergrad tuition for resident over 17 hours."
     }
   ],
   "activeDutyTuition": [
@@ -106,15 +127,22 @@
       "studentType": "FULL_TIME",
       "feeType": "NONE",
       "frequency": "SEMESTER",
-      "amount": 3474.00,
+      "amount": 3351.00,
       "note": "Active Duty tuition - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "NONE",
       "frequency": "HOUR",
-      "amount": 289.50,
+      "amount": 279.25,
       "note": "Active Duty tuition - part time."
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "TUITION_OVER_17_RES_SS_MIL",
+      "frequency": "HOUR",
+      "amount": 80.00,
+      "note": "Undergrad tuition for resident over 17 hours."
     }
   ],
   "residentGraduateTuition": [
@@ -122,15 +150,22 @@
       "studentType": "FULL_TIME",
       "feeType": "NONE",
       "frequency": "SEMESTER",
-      "amount": 6627.00,
+      "amount": 6399.00,
       "note": "Graduate tuition for resident - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "NONE",
       "frequency": "HOUR",
-      "amount": 522.25,
+      "amount": 533.25,
       "note": "Graduate tuition for resident - part time."
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "TUITION_OVER_17_RES_SS_MIL",
+      "frequency": "HOUR",
+      "amount": 80.00,
+      "note": "Undergrad tuition for resident over 17 hours."
     }
   ],
   "nonResidentGraduateTuition": [
@@ -138,15 +173,29 @@
       "studentType": "FULL_TIME",
       "feeType": "NONE",
       "frequency": "SEMESTER",
-      "amount": 14184.00,
+      "amount": 13704.00,
       "note": "Graduate tuition for non-resident - full time."
     },
     {
       "studentType": "PART_TIME",
       "feeType": "NONE",
       "frequency": "HOUR",
-      "amount": 1182.00,
+      "amount": 1142.00,
       "note": "Graduate tuition for non-resident - part time."
+    },
+    {
+      "studentType": "PART_TIME",
+      "feeType": "ONLINE",
+      "frequency": "HOUR",
+      "amount": 533.25,
+      "note": "Graduate tuition for non-resident - part time."
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "TUITION_OVER_17_NON_RES",
+      "frequency": "HOUR",
+      "amount": 170.00,
+      "note": "Undergrad tuition for resident over 17 hours."
     }
   ],
   "generalFees": [
@@ -165,130 +214,109 @@
       "note": "Technology fee - part time."
     },
     {
-      "studentType": "FULL_TIME",
-      "feeType": "CAPSTONE",
-      "frequency": "SEMESTER",
-      "amount": 14184.00,
-      "note": "Capstone fee - full time."
-    },
-    {
-      "studentType": "PART_TIME",
-      "feeType": "CAPSTONE",
-      "frequency": "HOUR",
-      "amount": 1182.00,
-      "note": "Capstone fee - part time."
+      "studentType": "ALL",
+      "feeType": "INTERNATIONAL",
+      "frequency": "ONE_TIME",
+      "amount": 750.00,
+      "note": "International Student Enrollment Fee - One Time."
     },
     {
       "studentType": "ALL",
-      "feeType": "INSURANCE",
+      "feeType": "INTERNATIONAL_SHORT_TERM",
       "frequency": "SEMESTER",
-      "amount": 2020.00,
-      "note": "Health Insurance - full time"
+      "amount": 187.50,
+      "note": "Short Time International Student"
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "INTERNATIONAL_SPONSORED",
+      "frequency": "SEMESTER",
+      "amount": 250.00,
+      "note": "Sponsored International Student"
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "STUDY_ABROAD",
+      "frequency": "SEMESTER",
+      "amount": 150.00,
+      "note": "Study Abroad"
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "COHORT",
+      "frequency": "SEMESTER",
+      "amount": 300.00,
+      "note": "Cohort Study Abroad"
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "NATIONAL_STUDENT_EXCHANGE",
+      "frequency": "SEMESTER",
+      "amount": 250.00,
+      "note": "National Student Exchange"
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "STUDY_ABROAD_EXCHANGE",
+      "frequency": "SEMESTER",
+      "amount": 500.00,
+      "note": "Study Abroad Exchange Program Deposit - non-refundable"
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "MATRICULATION",
+      "frequency": "SEMESTER",
+      "amount": 80.00,
+      "note": "Matriculation"
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "CAPSTONE",
+      "frequency": "SEMESTER",
+      "amount": 100.00,
+      "note": "Capstone fee - first 2 years."
+    },
+    {
+      "studentType": "ALL",
+      "feeType": "HEALTH_CENTER_GA",
+      "frequency": "HOUR",
+      "amount": 178.00,
+      "note": "Health Center Graduate Assistant - less than 12 hours"
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "HEALTH_CENTER_GRAD_6_8",
+      "frequency": "HOUR",
+      "amount": 119.00,
+      "note": "Health Center 6 to 8 hours - part time"
+    },
+    {
+      "studentType": "FULL_TIME",
+      "feeType": "HEALTH_CENTER_GRAD_9_11",
+      "frequency": "HOUR",
+      "amount": 178.00,
+      "note": "Health Center 9 to 11 hours - part time"
     },
     {
       "studentType": "PART_TIME",
       "feeType": "HEALTH_CENTER_UNDERGRAD_6_11",
       "frequency": "HOUR",
-      "amount": 123.00,
+      "amount": 119.00,
       "note": "Health Center 6 to 8 hours - part time"
     },
     {
-      "studentType": "PART_TIME",
-      "feeType": "HEALTH_CENTER_GRAD_6_8",
-      "frequency": "HOUR",
-      "amount": 123.00,
-      "note": "Health Center 6 to 8 hours - part time"
-    },
-    {
-      "studentType": "PART_TIME",
-      "feeType": "HEALTH_CENTER_GRAD_9_11",
-      "frequency": "HOUR",
-      "amount": 184.00,
-      "note": "Health Center 9 to 11 hours - part time"
-    },
-    {
-      "studentType": "FULL_TIME",
-      "feeType": "HEALTH_CENTER_GA",
+      "studentType": "ALL",
+      "feeType": "INSURANCE",
       "frequency": "SEMESTER",
-      "amount": 2020.00,
-      "note": "Health Center Graduate Assistant - full time"
+      "amount": 2547.00,
+      "note": "Health Insurance - full time"
     },
     {
-      "studentType": "PART_TIME",
-      "feeType": "HEALTH_CENTER_GA",
-      "frequency": "HOUR",
-      "amount": 184.00,
-      "note": "Health Center Graduate Assistant - part time"
-    },
-    {
-      "studentType": "FULL_TIME",
-      "feeType": "INTERNATIONAL",
+      "studentType": "ALL",
+      "feeType": "STUDY_ABROAD_INSURANCE",
       "frequency": "SEMESTER",
-      "amount": 14184.00,
-      "note": "International Student - full time"
-    },
-    {
-      "studentType": "PART_TIME",
-      "feeType": "INTERNATIONAL",
-      "frequency": "HOUR",
-      "amount": 1182.00,
-      "note": "International Student - part time"
-    },
-    {
-      "studentType": "FULL_TIME",
-      "feeType": "INTERNATIONAL_SHORT_TERM",
-      "frequency": "SEMESTER",
-      "amount": 14184.00,
-      "note": "Short Time International Student - full time"
-    },
-    {
-      "studentType": "PART_TIME",
-      "feeType": "INTERNATIONAL_SHORT_TERM",
-      "frequency": "HOUR",
-      "amount": 1182.00,
-      "note": "Short Time International Student - part time"
-    },
-    {
-      "studentType": "FULL_TIME",
-      "feeType": "INTERNATIONAL_SPONSORED",
-      "frequency": "SEMESTER",
-      "amount": 14184.00,
-      "note": "Sponsored International Student - full time"
-    },
-    {
-      "studentType": "PART_TIME",
-      "feeType": "INTERNATIONAL_SPONSORED",
-      "frequency": "HOUR",
-      "amount": 1182.00,
-      "note": "Sponsored International Student - part time"
-    },
-    {
-      "studentType": "FULL_TIME",
-      "feeType": "STUDY_ABROAD",
-      "frequency": "SEMESTER",
-      "amount": 14184.00,
-      "note": "Study Abroad - full time"
-    },
-    {
-      "studentType": "PART_TIME",
-      "feeType": "STUDY_ABROAD",
-      "frequency": "HOUR",
-      "amount": 1182.00,
-      "note": "Study Abroad - part time"
-    },
-    {
-      "studentType": "FULL_TIME",
-      "feeType": "COHORT",
-      "frequency": "SEMESTER",
-      "amount": 14184.00,
-      "note": "Cohort - full time"
-    },
-    {
-      "studentType": "PART_TIME",
-      "feeType": "COHORT",
-      "frequency": "HOUR",
-      "amount": 1182.00,
-      "note": "Cohort - part time"
+      "amount": 360.00,
+      "note": "Mandatory Study Abroad Insurance"
     }
   ],
   "collegeFees": [
