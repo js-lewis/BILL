@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -298,12 +299,60 @@ public class BillHelper {
     }
 
     protected Bill generateGeneralCharges(StudentRecord student, Bill bill) {
+        //Get today's date
+        Calendar calToday = Calendar.getInstance();
+        //Create a new Date
+        Date dateToday = new Date(calToday.get(Calendar.MONTH)+1, calToday.get(Calendar.DATE), calToday.get(Calendar.YEAR));
 
+        //Go through each fee and see if it needs to be charged.
         for(Fee fee: fees.getGeneralFees()) {
             switch (fee.getFeeType()) {
-                case CAPSTONE:
-                    //TODO: Is Capstone only the semester you enrolled - i.e. one time?
+                //Charge the technology fee to everyone
+                case TECHNOLOGY:
+                    if(isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
+                        bill.addTransaction(
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                    }
+                    if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
+                        bill.addTransaction(
+                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
+                    }
                     break;
+                //Charge the capstone fee for the first two years after someone enrolls as a capstone student.
+                case CAPSTONE:
+                    //If the student enrolled in the capstone program less than two years ago, charge the fee
+                    try{
+                        if( (dateToday.getYear() - student.getCapstoneEnrolled().getYear() < 2) ||
+                            ( dateToday.getYear() == student.getCapstoneEnrolled().getYear() &&
+                                    (student.getCapstoneEnrolled().getSemester() == dateToday.getSemeter() ||
+                                    student.getCapstoneEnrolled().getSemester() == Semester.SPRING))) {
+                            //Add the transaction
+                            bill.addTransaction(
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                        }
+                    } catch( Exception e ) {
+                        //TODO: Remove this? Should never get here
+                        System.out.println(e);
+                    }
+
+                    break;
+                //If this is the International student's first semester, charge the fee
+                case INTERNATIONAL:
+                    try {
+                        if (student.isInternational() &&
+                                student.getTermBegan().getSemester() == dateToday.getSemeter() &&
+                                student.getTermBegan().getYear() == dateToday.getYear()) {
+                            //Add the transaction
+                            bill.addTransaction(
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                        }
+                    } catch (Exception e) {
+                        //TODO: Remove this? Should never get here
+                        System.out.println(e);
+                    }
+                    break;
+
+
                 case STUDY_ABROAD:
                     if(student.getStudyAbroad() == StudyAbroad.REGULAR) {
                         bill.addTransaction(
@@ -355,12 +404,7 @@ public class BillHelper {
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
-                case INTERNATIONAL:
-                    //TODO: Check for one time international fee
-                    if(student.isInternational()) {
 
-                    }
-                    break;
                 case INTERNATIONAL_SHORT_TERM:
                     if(student.isInternational()) {
                         if (student.getInternationalStatus() == InternationalStatus.SHORT_TERM) {
@@ -389,15 +433,11 @@ public class BillHelper {
                         }
                     }
                     break;
-                case TECHNOLOGY:
-                    if(isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
-                        bill.addTransaction(
-                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
-                    }
-                    if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                        bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
-                    }
+
+                case MATRICULATION:
+                case STUDY_ABROAD_INSURANCE:
+                case STUDY_ABROAD_EXCHANGE:
+                case NATIONAL_STUDENT_EXCHANGE:
                     break;
                 default: System.out.println("Unhandled fee type: " + fee.getFeeType());
                     //TODO: throw exception here?
