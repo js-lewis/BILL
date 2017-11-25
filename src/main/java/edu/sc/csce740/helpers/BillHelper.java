@@ -1,6 +1,7 @@
 package edu.sc.csce740.helpers;
 
 //GSON imports
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -47,33 +48,34 @@ public class BillHelper {
     private boolean feesLoaded;
     private Fees fees;
     private boolean isFullTime;
+    private boolean isGradStudent;
     private int onlineHours;
     private int totalHours;
 
-    private static short[] AE_LAB_COURSES = { 101, 260, 520, 530, 535, 540, 541, 555, 560, 595 };
+    private static short[] AE_LAB_COURSES = {101, 260, 520, 530, 535, 540, 541, 555, 560, 595};
 
-    private static short[] AH_LAB_COURSES = { 105, 106, 313, 315, 320, 321, 325,
-        326, 327, 330, 335, 337, 340, 341, 342, 345, 346, 350, 365, 366, 370, 390,
-        399, 498, 499, 501, 511, 514, 519, 520, 521, 522, 523, 524, 525, 526, 527,
-        529, 534, 535, 536, 537, 539, 540, 542, 543, 550, 557, 560, 561, 562, 566,
-        569, 590, 720, 725, 730, 735, 737, 769, 790 };
+    private static short[] AH_LAB_COURSES = {105, 106, 313, 315, 320, 321, 325,
+            326, 327, 330, 335, 337, 340, 341, 342, 345, 346, 350, 365, 366, 370, 390,
+            399, 498, 499, 501, 511, 514, 519, 520, 521, 522, 523, 524, 525, 526, 527,
+            529, 534, 535, 536, 537, 539, 540, 542, 543, 550, 557, 560, 561, 562, 566,
+            569, 590, 720, 725, 730, 735, 737, 769, 790};
 
-    private static short[] DANCE_LAB_COURSES = { 102, 112, 160, 170, 171, 177,
-        178, 202, 203, 204, 212, 278, 302, 303, 307, 312, 360, 378, 385, 402, 403,
-        407, 412, 440, 460, 577 };
+    private static short[] DANCE_LAB_COURSES = {102, 112, 160, 170, 171, 177,
+            178, 202, 203, 204, 212, 278, 302, 303, 307, 312, 360, 378, 385, 402, 403,
+            407, 412, 440, 460, 577};
 
-    private static short[] FIELD_LAB_COURSES = { 735, 750 }; // GEOL
+    private static short[] FIELD_LAB_COURSES = {735, 750}; // GEOL
 
-    private static String[] LANGUAGE_COURSES = { "ARAB", "CHIN", "FREN", "GERM",
-        "ITAL", "JAPA", "LATN", "PORT", "RUSS", "SPAN" };
+    private static String[] LANGUAGE_COURSES = {"ARAB", "CHIN", "FREN", "GERM",
+            "ITAL", "JAPA", "LATN", "PORT", "RUSS", "SPAN"};
 
     private static String[] MARINE_SCIENCE_LAB_COURSES = { "MSCI 460" };
 
-    private static String[] MATH_LAB = { "MATH 141", "MATH 142", "MATH 526", "STAT 201" };
+    private static String[] MATH_LAB = {"MATH 141", "MATH 142", "MATH 526", "STAT 201"};
 
-    private static String[] MEDIA_COURSES = { "MART"  };
+    private static String[] MEDIA_COURSES = {"MART"};
 
-    private static String[] STUDIO_LAB = { "ARTS" };
+    private static String[] STUDIO_LAB = {"ARTS"};
 
     public BillHelper() {
         fees = new Fees();
@@ -84,12 +86,14 @@ public class BillHelper {
             feesLoaded = false;
         }
         isFullTime = false;
+        isGradStudent = false;
         onlineHours = 0;
         totalHours = 0;
     }
 
     protected void reset() {
         isFullTime = false;
+        isGradStudent = false;
         onlineHours = 0;
         totalHours = 0;
     }
@@ -97,7 +101,8 @@ public class BillHelper {
     private void readFees()
             throws IOException {
         //Gets the object that the JSON should match.
-        Type feeType = new TypeToken<Fees>(){}.getType();
+        Type feeType = new TypeToken<Fees>() {
+        }.getType();
         //Create the GSON object.
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
@@ -109,7 +114,7 @@ public class BillHelper {
         fees = gson.fromJson(FileUtils.readFileToString(file, "UTF-8"), feeType);
 
         //If fees is null here, the file was empty. Create an empty Fee instead.
-        if(fees == null) {
+        if (fees == null) {
             fees = new Fees();
         }
     }
@@ -121,13 +126,23 @@ public class BillHelper {
     public Bill retrieveBill(StudentRecord student, Date startDate, Date endDate)
             throws BillRetrievalException {
         Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
-                0.00, new ArrayList<Transaction>()) ;
+                0.00, new ArrayList<Transaction>());
 
-        if( !feesLoaded || student == null) {
+        if (!feesLoaded || student == null) {
             throw new BillRetrievalException();
         }
 
-        //TODO: Spin through charges and actually pull the correct ones out ...
+        for (Transaction transaction : student.getTransactions()) {
+            if (transaction.getType() == TransactionType.CHARGE) {
+                if (transaction.getTransactionDate().isBetween(startDate, endDate)) {
+                    //Add the transaction to the bill
+                    returnBill.addTransaction(transaction);
+                    //Add the amount of the transaction to the total
+                    returnBill.setBalance(transaction.getAmount()
+                            .add(BigDecimal.valueOf(returnBill.getBalance())).doubleValue());
+                }
+            }
+        }
 
         return returnBill;
     }
@@ -135,9 +150,9 @@ public class BillHelper {
     public Bill generateBill(StudentRecord student)
             throws BillGenerationException {
         Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
-                0.00, new ArrayList<Transaction>()) ;
+                0.00, new ArrayList<Transaction>());
 
-        if( !feesLoaded || student == null) {
+        if (!feesLoaded || student == null) {
             throw new BillGenerationException();
         }
 
@@ -150,6 +165,7 @@ public class BillHelper {
         returnBill = generateCollegeCharges(student, returnBill);
 
         //Per Dr. Gay, Bill Generation should not add charges to the Student Record
+        //TODO: Remove print
         System.out.println(returnBill);
         reset();
         return returnBill;
@@ -157,19 +173,19 @@ public class BillHelper {
 
     protected Bill generateTuitionCharges(StudentRecord student, Bill bill)
             throws BillGenerationException {
-        List<Fee> tuitionFees = new ArrayList<Fee>();
+        List<Fee> tuitionFees = new ArrayList<>();
 
-        switch( student.getClassStatus() ) {
+        switch (student.getClassStatus()) {
             case FRESHMAN:
             case SOPHOMORE:
             case JUNIOR:
             case SENIOR:
                 //if the student is active duty, then use the active duty list
-                if( student.isActiveDuty() ){
+                if (student.isActiveDuty()) {
                     tuitionFees = fees.getActiveDutyTuition();
                 } else {
                     //otherwise check for residence and use that list
-                    if(student.isResident() || student.isVeteran()) {
+                    if (student.isResident() || student.isVeteran()) {
                         tuitionFees = fees.getResidentUnderGradTuition();
                     } else {
                         tuitionFees = fees.getNonResidentUnderGradTuition();
@@ -180,12 +196,12 @@ public class BillHelper {
             case PHD:
                 //Check here and if a Graduate Student has a Scholarship, throw an exception because there's a problem
                 // with the data. Scholarships are only for tuition modification.
-                if(student.getScholarship() != Scholarship.NONE) {
+                if (student.getScholarship() != Scholarship.NONE) {
                     throw new BillGenerationException();
                 }
 
                 //check residence and load the correct tuition fees
-                if(student.isResident() || student.isVeteran()) {
+                if (student.isResident() || student.isVeteran()) {
                     tuitionFees = fees.getResidentGraduateTuition();
                 } else {
                     tuitionFees = fees.getNonResidentGraduateTuition();
@@ -197,7 +213,7 @@ public class BillHelper {
         }
 
         //only need to calculate tuition if the student is not being given free tuition
-        if(!student.isFreeTuition()) {
+        if (!student.isFreeTuition()) {
             //process each tuition fee one at a time
             for (Fee fee : tuitionFees) {
                 //if they're a full time student, add the correct tuition based on scholarship/modifiers and then check
@@ -259,12 +275,12 @@ public class BillHelper {
                                 bill.addTransaction(
                                         Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
-                            if ((student.isActiveDuty() || student.isVeteran() || student.isResident() )
+                            if ((student.isActiveDuty() || student.isVeteran() || student.isResident())
                                     && fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL && totalHours >= OVERTIME_STUDENT_HOURS) {
                                 bill.addTransaction(
                                         Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
                             }
-                            if (! (student.isActiveDuty() || student.isVeteran() || student.isResident() )
+                            if (!(student.isActiveDuty() || student.isVeteran() || student.isResident())
                                     && fee.getFeeType() == FeeType.TUITION_OVER_17_NON_RES && totalHours >= OVERTIME_STUDENT_HOURS) {
                                 bill.addTransaction(
                                         Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
@@ -311,7 +327,7 @@ public class BillHelper {
                                             Transaction.createCharge(BigDecimal.valueOf(onlineHours).multiply(fee.getAmount()), fee.getNote()));
                                 } else {
                                     bill.addTransaction(
-                                            Transaction.createCharge(BigDecimal.valueOf(totalHours-onlineHours).multiply(fee.getAmount()), fee.getNote()));
+                                            Transaction.createCharge(BigDecimal.valueOf(totalHours - onlineHours).multiply(fee.getAmount()), fee.getNote()));
                                 }
                             }
                         default:
@@ -327,18 +343,18 @@ public class BillHelper {
         //Get today's date
         Calendar calToday = Calendar.getInstance();
         //Create a new Date
-        Date dateToday = new Date(calToday.get(Calendar.MONTH)+1, calToday.get(Calendar.DATE), calToday.get(Calendar.YEAR));
+        Date dateToday = new Date(calToday.get(Calendar.MONTH) + 1, calToday.get(Calendar.DATE), calToday.get(Calendar.YEAR));
 
         //Go through each fee and see if it needs to be charged.
-        for(Fee fee: fees.getGeneralFees()) {
+        for (Fee fee : fees.getGeneralFees()) {
             switch (fee.getFeeType()) {
                 //Charge the technology fee to everyone
                 case TECHNOLOGY:
-                    if(isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
+                    if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
-                    if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
+                    if (!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
                         bill.addTransaction(
                                 Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                     }
@@ -346,16 +362,16 @@ public class BillHelper {
                 //Charge the capstone fee for the first two years after someone enrolls as a capstone student.
                 case CAPSTONE:
                     //If the student enrolled in the capstone program less than two years ago, charge the fee
-                    try{
-                        if( (dateToday.getYear() - student.getCapstoneEnrolled().getYear() < 2) ||
-                            ( dateToday.getYear() == student.getCapstoneEnrolled().getYear() &&
-                                    (student.getCapstoneEnrolled().getSemester() == dateToday.getSemeter() ||
-                                    student.getCapstoneEnrolled().getSemester() == Semester.SPRING))) {
+                    try {
+                        if ((dateToday.getYear() - student.getCapstoneEnrolled().getYear() < 2) ||
+                                (dateToday.getYear() == student.getCapstoneEnrolled().getYear() &&
+                                        (student.getCapstoneEnrolled().getSemester() == dateToday.getSemeter() ||
+                                                student.getCapstoneEnrolled().getSemester() == Semester.SPRING))) {
                             //Add the transaction
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote()));
                         }
-                    } catch( Exception e ) {
+                    } catch (Exception e) {
                         //TODO: Remove this? Should never get here
                         System.out.println(e);
                     }
@@ -378,7 +394,7 @@ public class BillHelper {
                     break;
                 //If this is a Short Term International student, charge the short term fee
                 case INTERNATIONAL_SHORT_TERM:
-                    if(student.isInternational()) {
+                    if (student.isInternational()) {
                         if (student.getInternationalStatus() == InternationalStatus.SHORT_TERM) {
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote()));
@@ -387,7 +403,7 @@ public class BillHelper {
                     break;
                 //If this is a Sponsored International student, charge the sponsored fee
                 case INTERNATIONAL_SPONSORED:
-                    if(student.isInternational()) {
+                    if (student.isInternational()) {
                         if (student.getInternationalStatus() == InternationalStatus.SPONSORED) {
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote()));
@@ -396,76 +412,70 @@ public class BillHelper {
                     break;
                 //If Study abroad is "regular", charge the regular study abroad fee
                 case STUDY_ABROAD:
-                    if(student.getStudyAbroad() == StudyAbroad.REGULAR) {
+                    if (student.getStudyAbroad() == StudyAbroad.REGULAR) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 //If Study abroad is "cohort", charge the regular study abroad fee
                 case COHORT:
-                    if(student.getStudyAbroad() == StudyAbroad.COHORT) {
+                    if (student.getStudyAbroad() == StudyAbroad.COHORT) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 //If National Student Exchange is set, charge the national student exchange
                 case NATIONAL_STUDENT_EXCHANGE:
-                    if(student.isNationalStudentExchange()) {
+                    if (student.isNationalStudentExchange()) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 //If Study abroad is anything other than none, charge this non-refundable deposit
                 case STUDY_ABROAD_EXCHANGE:
-                    if(student.getStudyAbroad() != StudyAbroad.NONE) {
+                    if (student.getStudyAbroad() != StudyAbroad.NONE) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 //If Study abroad is anything other than none, charge for study abroad insurance
                 case STUDY_ABROAD_INSURANCE:
-                    if(student.getStudyAbroad() != StudyAbroad.NONE) {
+                    if (student.getStudyAbroad() != StudyAbroad.NONE) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
-
-                case HEALTH_CENTER_UNDERGRAD_6_11: //TODO: FIX THIS!!!
-                    if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                        int hoursToCharge = totalHours-8 > 0 ? 3 : totalHours-5;
+                //If the student it an undergraduate and they're taking between 6 and 11 hours, charge this fee
+                case HEALTH_CENTER_UNDERGRAD_6_11:
+                    if (!isGradStudent && totalHours >= 6 && totalHours <= 11) {
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
-                case HEALTH_CENTER_GRAD_6_8: //TODO: FIX THIS!!!
-                    if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                        int hoursToCharge = totalHours-8 > 0 ? 3 : totalHours-5;
+                //If the student is a grad student but not a GA and taking 6-8 hours, charge this fee
+                case HEALTH_CENTER_GRAD_6_8:
+                    if (!student.isGradAssistant() && isGradStudent && totalHours >= 6 && totalHours <= 8) {
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
-                case HEALTH_CENTER_GRAD_9_11: //TODO: FIX THIS!!!
-                    if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                        int hoursToCharge = totalHours-11 > 0 ? 3 : totalHours-8;
+                //If the student is a grad student but not a GA and taking 9-11 hours, charge this fee
+                case HEALTH_CENTER_GRAD_9_11:
+                    if (!student.isGradAssistant() && isGradStudent && totalHours >= 9 && totalHours <= 11) {
                         bill.addTransaction(
-                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
+                //If the student is a GA, charge this fee
                 case HEALTH_CENTER_GA:
-                    if(student.isGradAssistant() && !student.isOutsideInsurance()) {
-                        if(isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
-                            bill.addTransaction(
-                                    Transaction.createCharge(fee.getAmount(), fee.getNote()));
-                        }
-                        if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                            bill.addTransaction(
-                                    Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
-                        }
+                    if (student.isGradAssistant()) {
+                        bill.addTransaction(
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 //If the student doesn't have outside insurance, charge for insurance
                 case INSURANCE:
-                    if(!student.isOutsideInsurance()) {
+                    if (!student.isOutsideInsurance()) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
@@ -473,18 +483,18 @@ public class BillHelper {
                 //If the student just started this semester, charge the matriculation fee
                 case MATRICULATION:
                     try {
-                        if(student.getTermBegan().getSemester() == dateToday.getSemeter() &&
-                            student.getTermBegan().getYear() == dateToday.getYear()) {
-                                bill.addTransaction(
-                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                        if (student.getTermBegan().getSemester() == dateToday.getSemeter() &&
+                                student.getTermBegan().getYear() == dateToday.getYear()) {
+                            bill.addTransaction(
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote()));
                         }
                     } catch (Exception e) {
                         //TODO: Remove this? Should never get here
                         System.out.println(e);
                     }
                     break;
-                default: System.out.println("Unhandled fee type: " + fee.getFeeType());
-                    //TODO: throw exception here?
+                default:
+                    System.out.println("Unhandled fee type in generateGeneralCharges: " + fee.getFeeType());
             }
 
         }
@@ -493,142 +503,126 @@ public class BillHelper {
     }
 
     protected Bill generateCollegeCharges(StudentRecord student, Bill bill) {
+        for (Fee fee : fees.getCollegeFees()) {
+            switch (fee.getFeeType()) {
+                case AAS_AE_LAB:
+                    for (int i = 0; i < BillHelper.AE_LAB_COURSES.length; ++i) {
+                        if (searchCourses(student.getCourses(), "ARTE " + AE_LAB_COURSES[i]))
+                            bill.addTransaction(
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote())
+                            );
+                    }
+                    break;
+                case AAS_AH_LAB:
+                    for (int i = 0; i < BillHelper.AH_LAB_COURSES.length; ++i) {
+                        if (searchCourses(student.getCourses(), "ARTH " + AH_LAB_COURSES[i]))
+                            bill.addTransaction(
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote())
+                            );
+                    }
+                    break;
+                case AAS_DANCE_LAB:
+                    for (int i = 0; i < BillHelper.DANCE_LAB_COURSES.length; ++i) {
+                        if (
+                                searchCourses(student.getCourses(), "DANC " + DANCE_LAB_COURSES[i])
+                                )
+                            bill.addTransaction(
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote())
+                            );
+                    }
+                    break;
 
-        for(Fee fee: fees.getCollegeFees()) {
-            switch (student.getCollege()) {
-                case ARTS_AND_SCIENCES:
-                    if(student.getCollege() == College.ARTS_AND_SCIENCES) {
-                        switch (fee.getFeeType()) {
-                            case AAS_AE_LAB:
-                                for (int i = 0; i < BillHelper.AE_LAB_COURSES.length; ++i) {
-                                    if (searchCourses(student.getCourses(), "ARTE "+AE_LAB_COURSES[i]))
-                                        bill.addTransaction(
-                                          Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                        );
-                                }
-                                break;
-                            case AAS_AH_LAB:
-                                for (int i = 0; i < BillHelper.AH_LAB_COURSES.length; ++i) {
-                                    if (searchCourses(student.getCourses(), "ARTH "+AH_LAB_COURSES[i]))
-                                        bill.addTransaction(
-                                          Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                        );
-                                }
-                                break;
-                            case AAS_DANCE_LAB:
-                                for (int i = 0; i < DANCE_LAB_COURSES.length; ++i) {
-                                    if (
-                                      searchCourses(student.getCourses(), "DANC "+DANCE_LAB_COURSES[i])
-                                    )
-                                        bill.addTransaction(
-                                          Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                        );
-                                }
-                                break;
+                case AAS_FIELD:
+                    for (int i = 0; i < BillHelper.FIELD_LAB_COURSES.length; ++i) {
+                        if (
+                          searchCourses(student.getCourses(), "GEOL "+FIELD_LAB_COURSES[i])
+                        )
+                            bill.addTransaction(
+                              Transaction.createCharge(fee.getAmount(), fee.getNote())
+                            );
+                    }
+                    break;
 
-                            case AAS_FIELD:
-                                for (int i = 0; i < BillHelper.FIELD_LAB_COURSES.length; ++i) {
-                                    if (
-                                      searchCourses(student.getCourses(), "GEOL "+FIELD_LAB_COURSES[i])
-                                    )
-                                        bill.addTransaction(
-                                          Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                        );
-                                }
-                                break;
+                //case AAS_HS_DRAMA:
+                //    TODO: Determine what we should do about this
 
-                            //case AAS_HS_DRAMA:
-                            //    TODO: Determine what we should do about this
+                case AAS_LANGUAGE:
+                    for (int i = 0; i < LANGUAGE_COURSES.length; ++i) {
+                        List<Course> courses = getDeptCourses(
+                          student.getCourses(),
+                          BillHelper.LANGUAGE_COURSES[i]
+                        );
 
-                            case AAS_LANGUAGE:
-                                //TODO: Ensure method is correct
-                                for (int i = 0; i < LANGUAGE_COURSES.length; ++i) {
-                                    List<Course> courses = getDeptCourses(
-                                      student.getCourses(),
-                                      BillHelper.LANGUAGE_COURSES[i]
-                                    );
-
-                                    for (Course course : courses) {
-                                        if (course.getNumCredits() > 3)
-                                            bill.addTransaction(
-                                              Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                            );
-                                    }
-                                }
-                                break;
-                            case AAS_MARINE_SCIENCE:
-                                for (int i = 0; i < MARINE_SCIENCE_LAB_COURSES.length; ++i) {
-                                    if (searchCourses(
-                                      student.getCourses(), MARINE_SCIENCE_LAB_COURSES[i]
-                                    ))
-                                        bill.addTransaction(
-                                          Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                        );
-                                }
-                                break;
-                            case AAS_MATH_LAB:
-                                //TODO: Check Courses for this fee?
-                                break;
-                            case AAS_MEDIA_LAB:
-                                //TODO: Check Courses for this fee?
-                                break;
-                            case AAS_STUDIO_LAB:
-                                //TODO: Check Courses for this fee?
-                                break;
-                            default: System.out.println("Unhandled fee type: " + fee.getFeeType());
+                        for (Course course : courses) {
+                            if (course.getNumCredits() > 3)
+                                bill.addTransaction(
+                                  Transaction.createCharge(fee.getAmount(), fee.getNote())
+                                );
                         }
                     }
                     break;
-                case ENGINEERING_AND_COMPUTING:
-                    if(student.getCollege() == College.ENGINEERING_AND_COMPUTING) {
-                        switch (fee.getFeeType()) {
-                            case EAC_APOGEE:
-                                //TODO: Check Courses for this fee?
-                                break;
-                            case EAC_CSCE_101_102_LAB:
-                                if(searchCourses(student.getCourses(), "CSCE 101")
-                                        || searchCourses(student.getCourses(), "CSCE 102") ) {
-                                    bill.addTransaction(
-                                            Transaction.createCharge(fee.getAmount(), fee.getNote()));
-                                }
-                                break;
-                            case EAC_EXEC_MASTER:
-                                //TODO: Check Courses for this fee?
-                                break;
-                            case EAC_MHIT:
-                                //TODO: Check Courses for this fee?
-                                break;
-                            case EAC_PROGRAM:
-                                if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
-                                    bill.addTransaction(
-                                            Transaction.createCharge(fee.getAmount(), fee.getNote()));
-                                }
-                                if (!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                                    bill.addTransaction(
-                                            Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
-                                }
-                                break;
-                            case EAC_SYS_DESIGN:
-                                //TODO: Check Courses for this fee?
-                                break;
-                            default: System.out.println("Unhandled fee type: " + fee.getFeeType());
-                        }
+                case AAS_MARINE_SCIENCE:
+                    for (int i = 0; i < MARINE_SCIENCE_LAB_COURSES.length; ++i) {
+                        if (searchCourses(
+                          student.getCourses(), MARINE_SCIENCE_LAB_COURSES[i]
+                        ))
+                            bill.addTransaction(
+                              Transaction.createCharge(fee.getAmount(), fee.getNote())
+                            );
                     }
                     break;
-                case GRADUATE_SCHOOL:
+                case AAS_MATH_LAB:
+                    //TODO: Check Courses for this fee?
+                    break;
+                case AAS_MEDIA_LAB:
+                    //TODO: Check Courses for this fee?
+                    break;
+                case AAS_STUDIO_LAB:
+                    //TODO: Check Courses for this fee?
+                    break;
+
+                case EAC_APOGEE:
+                    //TODO: Check Courses for this fee?
+                    break;
+                case EAC_CSCE_101_102_LAB:
+                    if (searchCourses(student.getCourses(), "CSCE 101")
+                            || searchCourses(student.getCourses(), "CSCE 102")) {
+                        bill.addTransaction(
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                    }
+                    break;
+                case EAC_EXEC_MASTER:
+                    //TODO: Check Courses for this fee?
+                    break;
+                case EAC_MHIT:
+                    //TODO: Check Courses for this fee?
+                    break;
+                case EAC_PROGRAM:
+                    if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
+                        bill.addTransaction(
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                    }
+                    if (!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
+                        bill.addTransaction(
+                                Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
+                    }
+                    break;
+                case EAC_SYS_DESIGN:
+                    //TODO: Check Courses for this fee?
+                    break;
                 default:
-                    break;
+                    System.out.println("Unhandled fee type in generateCollegeCharges: " + fee.getFeeType());
             }
-
         }
-        //TODO: Add transaction to bill
+
         return bill;
     }
 
-    protected boolean searchCourses( List<Course> courses, String courseID) {
-        for(Course course: courses) {
-            if(course.getId().equalsIgnoreCase(courseID))
+    protected boolean searchCourses(List<Course> courses, String courseID) {
+        for (Course course : courses) {
+            if (course.getId().equalsIgnoreCase(courseID)) {
                 return true;
+            }
         }
         return false;
     }
@@ -646,9 +640,9 @@ public class BillHelper {
 
     protected void processCourses(StudentRecord student) {
 
-        for(Course course: student.getCourses()) {
+        for (Course course : student.getCourses()) {
             //if the course is online, add it to the online hours
-            if(course.isOnline()) {
+            if (course.isOnline()) {
                 this.onlineHours += course.getNumCredits();
             }
 
@@ -658,16 +652,18 @@ public class BillHelper {
         }
 
         //figure out if the student is full time or not
-        switch(student.getClassStatus()) {
+        switch (student.getClassStatus()) {
             case FRESHMAN:
             case SOPHOMORE:
             case JUNIOR:
             case SENIOR:
                 this.isFullTime = (totalHours >= UNDERGRAD_FULL_TIME_STUDENT_HOURS);
+                this.isGradStudent = false;
                 break;
             case MASTERS:
             case PHD:
                 this.isFullTime = (totalHours >= GRAD_FULL_TIME_STUDENT_HOURS);
+                this.isGradStudent = true;
                 break;
             case GRADUATED:
             default:
