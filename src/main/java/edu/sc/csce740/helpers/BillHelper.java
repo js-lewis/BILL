@@ -71,11 +71,11 @@ public class BillHelper {
 
     private static String[] MARINE_SCIENCE_LAB_COURSES = { "MSCI 460" };
 
-    private static String[] MATH_LAB = {"MATH 141", "MATH 142", "MATH 526", "STAT 201"};
+    private static String[] MATH_LAB_COURSES = {"MATH 141", "MATH 142", "MATH 526", "STAT 201"};
 
     private static String[] MEDIA_COURSES = {"MART"};
 
-    private static String[] STUDIO_LAB = {"ARTS"};
+    private static String[] STUDIO_COURSES = {"ARTS"};
 
     public BillHelper() {
         fees = new Fees();
@@ -543,8 +543,9 @@ public class BillHelper {
                     }
                     break;
 
-                //case AAS_HS_DRAMA:
-                //    TODO: Determine what we should do about this
+                case AAS_HS_DRAMA:
+                    //    TODO: Determine what we should do about this
+                    break;
 
                 case AAS_LANGUAGE:
                     for (int i = 0; i < LANGUAGE_COURSES.length; ++i) {
@@ -572,18 +573,54 @@ public class BillHelper {
                     }
                     break;
                 case AAS_MATH_LAB:
-                    //TODO: Check Courses for this fee?
+                    for (int i = 0; i < MATH_LAB_COURSES.length; ++i) {
+                        if (searchCourses(student.getCourses(), MATH_LAB_COURSES[i]))
+                            bill.addTransaction(
+                              Transaction.createCharge(fee.getAmount(), fee.getNote())
+                            );
+                    }
                     break;
                 case AAS_MEDIA_LAB:
-                    //TODO: Check Courses for this fee?
+                    for (int i = 0; i < MEDIA_COURSES.length; ++i) {
+                        List<Course> courses = getDeptCourses(student.getCourses(), MEDIA_COURSES[i]);
+
+                        for (Course course : courses) {
+                            if (course.getNumCredits() > 3) {
+                                bill.addTransaction(
+                                  Transaction.createCharge(fee.getAmount(), fee.getNote())
+                                );
+                                System.out.println("added " + course.getId());
+                            }
+                        }
+                    }
                     break;
                 case AAS_STUDIO_LAB:
-                    //TODO: Check Courses for this fee?
+                    for (int i = 0; i < STUDIO_COURSES.length; ++i) {
+                        List<Course> courses = getDeptCourses(student.getCourses(), STUDIO_COURSES[i]);
+
+                        for (Course course : courses) {
+                            if (course.getNumCredits() > 3) {
+                                bill.addTransaction(
+                                  Transaction.createCharge(fee.getAmount(), fee.getNote())
+                                );
+                                System.out.println("added " + course.getId());
+                             }
+                        }
+                    }
                     break;
 
                 case EAC_APOGEE:
-                    //TODO: Check Courses for this fee?
+                    List<Course> courses = getDeptCourses(student.getCourses(), "CSCE");
+
+                    for (Course course : courses) {
+                        if (course.isOnline())
+                            bill.addTransaction(Transaction.createCharge(
+                              new BigDecimal(course.getNumCredits() * fee.getAmount().doubleValue()),
+                              fee.getNote()
+                            ));
+                    }
                     break;
+
                 case EAC_CSCE_101_102_LAB:
                     if (searchCourses(student.getCourses(), "CSCE 101")
                             || searchCourses(student.getCourses(), "CSCE 102")) {
@@ -591,12 +628,15 @@ public class BillHelper {
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
+
                 case EAC_EXEC_MASTER:
                     //TODO: Check Courses for this fee?
                     break;
+
                 case EAC_MHIT:
                     //TODO: Check Courses for this fee?
                     break;
+
                 case EAC_PROGRAM:
                     if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
                         bill.addTransaction(
@@ -607,9 +647,11 @@ public class BillHelper {
                                 Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
                     }
                     break;
+
                 case EAC_SYS_DESIGN:
                     //TODO: Check Courses for this fee?
                     break;
+
                 default:
                     System.out.println("Unhandled fee type in generateCollegeCharges: " + fee.getFeeType());
             }
