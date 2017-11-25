@@ -445,6 +445,7 @@ public class BillHelper {
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
+                //If the student just started this semester, charge the matriculation fee
                 case MATRICULATION:
                     try {
                         if(student.getTermBegan().getSemester() == dateToday.getSemeter() &&
