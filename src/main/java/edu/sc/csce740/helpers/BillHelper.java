@@ -132,7 +132,17 @@ public class BillHelper {
             throw new BillRetrievalException();
         }
 
-        //TODO: Spin through charges and actually pull the correct ones out ...
+        for (Transaction transaction : student.getTransactions()) {
+            if (transaction.getType() == TransactionType.CHARGE) {
+                if (transaction.getTransactionDate().isBetween(startDate, endDate)) {
+                    //Add the transaction to the bill
+                    returnBill.addTransaction(transaction);
+                    //Add the amount of the transaction to the total
+                    returnBill.setBalance(transaction.getAmount()
+                            .add(BigDecimal.valueOf(returnBill.getBalance())).doubleValue());
+                }
+            }
+        }
 
         return returnBill;
     }
@@ -533,8 +543,9 @@ public class BillHelper {
                     }
                     break;
 
-                //case AAS_HS_DRAMA:
+                case AAS_HS_DRAMA:
                 //    TODO: Determine what we should do about this
+                    break;
 
                 case AAS_LANGUAGE:
                     //TODO: Ensure method is correct
