@@ -67,7 +67,7 @@ public class BillHelper {
     private static String[] LANGUAGE_COURSES = { "ARAB", "CHIN", "FREN", "GERM",
         "ITAL", "JAPA", "LATN", "PORT", "RUSS", "SPAN" };
 
-    private static short[] MARINE_SCIENCE = { 460 };
+    private static String[] MARINE_SCIENCE_LAB_COURSES = { "MSCI 460" };
 
     private static String[] MATH_LAB = { "MATH 141", "MATH 142", "MATH 526", "STAT 201" };
 
@@ -516,7 +516,7 @@ public class BillHelper {
                                 }
                                 break;
                             case AAS_DANCE_LAB:
-                                for (int i = 0; i < BillHelper.DANCE_LAB_COURSES.length; ++i) {
+                                for (int i = 0; i < DANCE_LAB_COURSES.length; ++i) {
                                     if (
                                       searchCourses(student.getCourses(), "DANC "+DANCE_LAB_COURSES[i])
                                     )
@@ -542,21 +542,29 @@ public class BillHelper {
 
                             case AAS_LANGUAGE:
                                 //TODO: Ensure method is correct
-                                for (int i = 0; i < BillHelper.LANGUAGE_COURSES.length; ++i) {
-                                    Course crse = getDeptCourse(
+                                for (int i = 0; i < LANGUAGE_COURSES.length; ++i) {
+                                    List<Course> courses = getDeptCourses(
                                       student.getCourses(),
                                       BillHelper.LANGUAGE_COURSES[i]
                                     );
-                                    if (crse != null && crse.getNumCredits() > 3)
-                                        bill.addTransaction(
-                                          Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                        );
-                                    //System.out.println("Lang: " + LANGUAGE_COURSES[i]);
-                                    //System.out.println("Course: " + crse);
+
+                                    for (Course course : courses) {
+                                        if (course.getNumCredits() > 3)
+                                            bill.addTransaction(
+                                              Transaction.createCharge(fee.getAmount(), fee.getNote())
+                                            );
+                                    }
                                 }
                                 break;
                             case AAS_MARINE_SCIENCE:
-                                //TODO: Check Courses for this fee?
+                                for (int i = 0; i < MARINE_SCIENCE_LAB_COURSES.length; ++i) {
+                                    if (searchCourses(
+                                      student.getCourses(), MARINE_SCIENCE_LAB_COURSES[i]
+                                    ))
+                                        bill.addTransaction(
+                                          Transaction.createCharge(fee.getAmount(), fee.getNote())
+                                        );
+                                }
                                 break;
                             case AAS_MATH_LAB:
                                 //TODO: Check Courses for this fee?
@@ -619,20 +627,21 @@ public class BillHelper {
 
     protected boolean searchCourses( List<Course> courses, String courseID) {
         for(Course course: courses) {
-            if(course.getId().equalsIgnoreCase(courseID)) {
+            if(course.getId().equalsIgnoreCase(courseID))
                 return true;
-            }
         }
         return false;
     }
 
-    protected Course getDeptCourse(List<Course> courses, String deptID) {
-        for(Course course: courses) {
-            if(course.getId().toUpperCase().startsWith(deptID)) {
-                return course;
-            }
+    protected List<Course> getDeptCourses(List<Course> courses, String deptID) {
+        List<Course> found = new ArrayList<Course>();
+
+        for(Course course : courses) {
+            if(course.getId().toUpperCase().startsWith(deptID))
+                found.add(course);
         }
-        return null;
+
+        return found;
     }
 
     protected void processCourses(StudentRecord student) {
