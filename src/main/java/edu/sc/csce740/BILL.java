@@ -325,7 +325,7 @@ public class BILL implements BILLIntf {
 
         Bill bill = null;
         if (canBeAccessed(student)) {
-            billHelper.generateBill(student);
+            bill = billHelper.generateBill(student);
         } else {
             throw new UnauthorizedUserException();
         }
@@ -359,7 +359,7 @@ public class BILL implements BILLIntf {
         if (canBeAccessed(student)) {
             Date startDate = new Date(startMonth, startDay, startYear);
             Date endDate = new Date(endMonth, endDay, endYear);
-            billHelper.retrieveBill(student, startDate, endDate);
+            bill = billHelper.retrieveBill(student, startDate, endDate);
         } else {
             throw new UnauthorizedUserException();
         }
@@ -379,7 +379,6 @@ public class BILL implements BILLIntf {
     public void applyPayment(String userId, BigDecimal amount, String note)
             throws UnknownUserException, UnauthorizedUserException, PaymentException, PaymentSaveException {
         StudentRecord toChange = studentHelper.findStudentRecord(userId);
-//TODO: Refactor this to move transaction creation logic to StudentHelper
         if (toChange == null) {
             throw new UnknownUserException();
         }
