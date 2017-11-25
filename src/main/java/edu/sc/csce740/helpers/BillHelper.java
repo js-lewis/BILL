@@ -351,20 +351,60 @@ public class BillHelper {
                         System.out.println(e);
                     }
                     break;
-
-
+                //If this is a Short Term International student, charge the short term fee
+                case INTERNATIONAL_SHORT_TERM:
+                    if(student.isInternational()) {
+                        if (student.getInternationalStatus() == InternationalStatus.SHORT_TERM) {
+                            bill.addTransaction(
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                        }
+                    }
+                    break;
+                //If this is a Sponsored International student, charge the sponsored fee
+                case INTERNATIONAL_SPONSORED:
+                    if(student.isInternational()) {
+                        if (student.getInternationalStatus() == InternationalStatus.SPONSORED) {
+                            bill.addTransaction(
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                        }
+                    }
+                    break;
+                //If Study abroad is "regular", charge the regular study abroad fee
                 case STUDY_ABROAD:
                     if(student.getStudyAbroad() == StudyAbroad.REGULAR) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
+                //If Study abroad is "cohort", charge the regular study abroad fee
                 case COHORT:
                     if(student.getStudyAbroad() == StudyAbroad.COHORT) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
+                //If National Student Exchange is set, charge the national student exchange
+                case NATIONAL_STUDENT_EXCHANGE:
+                    if(student.isNationalStudentExchange()) {
+                        bill.addTransaction(
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                    }
+                    break;
+                //If Study abroad is anything other than none, charge this non-refundable deposit
+                case STUDY_ABROAD_EXCHANGE:
+                    if(student.getStudyAbroad() != StudyAbroad.NONE) {
+                        bill.addTransaction(
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                    }
+                    break;
+                //If Study abroad is anything other than none, charge for study abroad insurance
+                case STUDY_ABROAD_INSURANCE:
+                    if(student.getStudyAbroad() != StudyAbroad.NONE) {
+                        bill.addTransaction(
+                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                    }
+                    break;
+
                 case HEALTH_CENTER_UNDERGRAD_6_11: //TODO: FIX THIS!!!
                     if(!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
                         int hoursToCharge = totalHours-8 > 0 ? 3 : totalHours-5;
@@ -398,50 +438,27 @@ public class BillHelper {
                         }
                     }
                     break;
+                //If the student doesn't have outside insurance, charge for insurance
                 case INSURANCE:
                     if(!student.isOutsideInsurance()) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
-
-                case INTERNATIONAL_SHORT_TERM:
-                    if(student.isInternational()) {
-                        if (student.getInternationalStatus() == InternationalStatus.SHORT_TERM) {
-                            if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
-                                bill.addTransaction(
-                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
-                            }
-                            if (!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                                bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
-                            }
-                        }
-                    }
-                    break;
-                case INTERNATIONAL_SPONSORED:
-                    if(student.isInternational()) {
-                        if (student.getInternationalStatus() == InternationalStatus.SPONSORED) {
-                            if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
-                                bill.addTransaction(
-                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
-                            }
-                            if (!isFullTime && fee.getStudentType() == StudentType.PART_TIME) {
-                                bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours).multiply(fee.getAmount()), fee.getNote()));
-                            }
-                        }
-                    }
-                    break;
-
                 case MATRICULATION:
-                case STUDY_ABROAD_INSURANCE:
-                case STUDY_ABROAD_EXCHANGE:
-                case NATIONAL_STUDENT_EXCHANGE:
+                    try {
+                        if(student.getTermBegan().getSemester() == dateToday.getSemeter() &&
+                            student.getTermBegan().getYear() == dateToday.getYear()) {
+                                bill.addTransaction(
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                        }
+                    } catch (Exception e) {
+                        //TODO: Remove this? Should never get here
+                        System.out.println(e);
+                    }
                     break;
                 default: System.out.println("Unhandled fee type: " + fee.getFeeType());
                     //TODO: throw exception here?
-
             }
 
         }
