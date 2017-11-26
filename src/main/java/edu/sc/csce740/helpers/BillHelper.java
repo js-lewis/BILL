@@ -227,19 +227,36 @@ public class BillHelper {
         }
     }
 
+    /**
+     * Get the list of Fees loaded into the system. This is primarily for debugging purposes.
+     * @return a Fees object which is a list of fees.
+     */
     protected Fees getFees() {
         return fees;
     }
 
+    /**
+     * Retrieves a BILL for a certain time period. This method creates a BILL object and then adds any transactions
+     * that attached to the student record after the start date and before the end date.
+     * @param student   the Student Record whose BILL is being queried.
+     * @param startDate the Date to pull transaction after.
+     * @param endDate   the Date to pull transactions before.
+     * @return  a BILL with all of the transactions tht occurred between the startDate and endDate.
+     * @throws BillRetrievalException if there's an error retrieving the BILL.
+     */
     public Bill retrieveBill(StudentRecord student, Date startDate, Date endDate)
             throws BillRetrievalException {
+        //Create a base bill with no transactions for the student whose record was passed in.
         Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
                 0.00, new ArrayList<Transaction>());
 
+        //If the fees weren't loaded or the student record isn't set, return an exception
         if (!feesLoaded || student == null) {
             throw new BillRetrievalException();
         }
 
+        //Loop through all of the transactions in the student record and add any Charges that occurred between
+        // the dates passed in
         for (Transaction transaction : student.getTransactions()) {
             if (transaction.getType() == TransactionType.CHARGE) {
                 if (transaction.getTransactionDate().isBetween(startDate, endDate)) {
@@ -252,33 +269,54 @@ public class BillHelper {
             }
         }
 
+        //return the BILL.
         return returnBill;
     }
 
+    /**
+     * Generate a current BILL for this semester.
+     * @param student   the StudentRecord to use to generate the BILL. NOTE: This does not save the charges to the
+     *                  StudentRecord!
+     * @return  a BILL with th current charges for a student.
+     * @throws BillGenerationException  if the BILL cannot be generated.
+     */
     public Bill generateBill(StudentRecord student)
             throws BillGenerationException {
+        //Create a base bill with no transactions for the student whose record was passed in.
         Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
                 0.00, new ArrayList<Transaction>());
 
+        //If the fees weren't loaded or the student record isn't set, return an exception
         if (!feesLoaded || student == null) {
             throw new BillGenerationException();
         }
 
         //check courses and compute the total number of hours a student it taking.
+        //save this information to some class level variables.
         processCourses(student);
 
         //process all of the tuition charges
         returnBill = generateTuitionCharges(student, returnBill);
+        //process all of the general university charges
         returnBill = generateGeneralCharges(student, returnBill);
+        //process all of the college/course specific charges
         returnBill = generateCollegeCharges(student, returnBill);
 
         //Per Dr. Gay, Bill Generation should not add charges to the Student Record
         //TODO: Remove print
         System.out.println(returnBill);
+        //reset the class level variables.
         reset();
+        //return the BILL.
         return returnBill;
     }
 
+    /**
+     * Takes in a BILL and adds tuition charges for a student.
+     * @param student   The student whose information is used to generate the BILL.
+     * @param bill      The BILL without these charges.
+     * @return          The BILL with the tuition charges added.
+     */
     protected Bill generateTuitionCharges(StudentRecord student, Bill bill)
             throws BillGenerationException {
         List<Fee> tuitionFees = new ArrayList<>();
@@ -447,6 +485,12 @@ public class BillHelper {
         return bill;
     }
 
+    /**
+     * Takes in a BILL and adds transactions to it that are applied across all students.
+     * @param student   The student whose information is used to generate the BILL.
+     * @param bill      The BILL without these charges.
+     * @return          The BILL with the general university charges added.
+     */
     protected Bill generateGeneralCharges(StudentRecord student, Bill bill) {
         //Get today's date
         Calendar calToday = Calendar.getInstance();
@@ -610,6 +654,12 @@ public class BillHelper {
         return bill;
     }
 
+    /**
+     * Takes in a BILL and adds transactions to it that are college/course specific.
+     * @param student   The student whose information is used to generate the BILL.
+     * @param bill      The BILL without these charges.
+     * @return          The BILL with the college specific charges added.
+     */
     protected Bill generateCollegeCharges(StudentRecord student, Bill bill) {
         for (Fee fee : fees.getCollegeFees()) {
             switch (fee.getFeeType()) {
@@ -755,7 +805,10 @@ public class BillHelper {
     }
 
     /**
-     * Linear inclusion search of course courseID.
+     * Perform a linear inclusion search of course courseID.
+     * @param courses   the list of courses to search.
+     * @param courseID  the courseID being searched for.
+     * @return  a boolean value indicating whether or not the course was found.
      */
     protected boolean searchCourses(List<Course> courses, String courseID) {
         for (Course course : courses) {
@@ -767,7 +820,10 @@ public class BillHelper {
     }
 
     /**
-     * Returns a list of courses beginning with string deptId.
+     * Get a List of any courses that begin with a given prefix/department ID.
+     * @param courses   the list of courses to search
+     * @param deptID    the department ID/course prefix to search for.
+     * @return  a list of courses beginning with string deptId.
      */
     protected List<Course> getDeptCourses(List<Course> courses, String deptID) {
         List<Course> found = new ArrayList<Course>();
@@ -780,8 +836,14 @@ public class BillHelper {
         return found;
     }
 
+    /**
+     * Process through the courses a student is taking to set some class level variables used for calculating charges.
+     * This function should only be called by others in the BillHelper and these variables must be cleared using the
+     * {@link #reset()} method at the end of processing.
+     * @param student   the student whose information to use.
+     */
     protected void processCourses(StudentRecord student) {
-
+        //Calculate the total number of hours and online hours a student is taking.
         for (Course course : student.getCourses()) {
             //if the course is online, add it to the online hours
             if (course.isOnline()) {
@@ -793,7 +855,7 @@ public class BillHelper {
 
         }
 
-        //figure out if the student is full time or not
+        //figure out if the student is full time or not and if they're a graduate student.
         switch (student.getClassStatus()) {
             case FRESHMAN:
             case SOPHOMORE:
