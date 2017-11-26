@@ -1,7 +1,6 @@
 package edu.sc.csce740.helpers;
 
 //GSON imports
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -41,41 +40,103 @@ import java.util.ArrayList;
  * pertaining to when a fee is charged.
  */
 public class BillHelper {
-    private static String feeFile = "resources/data/fees.json";
-    private static int OVERTIME_STUDENT_HOURS = 17;
-    private static int GRAD_FULL_TIME_STUDENT_HOURS = 6;
-    private static int UNDERGRAD_FULL_TIME_STUDENT_HOURS = 12;
-    private boolean feesLoaded;
-    private Fees fees;
-    private boolean isFullTime;
-    private boolean isGradStudent;
-    private int onlineHours;
-    private int totalHours;
+    //Constants
+    /**
+     * The constant name of the file where the fee information is saved.
+     */
+    private static final String feeFile = "resources/data/fees.json";
 
-    private static short[] AE_LAB_COURSES = {101, 260, 520, 530, 535, 540, 541, 555, 560, 595};
+    /**
+     * The constant number of credit hours where a student gets charged extra per additional hour.
+     */
+    private static final int OVERTIME_STUDENT_HOURS = 17;
 
-    private static short[] AH_LAB_COURSES = {105, 106, 313, 315, 320, 321, 325,
+    /**
+     * The constant number of credit hours that must be taken for a graduate student to be considered full time.
+     */
+    private static final int GRAD_FULL_TIME_STUDENT_HOURS = 6;
+
+    /**
+     * The constant number of credit hours that must be taken for an undergraduate student to be considered full time.
+     */
+    private static final int UNDERGRAD_FULL_TIME_STUDENT_HOURS = 12;
+
+    /**
+     * A Constant for a space between prefixes and course numbers.
+     */
+    private static final String SPACE = " ";
+
+    /**
+     * The Arts and Sciences Art Education Courses prefix.
+     */
+    private static final String AE_LAB_PREFIX = "ARTE";
+
+    /**
+     * The Arts and Sciences Art Education Courses that require a lab fee.
+     */
+    private static final short[] AE_LAB_COURSES = {101, 260, 520, 530, 535, 540, 541, 555, 560, 595};
+
+    /**
+     * The Arts and Sciences Art History Courses prefix.
+     */
+    private static final String AH_LAB_PREFIX = "ARTH";
+
+    /**
+     * The Arts and Sciences Art History Courses that require a lab fee.
+     */
+    private static final short[] AH_LAB_COURSES = {105, 106, 313, 315, 320, 321, 325,
             326, 327, 330, 335, 337, 340, 341, 342, 345, 346, 350, 365, 366, 370, 390,
             399, 498, 499, 501, 511, 514, 519, 520, 521, 522, 523, 524, 525, 526, 527,
             529, 534, 535, 536, 537, 539, 540, 542, 543, 550, 557, 560, 561, 562, 566,
             569, 590, 720, 725, 730, 735, 737, 769, 790};
 
-    private static short[] DANCE_LAB_COURSES = {102, 112, 160, 170, 171, 177,
+    /**
+     * The Arts and Sciences Dance Courses prefix.
+     */
+    private static final String DANCE_PREFIX = "DANC";
+
+    /**
+     * The Arts and Sciences Dance Courses that require a lab fee.
+     */
+    private static final short[] DANCE_LAB_COURSES = {102, 112, 160, 170, 171, 177,
             178, 202, 203, 204, 212, 278, 302, 303, 307, 312, 360, 378, 385, 402, 403,
             407, 412, 440, 460, 577};
 
-    private static short[] FIELD_LAB_COURSES = {735, 750}; // GEOL
+    /**
+     * The Arts and Sciences Geology Field Courses prefix.
+     */
+    private static final String FIELD_LAB_PREFIX = "GEOL";
 
-    private static String[] LANGUAGE_COURSES = {"ARAB", "CHIN", "FREN", "GERM",
+    /**
+     * The Arts and Sciences Geology Field Courses that require a lab fee.
+     */
+    private static final short[] FIELD_LAB_COURSES = {735, 750}; // GEOL
+
+    /**
+     * The Arts and Sciences Language Courses.
+     */
+    private static final String[] LANGUAGE_COURSES = {"ARAB", "CHIN", "FREN", "GERM",
             "ITAL", "JAPA", "LATN", "PORT", "RUSS", "SPAN"};
 
-    private static String[] MARINE_SCIENCE_LAB_COURSES = { "MSCI 460" };
+    /**
+     * The Arts and Sciences Marine Science Lab Courses.
+     */
+    private static final String[] MARINE_SCIENCE_LAB_COURSES = { "MSCI 460" };
 
-    private static String[] MATH_LAB_COURSES = {"MATH 141", "MATH 142", "MATH 526", "STAT 201"};
+    private static final String[] MATH_LAB_COURSES = {"MATH 141", "MATH 142", "MATH 526", "STAT 201"};
 
-    private static String[] MEDIA_COURSES = {"MART"};
+    private static final String[] MEDIA_COURSES = {"MART"};
 
-    private static String[] STUDIO_COURSES = {"ARTS"};
+    private static final String[] STUDIO_COURSES = {"ARTS"};
+
+    private Fees fees;
+    private boolean feesLoaded;
+    private boolean isFullTime;
+    private boolean isGradStudent;
+    private int onlineHours;
+    private int totalHours;
+
+
 
     public BillHelper() {
         fees = new Fees();
@@ -507,7 +568,7 @@ public class BillHelper {
             switch (fee.getFeeType()) {
                 case AAS_AE_LAB:
                     for (int i = 0; i < BillHelper.AE_LAB_COURSES.length; ++i) {
-                        if (searchCourses(student.getCourses(), "ARTE " + AE_LAB_COURSES[i]))
+                        if (searchCourses(student.getCourses(), AE_LAB_PREFIX + SPACE + AE_LAB_COURSES[i]))
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );
@@ -515,7 +576,7 @@ public class BillHelper {
                     break;
                 case AAS_AH_LAB:
                     for (int i = 0; i < BillHelper.AH_LAB_COURSES.length; ++i) {
-                        if (searchCourses(student.getCourses(), "ARTH " + AH_LAB_COURSES[i]))
+                        if (searchCourses(student.getCourses(), AH_LAB_PREFIX + SPACE + AH_LAB_COURSES[i]))
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );
@@ -524,7 +585,7 @@ public class BillHelper {
                 case AAS_DANCE_LAB:
                     for (int i = 0; i < BillHelper.DANCE_LAB_COURSES.length; ++i) {
                         if (
-                                searchCourses(student.getCourses(), "DANC " + DANCE_LAB_COURSES[i])
+                                searchCourses(student.getCourses(), DANCE_PREFIX + SPACE + DANCE_LAB_COURSES[i])
                                 )
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote())
@@ -535,7 +596,7 @@ public class BillHelper {
                 case AAS_FIELD:
                     for (int i = 0; i < BillHelper.FIELD_LAB_COURSES.length; ++i) {
                         if (
-                          searchCourses(student.getCourses(), "GEOL "+FIELD_LAB_COURSES[i])
+                          searchCourses(student.getCourses(), FIELD_LAB_PREFIX + SPACE + FIELD_LAB_COURSES[i])
                         )
                             bill.addTransaction(
                               Transaction.createCharge(fee.getAmount(), fee.getNote())
@@ -589,6 +650,7 @@ public class BillHelper {
                                 bill.addTransaction(
                                   Transaction.createCharge(fee.getAmount(), fee.getNote())
                                 );
+                                //TODO: Remove println
                                 System.out.println("added " + course.getId());
                             }
                         }
@@ -603,6 +665,7 @@ public class BillHelper {
                                 bill.addTransaction(
                                   Transaction.createCharge(fee.getAmount(), fee.getNote())
                                 );
+                                //TODO: Remove println
                                 System.out.println("added " + course.getId());
                              }
                         }
