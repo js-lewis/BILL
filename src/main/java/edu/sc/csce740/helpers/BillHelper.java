@@ -62,6 +62,11 @@ public class BillHelper {
     private static final int UNDERGRAD_FULL_TIME_STUDENT_HOURS = 12;
 
     /**
+     * An array of CSCE 101 and 102 labs
+     */
+    private static final String[] CSCE_100_LABS = { "CSCE 101", "CSCE 102" };
+
+    /**
      * A Constant for a space between prefixes and course numbers.
      */
     private static final String SPACE = " ";
@@ -105,7 +110,7 @@ public class BillHelper {
     /**
      * The Arts and Sciences Geology Field Courses prefix.
      */
-    private static final String FIELD_LAB_PREFIX = "GEOL";
+    private static final String FIELD_LAB_PREFIX = "GEOLOGY";
 
     /**
      * The Arts and Sciences Geology Field Courses that require a lab fee.
@@ -608,7 +613,11 @@ public class BillHelper {
     protected Bill generateCollegeCharges(StudentRecord student, Bill bill) {
         for (Fee fee : fees.getCollegeFees()) {
             switch (fee.getFeeType()) {
-                case AAS_AE_LAB:
+                /**
+                 * Arts and Sciences (AAS) fees
+                 */
+                case AAS_AE_LAB: // Art Eductation (AE)
+                    // Search current student's courses for AE lab courses, adding charges
                     for (int i = 0; i < BillHelper.AE_LAB_COURSES.length; ++i) {
                         if (searchCourses(student.getCourses(), AE_LAB_PREFIX + SPACE + AE_LAB_COURSES[i]))
                             bill.addTransaction(
@@ -616,7 +625,8 @@ public class BillHelper {
                             );
                     }
                     break;
-                case AAS_AH_LAB:
+                case AAS_AH_LAB: // Art History (AH)
+                    // Search current student's courses for AH lab courses, adding charges
                     for (int i = 0; i < BillHelper.AH_LAB_COURSES.length; ++i) {
                         if (searchCourses(student.getCourses(), AH_LAB_PREFIX + SPACE + AH_LAB_COURSES[i]))
                             bill.addTransaction(
@@ -625,47 +635,35 @@ public class BillHelper {
                     }
                     break;
                 case AAS_DANCE_LAB:
+                    // Search current student's courses for DANCE lab courses, adding adding charges
                     for (int i = 0; i < BillHelper.DANCE_LAB_COURSES.length; ++i) {
-                        if (
-                                searchCourses(student.getCourses(), DANCE_PREFIX + SPACE + DANCE_LAB_COURSES[i])
-                                )
+                        if (searchCourses(student.getCourses(), DANCE_PREFIX + SPACE + DANCE_LAB_COURSES[i]))
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );
                     }
                     break;
-
-                case AAS_FIELD:
+                case AAS_FIELD: // Geology Field (FIELD)
+                    // Search current student's courses for FIELD lab courses, adding charges
                     for (int i = 0; i < BillHelper.FIELD_LAB_COURSES.length; ++i) {
                         if (
                           searchCourses(student.getCourses(), FIELD_LAB_PREFIX + SPACE + FIELD_LAB_COURSES[i])
                         )
                             bill.addTransaction(
-                              Transaction.createCharge(fee.getAmount(), fee.getNote())
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );
                     }
                     break;
-
                 case AAS_HS_DRAMA:
-                    //    TODO: Determine what we should do about this
+                    //throw new AssertionError("Per GGay, this will not be tested");
                     break;
 
                 case AAS_LANGUAGE:
-                    for (int i = 0; i < LANGUAGE_COURSES.length; ++i) {
-                        List<Course> courses = getDeptCourses(
-                          student.getCourses(),
-                          BillHelper.LANGUAGE_COURSES[i]
-                        );
-
-                        for (Course course : courses) {
-                            if (course.getNumCredits() > 3)
-                                bill.addTransaction(
-                                  Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                );
-                        }
-                    }
+                    //throw new AssertionError("Per GGay, this will not be tested");
                     break;
+
                 case AAS_MARINE_SCIENCE:
+                    // Search current student's courses for MARINE SCIENCE lab courses, adding charges
                     for (int i = 0; i < MARINE_SCIENCE_LAB_COURSES.length; ++i) {
                         if (searchCourses(
                           student.getCourses(), MARINE_SCIENCE_LAB_COURSES[i]
@@ -675,7 +673,8 @@ public class BillHelper {
                             );
                     }
                     break;
-                case AAS_MATH_LAB:
+                case AAS_MATH_LAB: // 
+                    // Search current student's courses for MATH lab courses, adding charges
                     for (int i = 0; i < MATH_LAB_COURSES.length; ++i) {
                         if (searchCourses(student.getCourses(), MATH_LAB_COURSES[i]))
                             bill.addTransaction(
@@ -683,57 +682,47 @@ public class BillHelper {
                             );
                     }
                     break;
-                case AAS_MEDIA_LAB:
+                case AAS_MEDIA_LAB: // Media Art (MEDIA)
+                    // Search current student's courses for MEDIA arts courses, adding charges
                     for (int i = 0; i < MEDIA_COURSES.length; ++i) {
                         List<Course> courses = getDeptCourses(student.getCourses(), MEDIA_COURSES[i]);
 
-                        for (Course course : courses) {
-                            if (course.getNumCredits() > 3) {
-                                bill.addTransaction(
-                                  Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                );
-                                //TODO: Remove println
-                                System.out.println("added " + course.getId());
-                            }
-                        }
+                        for (Course course : courses)
+                            bill.addTransaction(Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
-                case AAS_STUDIO_LAB:
+                case AAS_STUDIO_LAB: // Studio Art (STUDIO)
+                    // Search current student's courses for STUDIO arts course, adding charges
                     for (int i = 0; i < STUDIO_COURSES.length; ++i) {
                         List<Course> courses = getDeptCourses(student.getCourses(), STUDIO_COURSES[i]);
 
-                        for (Course course : courses) {
-                            if (course.getNumCredits() > 3) {
-                                bill.addTransaction(
-                                  Transaction.createCharge(fee.getAmount(), fee.getNote())
-                                );
-                                //TODO: Remove println
-                                System.out.println("added " + course.getId());
-                             }
-                        }
+                        for (Course course : courses)
+                            bill.addTransaction(Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
-
+                /**
+                 * College of Engineering and Computing (EAC) fees
+                 */
                 case EAC_APOGEE:
+                    // Find all CSCE courses
                     List<Course> courses = getDeptCourses(student.getCourses(), CSCE_PREFIX);
-
+                    // If the coures is online, then it is APOGEE.
                     for (Course course : courses) {
                         if (course.isOnline())
                             bill.addTransaction(Transaction.createCharge(
+                              // fee is per credit hour
                               new BigDecimal(course.getNumCredits() * fee.getAmount().doubleValue()),
                               fee.getNote()
                             ));
                     }
                     break;
-
                 case EAC_CSCE_101_102_LAB:
-                    if (searchCourses(student.getCourses(), "CSCE 101")
-                            || searchCourses(student.getCourses(), "CSCE 102")) {
-                        bill.addTransaction(
-                                Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                    // Search current student's courses for 100 labs, adding charges
+                    for (int i = 0; i < CSCE_100_LABS.length; ++i) {
+                        if (searchCourses(student.getCourses(), CSCE_100_LABS[i]))
+                            bill.addTransaction(Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
-
                 case EAC_EXEC_MASTER:
                     //TODO: Check Courses for this fee?
                     break;
@@ -742,7 +731,7 @@ public class BillHelper {
                     //TODO: Check Courses for this fee?
                     break;
 
-                case EAC_PROGRAM:
+                case EAC_PROGRAM: // Full-Time or Part-Time (PROGRAM) Fees:
                     if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
@@ -765,6 +754,9 @@ public class BillHelper {
         return bill;
     }
 
+    /**
+     * Linear inclusion search of course courseID.
+     */
     protected boolean searchCourses(List<Course> courses, String courseID) {
         for (Course course : courses) {
             if (course.getId().equalsIgnoreCase(courseID)) {
@@ -774,6 +766,9 @@ public class BillHelper {
         return false;
     }
 
+    /**
+     * Returns a list of courses beginning with string deptId.
+     */
     protected List<Course> getDeptCourses(List<Course> courses, String deptID) {
         List<Course> found = new ArrayList<Course>();
 
