@@ -123,21 +123,59 @@ public class BillHelper {
      */
     private static final String[] MARINE_SCIENCE_LAB_COURSES = { "MSCI 460" };
 
+    /**
+     * The Arts and Sciences Math Lab Courses.
+     */
     private static final String[] MATH_LAB_COURSES = {"MATH 141", "MATH 142", "MATH 526", "STAT 201"};
 
+    /**
+     * The Arts and Sciences Media Courses.
+     */
     private static final String[] MEDIA_COURSES = {"MART"};
 
+    /**
+     * The Arts and Sciences Studio Courses.
+     */
     private static final String[] STUDIO_COURSES = {"ARTS"};
 
+    /**
+     * The Engineering and Computing Courses prefix.
+     */
+    private static final String CSCE_PREFIX = "CSCE";
+
+    /**
+     * The collection of fees loaded from the JSON file defined in {@link #feeFile}
+     */
     private Fees fees;
+
+    /**
+     * A boolean to ensure that the fees were loaded. If fees were not loaded, many of these methods will not work.
+     */
     private boolean feesLoaded;
+
+    /**
+     * A boolean to save if a student whose bill is being computed is full time based on hours.
+     */
     private boolean isFullTime;
+
+    /**
+     * A boolean to save if a student whose bill is being computed is a graduate student.
+     */
     private boolean isGradStudent;
+
+    /**
+     * An int to save how many online hours a student is enrolled in.
+     */
     private int onlineHours;
+
+    /**
+     * An int to save how many total hours a student is enrolled in.
+     */
     private int totalHours;
 
-
-
+    /**
+     * A default constructor. This loads the fees and initializes student information .
+     */
     public BillHelper() {
         fees = new Fees();
         try {
@@ -146,12 +184,12 @@ public class BillHelper {
         } catch (Exception e) {
             feesLoaded = false;
         }
-        isFullTime = false;
-        isGradStudent = false;
-        onlineHours = 0;
-        totalHours = 0;
+        this.reset();
     }
 
+    /**
+     * A method used to reset the stored student information after a BILL has been computed.
+     */
     protected void reset() {
         isFullTime = false;
         isGradStudent = false;
@@ -159,6 +197,10 @@ public class BillHelper {
         totalHours = 0;
     }
 
+    /**
+     * Reads the fees in from the JSON fee file.
+     * @throws IOException if the file cannot be read.
+     */
     private void readFees()
             throws IOException {
         //Gets the object that the JSON should match.
@@ -673,7 +715,7 @@ public class BillHelper {
                     break;
 
                 case EAC_APOGEE:
-                    List<Course> courses = getDeptCourses(student.getCourses(), "CSCE");
+                    List<Course> courses = getDeptCourses(student.getCourses(), CSCE_PREFIX);
 
                     for (Course course : courses) {
                         if (course.isOnline())
