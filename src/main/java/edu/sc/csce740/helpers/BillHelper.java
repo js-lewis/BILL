@@ -129,9 +129,22 @@ public class BillHelper {
     private static final String[] MARINE_SCIENCE_LAB_COURSES = { "MSCI 460" };
 
     /**
-     * The Arts and Sciences Math Lab Courses.
+     * The Arts and Sciences Science Lab Courses.
      */
-    private static final String[] MATH_LAB_COURSES = {"MATH 141", "MATH 142", "MATH 526", "STAT 201"};
+    private static final String[] MATH_LAB_COURSES = {"MATH 141", "MATH 142",
+    "MATH 526", "STAT 201"};
+
+    private static final String[] SCIENCE_LAB_COURSES = {"PHYSICS",
+     "ASTRONOMY", "BIOLOGY", "CHEMISTRY", "ENVIRONMENT", "GEOLOGY",
+     "MARINE SCIENCE"};
+
+    private static final short[] PSYC_LAB_COURSES = {227, 228, 489, 498, 570,
+    571, 572, 574, 575, 598, 599, 709, 710, 762};
+    private static final String PSYC_PREFIX = "PSYC";
+
+    private static final String[] ANTH_LAB_COURSES = {"ANTH 161", "ANTH 391", "ANTH 561"};
+
+    private static final String[] GEOG_LAB_COURSES = {"GEOG 201", "GEOG 202"};
 
     /**
      * The Arts and Sciences Media Courses.
@@ -723,10 +736,10 @@ public class BillHelper {
                             );
                     }
                     break;
-                case AAS_MATH_LAB: // 
-                    // Search current student's courses for MATH lab courses, adding charges
-                    for (int i = 0; i < MATH_LAB_COURSES.length; ++i) {
-                        if (searchCourses(student.getCourses(), MATH_LAB_COURSES[i]))
+                case AAS_SCIENCE_LAB: // 
+                    // Search current student's courses for SCIENCE labs, adding charges
+                    for (Course course : student.getCourses()) {
+                        if (isScienceLab(course))
                             bill.addTransaction(
                               Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );
@@ -834,6 +847,38 @@ public class BillHelper {
         }
 
         return found;
+    }
+
+    /**
+     * Method compares course to all possible science lab courses to determine
+     * whether it is a science lab.
+     */
+    protected boolean isScienceLab(Course course) {
+        // Check Math courses
+        for (int i = 0; i < MATH_LAB_COURSES.length; ++i)
+            if (course.getId().equalsIgnoreCase(MATH_LAB_COURSES[i]))
+                return true;
+        // Check General Sciences
+        for (int i = 0; i < SCIENCE_LAB_COURSES.length; ++i)
+            if (course.getId().toUpperCase().startsWith(SCIENCE_LAB_COURSES[i].toUpperCase()))
+                return true;
+
+        // Check PSYC courses
+        for (int i = 0; i < PSYC_LAB_COURSES.length; ++i)
+            if (course.getId().equalsIgnoreCase(PSYC_PREFIX + SPACE + PSYC_LAB_COURSES[i]))
+                return true;
+
+        // Check ANTH courses
+        for (int i = 0; i < ANTH_LAB_COURSES.length; ++i)
+            if (course.getId().equalsIgnoreCase(ANTH_LAB_COURSES[i]))
+                return true;
+
+        // Check GEOG courses
+        for (int i = 0; i < GEOG_LAB_COURSES.length; ++i)
+            if (course.getId().equalsIgnoreCase(GEOG_LAB_COURSES[i]))
+                return true;
+
+        return false;
     }
 
     /**

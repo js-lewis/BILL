@@ -9,7 +9,7 @@ package edu.sc.csce740.defines;
  * <li>{@link #AAS_HS_DRAMA}</li>
  * <li>{@link #AAS_LANGUAGE}</li>
  * <li>{@link #AAS_MARINE_SCIENCE}</li>
- * <li>{@link #AAS_MATH_LAB}</li>
+ * <li>{@link #AAS_SCIENCE_LAB}</li>
  * <li>{@link #AAS_MEDIA_LAB}</li>
  * <li>{@link #AAS_STUDIO_LAB}</li>
  * <li>{@link #ATHLETIC}</li>
@@ -76,7 +76,7 @@ public enum FeeType {
     /**
      * This is a fee for the Arts and Sciences Art Math Lab.
      */
-    AAS_MATH_LAB,
+    AAS_SCIENCE_LAB,
 
     /**
      * This is a fee for the Arts and Sciences Media Lab.
@@ -264,8 +264,8 @@ public enum FeeType {
                 return "AAS_LANGUAGE";
             case AAS_MARINE_SCIENCE:
                 return "AAS_MARINE_SCIENCE";
-            case AAS_MATH_LAB:
-                return "AAS_MATH_LAB";
+            case AAS_SCIENCE_LAB:
+                return "AAS_SCIENCE_LAB";
             case AAS_MEDIA_LAB:
                 return "AAS_MEDIA_LAB";
             case AAS_STUDIO_LAB:

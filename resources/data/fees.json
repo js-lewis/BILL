@@ -364,10 +364,10 @@
     },
     {
       "studentType": "ALL",
-      "feeType": "AAS_MATH_LAB",
+      "feeType": "AAS_SCIENCE_LAB",
       "frequency": "SEMESTER",
       "amount": 210.00,
-      "note": "Arts and Sciences Math Lab"
+      "note": "Arts and Sciences Science Lab"
     },
     {
       "studentType": "ALL",
