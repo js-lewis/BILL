@@ -2,7 +2,10 @@ package edu.sc.csce740.helpers;
 
 import edu.sc.csce740.defines.ClassStatus;
 import edu.sc.csce740.defines.Constants;
+
 import edu.sc.csce740.exceptions.BillGenerationException;
+
+import edu.sc.csce740.helpers.PrintHelper;
 
 import edu.sc.csce740.model.Bill;
 import edu.sc.csce740.model.Course;
@@ -59,6 +62,8 @@ public class BillHelperTest {
 
         BillHelper billHelper = new BillHelper();
         Bill bill = billHelper.generateBill(stuRec);
-        System.out.println(bill);
+        System.out.println(
+                PrintHelper.transactionListToString(bill.getTransactions())
+        );
     }
 }
