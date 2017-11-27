@@ -352,14 +352,14 @@
       "studentType": "ALL",
       "feeType": "AAS_MEDIA_LAB",
       "frequency": "SEMESTER",
-      "amount": 200.00,
+      "amount": 100.00,
       "note": "Arts and Sciences Media Lab"
     },
     {
       "studentType": "ALL",
       "feeType": "AAS_STUDIO_LAB",
       "frequency": "SEMESTER",
-      "amount": 200.00,
+      "amount": 100.00,
       "note": "Arts and Sciences Studio Lab"
     },
     {

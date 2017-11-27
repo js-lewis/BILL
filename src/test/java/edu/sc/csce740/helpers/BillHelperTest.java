@@ -11,13 +11,17 @@ import edu.sc.csce740.model.Bill;
 import edu.sc.csce740.model.Course;
 import edu.sc.csce740.model.Fees;
 import edu.sc.csce740.model.StudentRecord;
+import edu.sc.csce740.model.Transaction;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 public class BillHelperTest {
+    private static final double delta = 0.0001;
+
     @Test
     public void testReadFees() {
         BillHelper billHelper = new BillHelper();
@@ -52,18 +56,40 @@ public class BillHelperTest {
     @Test
     public void testGenerateCollegeFees()
             throws BillGenerationException, IOException {
+        BillHelper billHelper = new BillHelper();
+
         Course[] courses = {
-            new Course("Anthropology 161", "ANTH 161", 4, false)
+            new Course("Anthropology 161", "ANTH 161", 4, false),
+            new Course("Marine Sciences 201", "MARINE SCIENCE 201", 4, false),
+            new Course("Media Arts 100", "MEDIA ARTS 100", 4, false),
+            new Course("Marine Sciences 460", "MSCI 460", 4, false)
+        };
+        double[] fees = {
+            210.0,
+            210.0,
+            100.0,
+            300.0
+        };
+        String[] notes = {
+            "Arts and Sciences Science Lab",
+            "Arts and Sciences Science Lab",
+            "Arts and Sciences Media Lab",
+            "Arts and Sciences Marine Science"
         };
 
-        StudentRecord stuRec = new StudentRecord();
-        stuRec.setClassStatus(ClassStatus.GRADUATED);
-        stuRec.addCourse(courses[0]);
+        for (int i = 0; i < courses.length; ++i) {
+            StudentRecord stuRec = new StudentRecord();
+            stuRec.setClassStatus(ClassStatus.GRADUATED);
+            stuRec.addCourse(courses[i]);
 
-        BillHelper billHelper = new BillHelper();
-        Bill bill = billHelper.generateBill(stuRec);
-        System.out.println(
-                PrintHelper.transactionListToString(bill.getTransactions())
-        );
+            Bill bill = new Bill();
+            billHelper.generateCollegeCharges(stuRec, bill);
+            List<Transaction> transactions = bill.getTransactions();
+
+            Assert.assertEquals(1, transactions.size());
+            Assert.assertEquals(fees[i],
+                    transactions.get(0).getAmount().doubleValue(), delta);
+            Assert.assertEquals(notes[i], transactions.get(0).getNote());
+        }
     }
 }

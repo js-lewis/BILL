@@ -149,12 +149,12 @@ public class BillHelper {
     /**
      * The Arts and Sciences Media Courses.
      */
-    private static final String[] MEDIA_COURSES = {"MART"};
+    private static final String[] MEDIA_COURSES = {"MEDIA ARTS"};
 
     /**
      * The Arts and Sciences Studio Courses.
      */
-    private static final String[] STUDIO_COURSES = {"ARTS"};
+    private static final String[] STUDIO_COURSES = {"STUDIO ARTS"};
 
     /**
      * The Engineering and Computing Courses prefix.
@@ -793,6 +793,10 @@ public class BillHelper {
                     break;
 
                 case EAC_PROGRAM: // Full-Time or Part-Time (PROGRAM) Fees:
+                    // only apply this fee to students of the EAC college
+                    if (student.getCollege() != College.ENGINEERING_AND_COMPUTING)
+                        break;
+
                     if (isFullTime && fee.getStudentType() == StudentType.FULL_TIME) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
