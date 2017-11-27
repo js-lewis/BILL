@@ -316,8 +316,6 @@ public class BillHelper {
         returnBill = generateCollegeCharges(student, returnBill);
 
         //Per Dr. Gay, Bill Generation should not add charges to the Student Record
-        //TODO: Remove print
-        System.out.println(returnBill);
         //reset the class level variables.
         reset();
         //return the BILL.
