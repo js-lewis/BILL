@@ -112,14 +112,14 @@
       "feeType": "TUITION_OVER_17_NON_RES",
       "frequency": "HOUR",
       "amount": 208.00,
-      "note": "Undergrad tuition for resident over 17 hours."
+      "note": "Undergrad tuition for non-resident over 17 hours."
     },
     {
       "studentType": "FULL_TIME",
       "feeType": "TUITION_OVER_17_RES_SS_MIL",
       "frequency": "HOUR",
       "amount": 80.00,
-      "note": "Undergrad tuition for resident over 17 hours."
+      "note": "Undergrad tuition for non-resident over 17 hours."
     }
   ],
   "activeDutyTuition": [
@@ -142,7 +142,7 @@
       "feeType": "TUITION_OVER_17_RES_SS_MIL",
       "frequency": "HOUR",
       "amount": 80.00,
-      "note": "Undergrad tuition for resident over 17 hours."
+      "note": "Undergrad tuition for resident/active duty over 17 hours."
     }
   ],
   "residentGraduateTuition": [
@@ -165,7 +165,7 @@
       "feeType": "TUITION_OVER_17_RES_SS_MIL",
       "frequency": "HOUR",
       "amount": 80.00,
-      "note": "Undergrad tuition for resident over 17 hours."
+      "note": "Graduate tuition for resident over 17 hours."
     }
   ],
   "nonResidentGraduateTuition": [
@@ -195,7 +195,7 @@
       "feeType": "TUITION_OVER_17_NON_RES",
       "frequency": "HOUR",
       "amount": 170.00,
-      "note": "Undergrad tuition for resident over 17 hours."
+      "note": "Graduate tuition for non-resident over 17 hours."
     }
   ],
   "generalFees": [
@@ -277,21 +277,21 @@
       "note": "Capstone fee - first 2 years."
     },
     {
-      "studentType": "ALL",
+      "studentType": "PART_TIME",
       "feeType": "HEALTH_CENTER_GA",
       "frequency": "HOUR",
       "amount": 178.00,
       "note": "Health Center Graduate Assistant - less than 12 hours"
     },
     {
-      "studentType": "FULL_TIME",
+      "studentType": "PART_TIME",
       "feeType": "HEALTH_CENTER_GRAD_6_8",
       "frequency": "HOUR",
       "amount": 119.00,
       "note": "Health Center 6 to 8 hours - part time"
     },
     {
-      "studentType": "FULL_TIME",
+      "studentType": "PART_TIME",
       "feeType": "HEALTH_CENTER_GRAD_9_11",
       "frequency": "HOUR",
       "amount": 178.00,

@@ -1,6 +1,7 @@
 package edu.sc.csce740.helpers;
 
 //GSON imports
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -64,7 +65,7 @@ public class BillHelper {
     /**
      * An array of CSCE 101 and 102 labs
      */
-    private static final String[] CSCE_100_LABS = { "CSCE 101", "CSCE 102" };
+    private static final String[] CSCE_100_LABS = {"CSCE 101", "CSCE 102"};
 
     /**
      * A Constant for a space between prefixes and course numbers.
@@ -121,20 +122,20 @@ public class BillHelper {
     /**
      * The Arts and Sciences Marine Science Lab Courses.
      */
-    private static final String[] MARINE_SCIENCE_LAB_COURSES = { "MARINE SCIENCE 460" };
+    private static final String[] MARINE_SCIENCE_LAB_COURSES = {"MARINE SCIENCE 460"};
 
     /**
      * The Arts and Sciences Science Lab Courses.
      */
     private static final String[] MATH_LAB_COURSES = {"MATH 141", "MATH 142",
-    "MATH 526", "STAT 201"};
+            "MATH 526", "STAT 201"};
 
     private static final String[] SCIENCE_LAB_COURSES = {"PHYSICS",
-     "ASTRONOMY", "BIOLOGY", "CHEMISTRY", "ENVIRONMENT", "GEOLOGY",
-     "MARINE SCIENCE"};
+            "ASTRONOMY", "BIOLOGY", "CHEMISTRY", "ENVIRONMENT", "GEOLOGY",
+            "MARINE SCIENCE"};
 
     private static final short[] PSYC_LAB_COURSES = {227, 228, 489, 498, 570,
-    571, 572, 574, 575, 598, 599, 709, 710, 762};
+            571, 572, 574, 575, 598, 599, 709, 710, 762};
     private static final String PSYC_PREFIX = "PSYC";
 
     private static final String[] ANTH_LAB_COURSES = {"ANTHROPOLOGY 161", "ANTHROPOLOGY 391", "ANTHROPOLOGY  561"};
@@ -212,6 +213,7 @@ public class BillHelper {
 
     /**
      * Reads the fees in from the JSON fee file.
+     *
      * @throws IOException if the file cannot be read.
      */
     private void readFees()
@@ -237,6 +239,7 @@ public class BillHelper {
 
     /**
      * Get the list of Fees loaded into the system. This is primarily for debugging purposes.
+     *
      * @return a Fees object which is a list of fees.
      */
     protected Fees getFees() {
@@ -246,10 +249,11 @@ public class BillHelper {
     /**
      * Retrieves a BILL for a certain time period. This method creates a BILL object and then adds any transactions
      * that attached to the student record after the start date and before the end date.
+     *
      * @param student   the Student Record whose BILL is being queried.
      * @param startDate the Date to pull transaction after.
      * @param endDate   the Date to pull transactions before.
-     * @return  a BILL with all of the transactions tht occurred between the startDate and endDate.
+     * @return a BILL with all of the transactions tht occurred between the startDate and endDate.
      * @throws BillRetrievalException if there's an error retrieving the BILL.
      */
     public Bill retrieveBill(StudentRecord student, Date startDate, Date endDate)
@@ -283,10 +287,11 @@ public class BillHelper {
 
     /**
      * Generate a current BILL for this semester.
-     * @param student   the StudentRecord to use to generate the BILL. NOTE: This does not save the charges to the
-     *                  StudentRecord!
-     * @return  a BILL with th current charges for a student.
-     * @throws BillGenerationException  if the BILL cannot be generated.
+     *
+     * @param student the StudentRecord to use to generate the BILL. NOTE: This does not save the charges to the
+     *                StudentRecord!
+     * @return a BILL with th current charges for a student.
+     * @throws BillGenerationException if the BILL cannot be generated.
      */
     public Bill generateBill(StudentRecord student)
             throws BillGenerationException {
@@ -303,7 +308,7 @@ public class BillHelper {
         //save this information to some class level variables.
         processCourses(student);
 
-        if(student.getClassStatus() != ClassStatus.GRADUATED) {
+        if (student.getClassStatus() != ClassStatus.GRADUATED) {
             //process all of the tuition charges
             returnBill = generateTuitionCharges(student, returnBill);
             //process all of the general university charges
@@ -323,9 +328,10 @@ public class BillHelper {
 
     /**
      * Takes in a BILL and adds tuition charges for a student.
-     * @param student   The student whose information is used to generate the BILL.
-     * @param bill      The BILL without these charges.
-     * @return          The BILL with the tuition charges added.
+     *
+     * @param student The student whose information is used to generate the BILL.
+     * @param bill    The BILL without these charges.
+     * @return The BILL with the tuition charges added.
      */
     protected Bill generateTuitionCharges(StudentRecord student, Bill bill)
             throws BillGenerationException {
@@ -427,20 +433,42 @@ public class BillHelper {
                             }
                             break;
                         case NONE:
-                            if (fee.getStudentType() == StudentType.FULL_TIME) {
+                            //Add regular tuition
+                            if (fee.getFeeType() == FeeType.NONE && fee.getStudentType() == StudentType.FULL_TIME ) {
                                 bill.addTransaction(
                                         Transaction.createCharge(fee.getAmount(), fee.getNote()));
                             }
-                            if ((student.isActiveDuty() || student.isVeteran() || student.isResident())
-                                    && fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL && totalHours >= OVERTIME_STUDENT_HOURS) {
-                                bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                            //Calculate Overtime hours
+                            if(totalHours >= OVERTIME_STUDENT_HOURS) {
+                                if(fee.getFeeType() == FeeType.TUITION_OVER_17_RES_SS_MIL) {
+                                    if(isGradStudent){
+                                        if(student.isResident()) {
+                                            bill.addTransaction(
+                                                    Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                                        }
+                                    } else {
+                                        if (student.isActiveDuty() || student.isVeteran() || student.isResident()) {
+                                            bill.addTransaction(
+                                                    Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                                        }
+                                    }
+                                }
+
+                                if(fee.getFeeType() == FeeType.TUITION_OVER_17_NON_RES) {
+                                    if(isGradStudent){
+                                        if(!student.isResident()) {
+                                            bill.addTransaction(
+                                                    Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                                        }
+                                    } else {
+                                        if (!student.isActiveDuty() && !student.isVeteran() && !student.isResident()) {
+                                            bill.addTransaction(
+                                                    Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
+                                        }
+                                    }
+                                }
                             }
-                            if (!(student.isActiveDuty() || student.isVeteran() || student.isResident())
-                                    && fee.getFeeType() == FeeType.TUITION_OVER_17_NON_RES && totalHours >= OVERTIME_STUDENT_HOURS) {
-                                bill.addTransaction(
-                                        Transaction.createCharge(BigDecimal.valueOf(totalHours - OVERTIME_STUDENT_HOURS + 1).multiply(fee.getAmount()), fee.getNote()));
-                            }
+                            break;
                         default:
                     }
                 } else {
@@ -486,6 +514,7 @@ public class BillHelper {
                                             Transaction.createCharge(BigDecimal.valueOf(totalHours - onlineHours).multiply(fee.getAmount()), fee.getNote()));
                                 }
                             }
+                            break;
                         default:
                     }
                 }
@@ -497,9 +526,10 @@ public class BillHelper {
 
     /**
      * Takes in a BILL and adds transactions to it that are applied across all students.
-     * @param student   The student whose information is used to generate the BILL.
-     * @param bill      The BILL without these charges.
-     * @return          The BILL with the general university charges added.
+     *
+     * @param student The student whose information is used to generate the BILL.
+     * @param bill    The BILL without these charges.
+     * @return The BILL with the general university charges added.
      */
     protected Bill generateGeneralCharges(StudentRecord student, Bill bill) {
         //Get today's date
@@ -609,28 +639,28 @@ public class BillHelper {
                     break;
                 //If the student it an undergraduate and they're taking between 6 and 11 hours, charge this fee
                 case HEALTH_CENTER_UNDERGRAD_6_11:
-                    if (!isGradStudent && totalHours >= 6 && totalHours <= 11) {
+                    if (!isGradStudent && !isFullTime && totalHours >= 6 && totalHours <= 11) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 //If the student is a grad student but not a GA and taking 6-8 hours, charge this fee
                 case HEALTH_CENTER_GRAD_6_8:
-                    if (!student.isGradAssistant() && isGradStudent && totalHours >= 6 && totalHours <= 8) {
+                    if (!student.isGradAssistant() && !isFullTime && isGradStudent && totalHours >= 6 && totalHours <= 8) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 //If the student is a grad student but not a GA and taking 9-11 hours, charge this fee
                 case HEALTH_CENTER_GRAD_9_11:
-                    if (!student.isGradAssistant() && isGradStudent && totalHours >= 9 && totalHours <= 11) {
+                    if (!student.isGradAssistant() && !isFullTime && isGradStudent && totalHours >= 9 && totalHours <= 11) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
                     break;
                 //If the student is a GA, charge this fee
                 case HEALTH_CENTER_GA:
-                    if (student.isGradAssistant()) {
+                    if (student.isGradAssistant() && !isFullTime ) {
                         bill.addTransaction(
                                 Transaction.createCharge(fee.getAmount(), fee.getNote()));
                     }
@@ -666,9 +696,10 @@ public class BillHelper {
 
     /**
      * Takes in a BILL and adds transactions to it that are college/course specific.
-     * @param student   The student whose information is used to generate the BILL.
-     * @param bill      The BILL without these charges.
-     * @return          The BILL with the college specific charges added.
+     *
+     * @param student The student whose information is used to generate the BILL.
+     * @param bill    The BILL without these charges.
+     * @return The BILL with the college specific charges added.
      */
     protected Bill generateCollegeCharges(StudentRecord student, Bill bill) {
         for (Fee fee : fees.getCollegeFees()) {
@@ -707,8 +738,8 @@ public class BillHelper {
                     // Search current student's courses for FIELD lab courses, adding charges
                     for (int i = 0; i < BillHelper.FIELD_LAB_COURSES.length; ++i) {
                         if (
-                          searchCourses(student.getCourses(), FIELD_LAB_COURSES[i])
-                        )
+                                searchCourses(student.getCourses(), FIELD_LAB_COURSES[i])
+                                )
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );
@@ -726,10 +757,10 @@ public class BillHelper {
                     // Search current student's courses for MARINE SCIENCE lab courses, adding charges
                     for (int i = 0; i < MARINE_SCIENCE_LAB_COURSES.length; ++i) {
                         if (searchCourses(
-                          student.getCourses(), MARINE_SCIENCE_LAB_COURSES[i]
+                                student.getCourses(), MARINE_SCIENCE_LAB_COURSES[i]
                         ))
                             bill.addTransaction(
-                              Transaction.createCharge(fee.getAmount(), fee.getNote())
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );
                     }
                     break;
@@ -739,7 +770,7 @@ public class BillHelper {
                         boolean exclude = false;
                         // we have two exclusions
                         for (int i = 0; i < MARINE_SCIENCE_LAB_COURSES.length;
-                                ++i) {
+                             ++i) {
                             if (MARINE_SCIENCE_LAB_COURSES[i].equals(
                                     course.getId())) {
                                 exclude = true;
@@ -748,7 +779,7 @@ public class BillHelper {
                         }
 
                         for (int i = 0; i < BillHelper.FIELD_LAB_COURSES.length;
-                                ++i) {
+                             ++i) {
                             if (FIELD_LAB_COURSES[i].equals(course.getId())) {
                                 exclude = true;
                                 break;
@@ -757,7 +788,7 @@ public class BillHelper {
 
                         if (!exclude && isScienceLab(course))
                             bill.addTransaction(
-                              Transaction.createCharge(fee.getAmount(), fee.getNote())
+                                    Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );
                     }
                     break;
@@ -789,9 +820,9 @@ public class BillHelper {
                     for (Course course : courses) {
                         if (course.isOnline())
                             bill.addTransaction(Transaction.createCharge(
-                              // fee is per credit hour
-                              new BigDecimal(course.getNumCredits() * fee.getAmount().doubleValue()),
-                              fee.getNote()
+                                    // fee is per credit hour
+                                    new BigDecimal(course.getNumCredits() * fee.getAmount().doubleValue()),
+                                    fee.getNote()
                             ));
                     }
                     break;
@@ -839,34 +870,35 @@ public class BillHelper {
 
     /**
      * Updates the balance based on past history and current charges.
-     * @param student   the student who the bill is being generated for
-     * @param bill      the current bill
-     * @return  a Bill with the correct balance.
+     *
+     * @param student the student who the bill is being generated for
+     * @param bill    the current bill
+     * @return a Bill with the correct balance.
      */
     protected Bill updateBalance(StudentRecord student, Bill bill) {
         //Figure out current balance based on student's past and add a transaction to the bill.
         BigDecimal current = BigDecimal.ZERO;
 
-        for(Transaction transaction: student.getTransactions()) {
-            if(transaction.getType() == TransactionType.CHARGE) {
+        for (Transaction transaction : student.getTransactions()) {
+            if (transaction.getType() == TransactionType.CHARGE) {
                 current = current.add(transaction.getAmount());
             }
 
-            if(transaction.getType() == TransactionType.PAYMENT) {
+            if (transaction.getType() == TransactionType.PAYMENT) {
                 current = current.subtract(transaction.getAmount());
             }
         }
 
         //Add the past balance to the current bill
-        if(!current.equals(BigDecimal.ZERO)) {
+        if (!current.equals(BigDecimal.ZERO)) {
             bill.addTransaction(Transaction.createCharge(current, "Past Balance"));
         }
 
         //Loop through all of the Bill transactions and update the current balance.
         bill.setBalance(0.00);
-        for(Transaction transaction: bill.getTransactions()) {
+        for (Transaction transaction : bill.getTransactions()) {
             //Should only be charges in the bill but just in case ...
-            if(transaction.getType() == TransactionType.CHARGE) {
+            if (transaction.getType() == TransactionType.CHARGE) {
                 bill.setBalance(bill.getBalance() + transaction.getAmount().doubleValue());
             }
         }
@@ -876,9 +908,10 @@ public class BillHelper {
 
     /**
      * Perform a linear inclusion search of course courseID.
-     * @param courses   the list of courses to search.
-     * @param courseID  the courseID being searched for.
-     * @return  a boolean value indicating whether or not the course was found.
+     *
+     * @param courses  the list of courses to search.
+     * @param courseID the courseID being searched for.
+     * @return a boolean value indicating whether or not the course was found.
      */
     protected boolean searchCourses(List<Course> courses, String courseID) {
         for (Course course : courses) {
@@ -891,15 +924,16 @@ public class BillHelper {
 
     /**
      * Get a List of any courses that begin with a given prefix/department ID.
-     * @param courses   the list of courses to search
-     * @param deptID    the department ID/course prefix to search for.
-     * @return  a list of courses beginning with string deptId.
+     *
+     * @param courses the list of courses to search
+     * @param deptID  the department ID/course prefix to search for.
+     * @return a list of courses beginning with string deptId.
      */
     protected List<Course> getDeptCourses(List<Course> courses, String deptID) {
         List<Course> found = new ArrayList<Course>();
 
-        for(Course course : courses) {
-            if(course.getId().toUpperCase().startsWith(deptID))
+        for (Course course : courses) {
+            if (course.getId().toUpperCase().startsWith(deptID))
                 found.add(course);
         }
 
@@ -942,7 +976,8 @@ public class BillHelper {
      * Process through the courses a student is taking to set some class level variables used for calculating charges.
      * This function should only be called by others in the BillHelper and these variables must be cleared using the
      * {@link #reset()} method at the end of processing.
-     * @param student   the student whose information to use.
+     *
+     * @param student the student whose information to use.
      */
     protected void processCourses(StudentRecord student) {
         //Calculate the total number of hours and online hours a student is taking.

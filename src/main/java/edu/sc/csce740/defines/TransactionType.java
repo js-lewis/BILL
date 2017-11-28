@@ -26,7 +26,7 @@ public enum TransactionType {
             case PAYMENT:
                 return "PAYMENT";
             case CHARGE:
-                return "CHANGE";
+                return "CHARGE";
             default:
                 return super.toString();
         }

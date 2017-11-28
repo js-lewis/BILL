@@ -50,7 +50,6 @@ public class BillHelperTest {
         billHelper.generateBill(studentHelper.findStudentRecord(Constants.EAC_MASTERS));
         billHelper.generateBill(studentHelper.findStudentRecord(Constants.EAC_PHD));
         billHelper.generateBill(studentHelper.findStudentRecord(Constants.AAS_PHD));
-
     }
 
     @Test

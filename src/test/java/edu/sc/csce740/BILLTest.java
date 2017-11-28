@@ -197,6 +197,32 @@ public class BILLTest {
         billInst.applyPayment( Constants.STUDENT_EAC_UNDER, new BigDecimal(50.00), "Just a test.");
     }
 
+    @Test
+    public void printBill() throws Exception {
+        BILL billInst = new BILL();
+
+        //load the data
+        billInst.loadUsers(Constants.USERS_BASE_FILE);
+        billInst.loadRecords(Constants.RECORDS_BASE_FILE);
+
+        //billInst.logIn(Constants.ADMIN_AAS);
+        //System.out.println(billInst.viewCharges(Constants.AAS_PHD, 1, 1, 2016, 1, 1, 2017));
+        //System.out.println(billInst.generateBill(Constants.AAS_SOPHOMORE));   //Checked
+        //System.out.println(billInst.generateBill(Constants.AAS_JUNIOR));      //Checked
+        //System.out.println(billInst.generateBill(Constants.AAS_PHD));         //Checked
+
+        //System.out.println();
+        //System.out.println("--------------------------------------------------------------------------------------------");
+        //System.out.println();
+
+        //billInst.logOut();
+        billInst.logIn(Constants.ADMIN_EAC);
+        //System.out.println(billInst.generateBill(Constants.EAC_FRESHMAN));    //Checked
+        //System.out.println(billInst.generateBill(Constants.EAC_SENIOR));
+        //System.out.println(billInst.generateBill(Constants.EAC_MASTERS));
+        //System.out.println(billInst.generateBill(Constants.EAC_PHD));
+    }
+
     @After
     public void cleanup() {
 
