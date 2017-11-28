@@ -112,8 +112,8 @@ public class StudentRecord {
     public StudentRecord() {
         this.student = new Student();
         this.college = null;
-        this.termBegan = new Term();
-        this.capstoneEnrolled = new Term();
+        this.termBegan = null;
+        this.capstoneEnrolled = null;
         this.classStatus = null;
         this.gradAssistant = false;
         this.international = false;

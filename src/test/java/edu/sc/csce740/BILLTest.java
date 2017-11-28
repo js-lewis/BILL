@@ -205,7 +205,7 @@ public class BILLTest {
         billInst.loadUsers(Constants.USERS_BASE_FILE);
         billInst.loadRecords(Constants.RECORDS_BASE_FILE);
 
-        //billInst.logIn(Constants.ADMIN_AAS);
+        billInst.logIn(Constants.ADMIN_AAS);
         //System.out.println(billInst.viewCharges(Constants.AAS_PHD, 1, 1, 2016, 1, 1, 2017));
         //System.out.println(billInst.generateBill(Constants.AAS_SOPHOMORE));   //Checked
         //System.out.println(billInst.generateBill(Constants.AAS_JUNIOR));      //Checked
@@ -215,12 +215,12 @@ public class BILLTest {
         //System.out.println("--------------------------------------------------------------------------------------------");
         //System.out.println();
 
-        //billInst.logOut();
+        billInst.logOut();
         billInst.logIn(Constants.ADMIN_EAC);
         //System.out.println(billInst.generateBill(Constants.EAC_FRESHMAN));    //Checked
-        //System.out.println(billInst.generateBill(Constants.EAC_SENIOR));
-        //System.out.println(billInst.generateBill(Constants.EAC_MASTERS));
-        //System.out.println(billInst.generateBill(Constants.EAC_PHD));
+        //System.out.println(billInst.generateBill(Constants.EAC_SENIOR));      //Checked
+        //System.out.println(billInst.generateBill(Constants.EAC_MASTERS));     //Checked
+        //System.out.println(billInst.generateBill(Constants.EAC_PHD));         //Checked
     }
 
     @After

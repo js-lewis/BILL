@@ -555,13 +555,15 @@ public class BillHelper {
                 case CAPSTONE:
                     //If the student enrolled in the capstone program less than two years ago, charge the fee
                     try {
-                        if ((dateToday.getYear() - student.getCapstoneEnrolled().getYear() < 2) ||
-                                (dateToday.getYear() == student.getCapstoneEnrolled().getYear() &&
-                                        (student.getCapstoneEnrolled().getSemester() == dateToday.getSemeter() ||
-                                                student.getCapstoneEnrolled().getSemester() == Semester.SPRING))) {
-                            //Add the transaction
-                            bill.addTransaction(
-                                    Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                        if (student.getCapstoneEnrolled() != null) {
+                            if ((dateToday.getYear() - student.getCapstoneEnrolled().getYear() < 2) ||
+                                    (dateToday.getYear() == student.getCapstoneEnrolled().getYear() &&
+                                            (student.getCapstoneEnrolled().getSemester() == dateToday.getSemeter() ||
+                                                    student.getCapstoneEnrolled().getSemester() == Semester.SPRING))) {
+                                //Add the transaction
+                                bill.addTransaction(
+                                        Transaction.createCharge(fee.getAmount(), fee.getNote()));
+                            }
                         }
                     } catch (Exception e) {
                         //TODO: Remove this? Should never get here
