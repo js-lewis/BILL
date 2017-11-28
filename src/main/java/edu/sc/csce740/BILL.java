@@ -285,15 +285,21 @@ public class BILL implements BILLIntf {
             throw new UnknownUserException();
         }
 
+        //If this user has permissions to change the student
         if (canBeAccessed(toChange)) {
             //TODO: Do we need to check to only save the parts of a student that the student can modify?
             //TODO: Check to see if this is correct.
+            //If I'm the student, then all I can do is change the student information in the record, so do that.
             if(currentUser.getRole() == Role.STUDENT) {
                 toChange.setStudent(record.getStudent());
             } else {
+                //If I'm an admin, I can change the whole thing so remove the old one and blindly put the new one in
+                // this is kind of dangerous ...
                 studentHelper.removeStudentRecord(toChange);
                 studentHelper.addStudentRecord(record);
             }
+
+            //Save records to disk
             if (permanent) {
                 try {
                     studentHelper.writeStudentRecords();
@@ -323,6 +329,7 @@ public class BILL implements BILLIntf {
             throw new UnknownUserException();
         }
 
+        //If the user can access the student, then generate a Bill for that student
         Bill bill = null;
         if (canBeAccessed(student)) {
             bill = billHelper.generateBill(student);
