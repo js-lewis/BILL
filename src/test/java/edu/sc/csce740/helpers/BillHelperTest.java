@@ -88,15 +88,6 @@ public class BillHelperTest {
             billHelper.generateCollegeCharges(stuRec, bill);
             List<Transaction> transactions = bill.getTransactions();
 
-            System.out.print("fees[" +i + "] : " + fees[i] + " ");
-            System.out.print("transactions: ");
-            for (Transaction trans : transactions)
-                System.out.print(trans.getAmount() + ", ");
-            System.out.println();
-
-            if (i < 10000)
-            continue;
-
             Assert.assertEquals(1, transactions.size());
             Assert.assertEquals(fees[i],
                     transactions.get(0).getAmount().doubleValue(), delta);
