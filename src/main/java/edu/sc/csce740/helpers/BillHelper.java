@@ -74,7 +74,7 @@ public class BillHelper {
     /**
      * The Arts and Sciences Art Education Courses prefix.
      */
-    private static final String AE_LAB_PREFIX = "ARTE";
+    private static final String AE_LAB_PREFIX = "ART EDUCATION";
 
     /**
      * The Arts and Sciences Art Education Courses that require a lab fee.
@@ -84,7 +84,7 @@ public class BillHelper {
     /**
      * The Arts and Sciences Art History Courses prefix.
      */
-    private static final String AH_LAB_PREFIX = "ARTH";
+    private static final String AH_LAB_PREFIX = "ART HISTORY";
 
     /**
      * The Arts and Sciences Art History Courses that require a lab fee.
@@ -98,7 +98,7 @@ public class BillHelper {
     /**
      * The Arts and Sciences Dance Courses prefix.
      */
-    private static final String DANCE_PREFIX = "DANC";
+    private static final String DANCE_PREFIX = "DANCE";
 
     /**
      * The Arts and Sciences Dance Courses that require a lab fee.
@@ -108,14 +108,9 @@ public class BillHelper {
             407, 412, 440, 460, 577};
 
     /**
-     * The Arts and Sciences Geology Field Courses prefix.
-     */
-    private static final String FIELD_LAB_PREFIX = "GEOLOGY";
-
-    /**
      * The Arts and Sciences Geology Field Courses that require a lab fee.
      */
-    private static final short[] FIELD_LAB_COURSES = {735, 750}; // GEOL
+    private static final String[] FIELD_LAB_COURSES = {"GEOLOGY 735", "GEOLOGY 750"}; // GEOL
 
     /**
      * The Arts and Sciences Language Courses.
@@ -126,7 +121,7 @@ public class BillHelper {
     /**
      * The Arts and Sciences Marine Science Lab Courses.
      */
-    private static final String[] MARINE_SCIENCE_LAB_COURSES = { "MSCI 460" };
+    private static final String[] MARINE_SCIENCE_LAB_COURSES = { "MARINE SCIENCE 460" };
 
     /**
      * The Arts and Sciences Science Lab Courses.
@@ -142,19 +137,19 @@ public class BillHelper {
     571, 572, 574, 575, 598, 599, 709, 710, 762};
     private static final String PSYC_PREFIX = "PSYC";
 
-    private static final String[] ANTH_LAB_COURSES = {"ANTH 161", "ANTH 391", "ANTH 561"};
+    private static final String[] ANTH_LAB_COURSES = {"ANTHROPOLOGY 161", "ANTHROPOLOGY 391", "ANTHROPOLOGY  561"};
 
-    private static final String[] GEOG_LAB_COURSES = {"GEOG 201", "GEOG 202"};
+    private static final String[] GEOG_LAB_COURSES = {"GEOGRAPHY 201", "GEOGRAPHY 202"};
 
     /**
      * The Arts and Sciences Media Courses.
      */
-    private static final String[] MEDIA_COURSES = {"MEDIA ARTS"};
+    private static final String[] MEDIA_COURSES = {"MEDIA ART"};
 
     /**
      * The Arts and Sciences Studio Courses.
      */
-    private static final String[] STUDIO_COURSES = {"STUDIO ARTS"};
+    private static final String[] STUDIO_COURSES = {"STUDIO ART"};
 
     /**
      * The Engineering and Computing Courses prefix.
@@ -708,7 +703,7 @@ public class BillHelper {
                     // Search current student's courses for FIELD lab courses, adding charges
                     for (int i = 0; i < BillHelper.FIELD_LAB_COURSES.length; ++i) {
                         if (
-                          searchCourses(student.getCourses(), FIELD_LAB_PREFIX + SPACE + FIELD_LAB_COURSES[i])
+                          searchCourses(student.getCourses(), FIELD_LAB_COURSES[i])
                         )
                             bill.addTransaction(
                                     Transaction.createCharge(fee.getAmount(), fee.getNote())
@@ -737,7 +732,26 @@ public class BillHelper {
                 case AAS_SCIENCE_LAB: // 
                     // Search current student's courses for SCIENCE labs, adding charges
                     for (Course course : student.getCourses()) {
-                        if (isScienceLab(course))
+                        boolean exclude = false;
+                        // we have two exclusions
+                        for (int i = 0; i < MARINE_SCIENCE_LAB_COURSES.length;
+                                ++i) {
+                            if (MARINE_SCIENCE_LAB_COURSES[i].equals(
+                                    course.getId())) {
+                                exclude = true;
+                                break;
+                            }
+                        }
+
+                        for (int i = 0; i < BillHelper.FIELD_LAB_COURSES.length;
+                                ++i) {
+                            if (FIELD_LAB_COURSES[i].equals(course.getId())) {
+                                exclude = true;
+                                break;
+                            }
+                        }
+
+                        if (!exclude && isScienceLab(course))
                             bill.addTransaction(
                               Transaction.createCharge(fee.getAmount(), fee.getNote())
                             );

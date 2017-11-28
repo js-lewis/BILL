@@ -324,28 +324,28 @@
       "studentType": "ALL",
       "feeType": "AAS_LANGUAGE",
       "frequency": "SEMESTER",
-      "amount": 130.00,
+      "amount": 65.00,
       "note": "Arts and Sciences Language"
     },
     {
       "studentType": "ALL",
       "feeType": "AAS_AE_LAB",
       "frequency": "SEMESTER",
-      "amount": 80.00,
+      "amount": 40.00,
       "note": "Arts and Sciences Art Education Lab"
     },
     {
       "studentType": "ALL",
       "feeType": "AAS_AH_LAB",
       "frequency": "SEMESTER",
-      "amount": 80.00,
+      "amount": 40.00,
       "note": "Arts and Sciences Art History Lab"
     },
     {
       "studentType": "ALL",
       "feeType": "AAS_DANCE_LAB",
       "frequency": "SEMESTER",
-      "amount": 150.00,
+      "amount": 75.00,
       "note": "Arts and Sciences Dance Lab"
     },
     {
@@ -366,7 +366,7 @@
       "studentType": "ALL",
       "feeType": "AAS_SCIENCE_LAB",
       "frequency": "SEMESTER",
-      "amount": 210.00,
+      "amount": 105.00,
       "note": "Arts and Sciences Science Lab"
     },
     {
