@@ -303,12 +303,16 @@ public class BillHelper {
         //save this information to some class level variables.
         processCourses(student);
 
-        //process all of the tuition charges
-        returnBill = generateTuitionCharges(student, returnBill);
-        //process all of the general university charges
-        returnBill = generateGeneralCharges(student, returnBill);
-        //process all of the college/course specific charges
-        returnBill = generateCollegeCharges(student, returnBill);
+        if(student.getClassStatus() != ClassStatus.GRADUATED) {
+            //process all of the tuition charges
+            returnBill = generateTuitionCharges(student, returnBill);
+            //process all of the general university charges
+            returnBill = generateGeneralCharges(student, returnBill);
+            //process all of the college/course specific charges
+            returnBill = generateCollegeCharges(student, returnBill);
+        }
+
+        returnBill = updateBalance(student, returnBill);
 
         //Per Dr. Gay, Bill Generation should not add charges to the Student Record
         //reset the class level variables.
@@ -827,6 +831,43 @@ public class BillHelper {
 
                 default:
                     System.out.println("Unhandled fee type in generateCollegeCharges: " + fee.getFeeType());
+            }
+        }
+
+        return bill;
+    }
+
+    /**
+     * Updates the balance based on past history and current charges.
+     * @param student   the student who the bill is being generated for
+     * @param bill      the current bill
+     * @return  a Bill with the correct balance.
+     */
+    protected Bill updateBalance(StudentRecord student, Bill bill) {
+        //Figure out current balance based on student's past and add a transaction to the bill.
+        BigDecimal current = BigDecimal.ZERO;
+
+        for(Transaction transaction: student.getTransactions()) {
+            if(transaction.getType() == TransactionType.CHARGE) {
+                current = current.add(transaction.getAmount());
+            }
+
+            if(transaction.getType() == TransactionType.PAYMENT) {
+                current = current.subtract(transaction.getAmount());
+            }
+        }
+
+        //Add the past balance to the current bill
+        if(!current.equals(BigDecimal.ZERO)) {
+            bill.addTransaction(Transaction.createCharge(current, "Past Balance"));
+        }
+
+        //Loop through all of the Bill transactions and update the current balance.
+        bill.setBalance(0.00);
+        for(Transaction transaction: bill.getTransactions()) {
+            //Should only be charges in the bill but just in case ...
+            if(transaction.getType() == TransactionType.CHARGE) {
+                bill.setBalance(bill.getBalance() + transaction.getAmount().doubleValue());
             }
         }
 

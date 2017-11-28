@@ -77,15 +77,15 @@ public class BillHelperTest {
             105.0,
             100.0,
             100.0
-        };
+        };  // = 835.0
 
         for (int i = 0; i < courses.length; ++i) {
             StudentRecord stuRec = new StudentRecord();
-            stuRec.setClassStatus(ClassStatus.GRADUATED);
+            stuRec.setClassStatus(ClassStatus.JUNIOR);
             stuRec.addCourse(courses[i]);
 
             Bill bill = new Bill();
-            billHelper.generateCollegeCharges(stuRec, bill);
+            bill = billHelper.generateCollegeCharges(stuRec, bill);
             List<Transaction> transactions = bill.getTransactions();
 
             Assert.assertEquals(1, transactions.size());
