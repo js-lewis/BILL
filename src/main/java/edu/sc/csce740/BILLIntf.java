@@ -105,7 +105,7 @@ public interface BILLIntf
     /**
      * Saves a new set of student data to the records data.  
      * @param userId the student ID to overwrite.
-     * @param transcript  the new student record
+     * @param record  the new student record
      * @param permanent  a status flag indicating whether (if false) to make a 
      * temporary edit to the in-memory structure or (if true) a permanent edit.
      * @throws Exception if the transcript data could not be saved or failed
