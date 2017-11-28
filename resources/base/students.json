@@ -16,10 +16,6 @@
       "semester": "FALL",
       "year": 2016
     },
-    "capstoneEnrolled": {
-      "semester": "FALL",
-      "year": 2017
-    },
     "classStatus": "PHD",
     "gradAssistant": true,
     "international": false,
@@ -119,10 +115,6 @@
     },
     "college": "ENGINEERING_AND_COMPUTING",
     "termBegan": {
-      "semester": "FALL",
-      "year": 2017
-    },
-    "capstoneEnrolled": {
       "semester": "FALL",
       "year": 2017
     },
