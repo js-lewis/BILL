@@ -2,6 +2,7 @@ package edu.sc.csce740.helpers;
 
 import edu.sc.csce740.defines.ClassStatus;
 import edu.sc.csce740.defines.Constants;
+import edu.sc.csce740.defines.Scholarship;
 import edu.sc.csce740.defines.TransactionType;
 import edu.sc.csce740.exceptions.BillGenerationException;
 import edu.sc.csce740.exceptions.BillRetrievalException;
@@ -130,7 +131,7 @@ public class BillHelperTest {
         }
     }
     
-    private StudentRecord createRecord(String stuId, Date transactionDate, String note) {
+    private StudentRecord createStudentRecord(String stuId, Date transactionDate, int credits, String note) {
         StudentRecord rec = new StudentRecord();
         
         Student stu = new Student(stuId, "Jane", "Doe", "", "", "", "", "", "");
@@ -142,10 +143,24 @@ public class BillHelperTest {
         rec.setCourses(courses);
         
         List<Transaction> transactions = new ArrayList<Transaction>();
-        transactions.add(new Transaction(TransactionType.CHARGE, transactionDate, new BigDecimal(1.00), note));
+        transactions.add(new Transaction(TransactionType.CHARGE, transactionDate, new BigDecimal(credits), note));
         rec.setTransactions(transactions);
         
         return rec;
+    }
+    
+    @Test
+    public void testGenerateTuitionCharges() throws BillGenerationException {
+        StudentRecord stuRec = createStudentRecord("jdoe", new Date(12, 10, 2017), 12, "");
+        stuRec.setClassStatus(ClassStatus.FRESHMAN);
+        BillHelper b_helper = new BillHelper();
+        
+        for (Scholarship ship : Scholarship.values()) {
+            Bill bill = new Bill();
+            stuRec.setScholarship(ship);
+            System.out.println("stuRec: " + stuRec.getScholarship());
+            b_helper.generateTuitionCharges(stuRec, bill);
+        }
     }
     
     /**
@@ -162,7 +177,7 @@ public class BillHelperTest {
         studentHelper.setFileName(Constants.RECORDS_BASE_FILE);
         studentHelper.readStudentRecords();
         
-        StudentRecord stuRec = createRecord("jdoe", new Date(12, 15, 2017), "Bill Found");
+        StudentRecord stuRec = createStudentRecord("jdoe", new Date(12, 15, 2017), 3, "Bill Found");
         
         Date start = new Date(12, 14, 2017);
         Date end = new Date(12, 16, 2017);
@@ -186,7 +201,7 @@ public class BillHelperTest {
         studentHelper.setFileName(Constants.RECORDS_BASE_FILE);
         studentHelper.readStudentRecords();
         
-        StudentRecord stuRec = createRecord("jdoe", new Date(1, 15, 2017), "Bill Found");
+        StudentRecord stuRec = createStudentRecord("jdoe", new Date(1, 15, 2017), 3, "Bill Found");
         
         Date start = new Date(12, 14, 2017);
         Date end = new Date(12, 16, 2017);

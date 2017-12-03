@@ -397,6 +397,7 @@ public class BillHelper {
                 //if they're a full time student, add the correct tuition based on scholarship/modifiers and then check
                 // to see if they're an overtime student taking more than 17 hours and add that fee too.
                 if (isFullTime) {
+                    System.out.println("student: " + student.getScholarship());
                     switch (student.getScholarship()) {
                         case GENERAL:
                             if (fee.getFeeType() == FeeType.GENERAL && fee.getStudentType() == StudentType.FULL_TIME) {
