@@ -2,21 +2,26 @@ package edu.sc.csce740.helpers;
 
 import edu.sc.csce740.defines.ClassStatus;
 import edu.sc.csce740.defines.Constants;
-
+import edu.sc.csce740.defines.Scholarship;
+import edu.sc.csce740.defines.TransactionType;
 import edu.sc.csce740.exceptions.BillGenerationException;
-
-import edu.sc.csce740.helpers.PrintHelper;
-
+import edu.sc.csce740.exceptions.BillRetrievalException;
 import edu.sc.csce740.model.Bill;
 import edu.sc.csce740.model.Course;
+import edu.sc.csce740.model.Date;
 import edu.sc.csce740.model.Fees;
+import edu.sc.csce740.model.Student;
 import edu.sc.csce740.model.StudentRecord;
 import edu.sc.csce740.model.Transaction;
+import static org.junit.Assert.*;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BillHelperTest {
@@ -33,6 +38,39 @@ public class BillHelperTest {
         Assert.assertEquals(4, fees.getNonResidentGraduateTuition().size());
         Assert.assertEquals(17, fees.getGeneralFees().size());
         Assert.assertEquals(18, fees.getCollegeFees().size());
+    }
+    
+    @Test
+    public void testReadFeesEmptyFile() {
+        // set up
+        String feeFile = BillHelper.getFeeFile();
+        File file = new File(feeFile + ".empty");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            // should never happen
+            e.printStackTrace();
+        }
+        
+        BillHelper.setFeeFile(feeFile + ".empty");
+        
+        BillHelper helper = new BillHelper();
+        
+        // tear down
+        file.delete();
+        BillHelper.setFeeFile(feeFile);
+    }
+    
+    @Test
+    public void testReadFeesMissingFile() {
+        // set up
+        String feeFile = BillHelper.getFeeFile();
+        BillHelper.setFeeFile("WRONG!!!!");
+        
+        BillHelper helper = new BillHelper();
+        
+        // tear down
+        BillHelper.setFeeFile(feeFile);
     }
 
     @Test
@@ -91,5 +129,108 @@ public class BillHelperTest {
             Assert.assertEquals(fees[i],
                     transactions.get(0).getAmount().doubleValue(), delta);
         }
+    }
+    
+    private StudentRecord createStudentRecord(String stuId, Date transactionDate, int credits, String note) {
+        StudentRecord rec = new StudentRecord();
+        
+        Student stu = new Student(stuId, "Jane", "Doe", "", "", "", "", "", "");
+        rec.setStudent(stu);
+        
+        List<Course> courses = new ArrayList<Course>() {{
+            new Course("", "CSCE 740", 3, false);
+        }};
+        rec.setCourses(courses);
+        
+        List<Transaction> transactions = new ArrayList<Transaction>();
+        transactions.add(new Transaction(TransactionType.CHARGE, transactionDate, new BigDecimal(credits), note));
+        rec.setTransactions(transactions);
+        
+        return rec;
+    }
+    
+    @Test
+    public void testGenerateTuitionCharges() throws BillGenerationException {
+        StudentRecord stuRec = createStudentRecord("jdoe", new Date(12, 10, 2017), 12, "");
+        stuRec.setClassStatus(ClassStatus.FRESHMAN);
+        BillHelper b_helper = new BillHelper();
+        
+        for (Scholarship ship : Scholarship.values()) {
+            Bill bill = new Bill();
+            stuRec.setScholarship(ship);
+            System.out.println("stuRec: " + stuRec.getScholarship());
+            b_helper.generateTuitionCharges(stuRec, bill);
+        }
+    }
+    
+    /**
+     * This method tests the correct path through bill retrieval for bill in relevant range.
+     * 
+     * @throws IOException
+     * @throws BillRetrievalException
+     */
+    @Test
+    public void testRetrieveBill() throws IOException, BillRetrievalException {
+        BillHelper billHelper = new BillHelper();
+        
+        StudentHelper studentHelper = new StudentHelper();
+        studentHelper.setFileName(Constants.RECORDS_BASE_FILE);
+        studentHelper.readStudentRecords();
+        
+        StudentRecord stuRec = createStudentRecord("jdoe", new Date(12, 15, 2017), 3, "Bill Found");
+        
+        Date start = new Date(12, 14, 2017);
+        Date end = new Date(12, 16, 2017);
+    	
+        Bill bill = billHelper.retrieveBill(stuRec, start, end);
+        assertEquals(1, bill.getTransactions().size());
+        assertEquals("Bill Found", bill.getTransactions().get(0).getNote());
+    }
+    
+    /**
+     * This method tests the correct path through bill retrieval for bill outside relevant range.
+     * 
+     * @throws IOException
+     * @throws BillRetrievalException
+     */
+    @Test
+    public void testRetrieveBillOutOfRange() throws IOException, BillRetrievalException {
+        BillHelper billHelper = new BillHelper();
+        
+        StudentHelper studentHelper = new StudentHelper();
+        studentHelper.setFileName(Constants.RECORDS_BASE_FILE);
+        studentHelper.readStudentRecords();
+        
+        StudentRecord stuRec = createStudentRecord("jdoe", new Date(1, 15, 2017), 3, "Bill Found");
+        
+        Date start = new Date(12, 14, 2017);
+        Date end = new Date(12, 16, 2017);
+        
+        Bill bill = billHelper.retrieveBill(stuRec, start, end);
+        assertEquals(0, bill.getTransactions().size());
+    }
+    
+    /**
+     * This method tests the incorrect path through bill retrieval with missing student record
+     * 
+     * @throws IOException
+     * @throws BillRetrievalException
+     */
+    @Test
+    public void testRetrieveBillNoStudent() throws IOException, BillRetrievalException {
+        BillHelper billHelper = new BillHelper();
+        
+        Date start = new Date(1, 15, 2017);
+        Date end = new Date(12, 16, 2017);
+        
+        Bill bill = null;
+        try {
+            bill = billHelper.retrieveBill(null, start, end);
+            assertFalse(true);
+        }
+        catch (BillRetrievalException e) {
+           assertTrue(true);
+        }
+        
     }
 }

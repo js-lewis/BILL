@@ -38,9 +38,7 @@ public class Date {
      * @param year  the year of the Date.
      */
     public Date(int month, int day, int year) {
-        this.month = 1;
-        this.day = 1;
-        this.year = 1900;
+        this();
 
         setMonth(month);
         setDay(day);

@@ -6,9 +6,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+
 //Enumerations
 import edu.sc.csce740.defines.*;
-
 //Import the new Exception
 import edu.sc.csce740.exceptions.BillGenerationException;
 import edu.sc.csce740.exceptions.BillRetrievalException;
@@ -22,11 +22,14 @@ import edu.sc.csce740.model.Fees;
 import edu.sc.csce740.model.StudentRecord;
 import edu.sc.csce740.model.Transaction;
 
+
 //Apache IO import
 import org.apache.commons.io.FileUtils;
 
+
 //General Java imports
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
@@ -45,7 +48,13 @@ public class BillHelper {
     /**
      * The constant name of the file where the fee information is saved.
      */
-    private static final String feeFile = "resources/data/fees.json";
+    private static String feeFile = "resources/data/fees.json";
+    public static String getFeeFile() {
+        return BillHelper.feeFile;
+    }
+    public static void setFeeFile(String feeFile) {
+        BillHelper.feeFile = feeFile;
+    }
 
     /**
      * The constant number of credit hours where a student gets charged extra per additional hour.
@@ -229,7 +238,13 @@ public class BillHelper {
         file = new File(feeFile);
 
         //Read the JSON file into a string and parse the JSON from that String into a Fees object
-        fees = gson.fromJson(FileUtils.readFileToString(file, "UTF-8"), feeType);
+        try {
+            fees = gson.fromJson(FileUtils.readFileToString(file, "UTF-8"), feeType);
+        }
+        // File not found, create an empty fee file
+        catch (FileNotFoundException e) {
+            fees = new Fees();
+        }
 
         //If fees is null here, the file was empty. Create an empty Fee instead.
         if (fees == null) {
@@ -258,14 +273,15 @@ public class BillHelper {
      */
     public Bill retrieveBill(StudentRecord student, Date startDate, Date endDate)
             throws BillRetrievalException {
-        //Create a base bill with no transactions for the student whose record was passed in.
-        Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
-                0.00, new ArrayList<Transaction>());
 
         //If the fees weren't loaded or the student record isn't set, return an exception
         if (!feesLoaded || student == null) {
             throw new BillRetrievalException();
         }
+        
+        //Create a base bill with no transactions for the student whose record was passed in.
+        Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
+                0.00, new ArrayList<Transaction>());
 
         //Loop through all of the transactions in the student record and add any Charges that occurred between
         // the dates passed in
@@ -295,14 +311,14 @@ public class BillHelper {
      */
     public Bill generateBill(StudentRecord student)
             throws BillGenerationException {
-        //Create a base bill with no transactions for the student whose record was passed in.
-        Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
-                0.00, new ArrayList<Transaction>());
-
         //If the fees weren't loaded or the student record isn't set, return an exception
         if (!feesLoaded || student == null) {
             throw new BillGenerationException();
         }
+        
+        //Create a base bill with no transactions for the student whose record was passed in.
+        Bill returnBill = new Bill(student.getStudent(), student.getCollege(), student.getClassStatus(),
+                0.00, new ArrayList<Transaction>());
 
         //check courses and compute the total number of hours a student it taking.
         //save this information to some class level variables.
@@ -381,6 +397,7 @@ public class BillHelper {
                 //if they're a full time student, add the correct tuition based on scholarship/modifiers and then check
                 // to see if they're an overtime student taking more than 17 hours and add that fee too.
                 if (isFullTime) {
+                    System.out.println("student: " + student.getScholarship());
                     switch (student.getScholarship()) {
                         case GENERAL:
                             if (fee.getFeeType() == FeeType.GENERAL && fee.getStudentType() == StudentType.FULL_TIME) {
