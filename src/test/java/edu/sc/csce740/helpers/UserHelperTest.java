@@ -251,6 +251,12 @@ public class UserHelperTest {
         //TODO: Redirect standard out and check that nothing is printed.
     }
 
+    @Test
+    public void testUserHelpConstructorOptions(){
+        UserHelper testUserHelper = new UserHelper("somefile.txt");
+        Assert.assertEquals("somefile.txt", testUserHelper.getFileName());
+    }
+
     @After
     public void finish() {
 
