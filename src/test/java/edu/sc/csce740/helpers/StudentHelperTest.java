@@ -5,6 +5,7 @@ import edu.sc.csce740.defines.College;
 import edu.sc.csce740.defines.Constants;
 
 //Model imports
+import edu.sc.csce740.model.Student;
 import edu.sc.csce740.model.StudentRecord;
 
 //JUnit imports
@@ -41,6 +42,70 @@ public class StudentHelperTest {
         Assert.assertEquals(studentRecords.size(), Constants.BASE_NUMBER_OF_RECORDS);
     }
 
+    @Test
+    public void IsValidFile_PassUsingConstructor_ReadsStudentRecords()
+            throws IOException {
+        StudentHelper studentHelper = new StudentHelper(Constants.RECORDS_BASE_FILE);
+        studentHelper.readStudentRecords();
+        List<StudentRecord> studentRecords = studentHelper.getStudents();
+        Assert.assertEquals(studentRecords.size(), Constants.BASE_NUMBER_OF_RECORDS);
+    }
+
+    @Test
+    public void IsValidFile_PassUsingConstructor_ReadsThenSetStudentRecords()
+            throws IOException {
+        StudentHelper studentReaderHelper = new StudentHelper(Constants.RECORDS_BASE_FILE);
+        studentReaderHelper.readStudentRecords();
+        List<StudentRecord> studentReadRecords = studentReaderHelper.getStudents();
+
+        StudentHelper studentWriterHelper = new StudentHelper();
+        studentWriterHelper.setStudents(studentReadRecords);
+        List<StudentRecord> studentWriteRecords = studentWriterHelper.getStudents();
+        Assert.assertEquals(studentWriteRecords.size(), Constants.BASE_NUMBER_OF_RECORDS);
+    }
+
+    @Test
+    public void getFilename_PassUsingConstructor_AreEqual()
+            throws IOException {
+        StudentHelper studentHelper = new StudentHelper(Constants.RECORDS_BASE_FILE);
+
+        Assert.assertEquals(studentHelper.getFileName(), Constants.RECORDS_BASE_FILE);
+    }
+
+    @Test
+    public void newStudentRecord_AddedToList_Exists() {
+        StudentHelper studentHelper = new StudentHelper();
+        StudentRecord studentRecord = new StudentRecord();
+
+        studentHelper.addStudentRecord(studentRecord);
+
+        List<StudentRecord> studentRecords = studentHelper.getStudents();
+        Assert.assertEquals(studentRecords.size(), 1);
+    }
+
+
+    @Test
+    public void existingStudentRecord_AddedToList_Exists() {
+        StudentHelper studentHelper = new StudentHelper();
+
+        Student studentA = new Student();
+        studentA.setId("test1");
+        StudentRecord studentRecordA = new StudentRecord();
+        studentRecordA.setActiveDuty(true);
+        studentRecordA.setStudent(studentA);
+        studentHelper.addStudentRecord(studentRecordA);
+
+        Student studentB = new Student();
+        studentB.setId("test1");
+        StudentRecord studentRecordB = new StudentRecord();
+        studentRecordB.setActiveDuty(false);
+        studentRecordB.setStudent(studentB);
+        studentHelper.addStudentRecord(studentRecordB);
+
+        StudentRecord foundRecord = studentHelper.findStudentRecord("test1");
+        Assert.assertEquals(foundRecord.isActiveDuty(), false);
+    }
+
     /**
      * Method to test the readUsers method with an empty file. This reads in the provided empty file and checks to
      * ensure that 0 users were loaded, but that an empty list is available.
@@ -65,6 +130,13 @@ public class StudentHelperTest {
             throws IOException {
         StudentHelper studentHelper = new StudentHelper();
         studentHelper.setFileName(Constants.NO_FILE);
+        studentHelper.readStudentRecords();
+    }
+
+    @Test(expected = IOException.class)
+    public void InvalidFile_PassUsingConstructor_ThrowsException()
+            throws IOException {
+        StudentHelper studentHelper = new StudentHelper(Constants.NO_FILE);
         studentHelper.readStudentRecords();
     }
 
