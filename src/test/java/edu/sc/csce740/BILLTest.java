@@ -1,20 +1,34 @@
 package edu.sc.csce740;
 
+import edu.sc.csce740.defines.ClassStatus;
+import edu.sc.csce740.defines.College;
 //Files for testing
 import edu.sc.csce740.defines.Constants;
-
+import edu.sc.csce740.defines.Role;
+import edu.sc.csce740.exceptions.DataSaveException;
+import edu.sc.csce740.exceptions.UnauthorizedUserException;
+import edu.sc.csce740.exceptions.UnknownUserException;
+import edu.sc.csce740.exceptions.UserDataLoadException;
 // Helper imports
 import edu.sc.csce740.exceptions.UserLoginException;
+import edu.sc.csce740.exceptions.UserLogoutException;
 import edu.sc.csce740.helpers.UserHelper;
 import edu.sc.csce740.helpers.StudentHelper;
-
+import edu.sc.csce740.model.Student;
 // Model imports
 import edu.sc.csce740.model.StudentRecord;
 import edu.sc.csce740.model.User;
 
+
+
+
+
 // JUnit imports
 import org.junit.After;
 import org.junit.Assert;
+
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -221,6 +235,68 @@ public class BILLTest {
         //System.out.println(billInst.generateBill(Constants.EAC_SENIOR));      //Checked
         //System.out.println(billInst.generateBill(Constants.EAC_MASTERS));     //Checked
         //System.out.println(billInst.generateBill(Constants.EAC_PHD));         //Checked
+    }
+    
+    /**
+     * This method tests the various circumstances under which a user should be able to access as user's data.
+     * 
+     * @throws UnknownUserException
+     * @throws UserLoginException
+     * @throws UserDataLoadException
+     * @throws UserLogoutException
+     */
+    @Test
+    public void testCanBeAccessed() throws UnknownUserException, UserLoginException,
+            UserDataLoadException, UserLogoutException {
+        User user = new User();
+        user.setRole(Role.STUDENT);
+        
+        Student stu = new Student();
+        
+        StudentRecord stuRec = new StudentRecord();
+
+        BILL bill = new BILL();
+        bill.loadUsers(Constants.USERS_BASE_FILE);
+        
+        // test admin User editing user in college
+        bill.logIn("rbob");
+        stuRec.setCollege(College.ENGINEERING_AND_COMPUTING);
+        assertTrue(bill.canBeAccessed(stuRec));
+        
+        // test edit self"
+        stu.setId("rbob");
+        user.setId("rbob");
+        stuRec.setStudent(stu);
+        assertTrue(bill.canBeAccessed(stuRec));
+        bill.logOut();
+        
+        bill.logIn("mmatthews");
+        stuRec.setCollege(College.ENGINEERING_AND_COMPUTING);
+        stuRec.setClassStatus(ClassStatus.PHD);
+        assertTrue(bill.canBeAccessed(stuRec));
+    }
+    
+    @Test
+    public void testEditRecord() throws UserDataLoadException, UnauthorizedUserException,
+            UnknownUserException, DataSaveException {
+        BILL bill = new BILL();
+        bill.loadUsers(Constants.USERS_BASE_FILE);
+
+        StudentRecord stuRec = new StudentRecord();
+        
+        /** WORK HERE **/
+        bill.editRecord("", stuRec, false);
+    }
+    
+    /**
+     * This method tests the basic accessors and mutators of Bill class to ensure coverage is
+     * near 100%
+     */
+    @Test
+    public void testAccessAndUpdate() {
+        BILL billInst = new BILL();
+        billInst.getBillHelper();
+        billInst.getCurrentUser();
     }
 
     @After
