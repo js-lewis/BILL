@@ -110,7 +110,7 @@ public class BILL implements BILLIntf {
         // The User is an admin and editing a user in their College
         if (currentUser.getCollege() == student.getCollege() && currentUser.getRole() == Role.ADMIN) {
             return true;
-        }
+        }   
 
         // The User is an admin and editing a grad student
         if (currentUser.getCollege() == College.GRADUATE_SCHOOL) {
