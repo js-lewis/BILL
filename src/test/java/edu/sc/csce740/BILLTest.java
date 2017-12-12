@@ -285,7 +285,7 @@ public class BILLTest {
         StudentRecord stuRec = new StudentRecord();
         
         /** WORK HERE **/
-        bill.editRecord("", stuRec, false);
+        //bill.editRecord("", stuRec, false);
     }
     
     /**
