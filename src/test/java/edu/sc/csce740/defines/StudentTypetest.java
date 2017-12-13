@@ -3,7 +3,7 @@ package edu.sc.csce740.defines;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class StudentTypetest {
+public class StudentTypeTest {
     @Test
     public void testStudentType_FULL_TIME_ToString(){
         Assert.assertEquals("FULL_TIME", StudentType.FULL_TIME.toString());
