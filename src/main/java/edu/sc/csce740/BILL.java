@@ -351,7 +351,7 @@ public class BILL implements BILLIntf {
      * @param endYear    the year of the end date.
      * @throws Exception if the bill could not be generated.
      *                   SEE NOTE IN CLASS HEADER.
-     * @returns the student's 1bill in a data class matching the I/O file.
+     * @returns the student's bill in a data class matching the I/O file.
      */
     public Bill viewCharges(String userId, int startMonth, int startDay, int startYear,
                             int endMonth, int endDay, int endYear)

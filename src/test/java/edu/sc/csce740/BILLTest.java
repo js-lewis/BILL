@@ -275,19 +275,7 @@ public class BILLTest {
         stuRec.setClassStatus(ClassStatus.PHD);
         assertTrue(bill.canBeAccessed(stuRec));
     }
-    
-    @Test
-    public void testEditRecord() throws UserDataLoadException, UnauthorizedUserException,
-            UnknownUserException, DataSaveException {
-        BILL bill = new BILL();
-        bill.loadUsers(Constants.USERS_BASE_FILE);
 
-        StudentRecord stuRec = new StudentRecord();
-        
-        /** WORK HERE **/
-        //bill.editRecord("", stuRec, false);
-    }
-    
     /**
      * This method tests the basic accessors and mutators of Bill class to ensure coverage is
      * near 100%
@@ -297,6 +285,69 @@ public class BILLTest {
         BILL billInst = new BILL();
         billInst.getBillHelper();
         billInst.getCurrentUser();
+    }
+
+    @Test
+    public void testGenerateBill() {
+        BILL billInst = new BILL();
+
+        try {
+            //load the data
+            billInst.loadUsers(Constants.USERS_BASE_FILE);
+            billInst.loadRecords(Constants.RECORDS_BASE_FILE);
+            billInst.logIn(Constants.AAS_PHD);
+
+            billInst.generateBill(Constants.AAS_PHD);
+
+            billInst.logOut();
+            Assert.assertTrue(true);
+        }
+        catch(Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testViewCharges() {
+        BILL billInst = new BILL();
+
+        try {
+            //load the data
+            billInst.loadUsers(Constants.USERS_BASE_FILE);
+            billInst.loadRecords(Constants.RECORDS_BASE_FILE);
+            billInst.logIn(Constants.AAS_PHD);
+
+            billInst.viewCharges(Constants.AAS_PHD, 1, 1, 2017, 12,31,2017);
+
+            billInst.logOut();
+            Assert.assertTrue(true);
+        }
+        catch(Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+
+    @Test
+    public void testEditRecord() {
+        BILL billInst = new BILL();
+
+        try {
+            //load the data
+            billInst.loadUsers(Constants.USERS_BASE_FILE);
+            billInst.loadRecords(Constants.RECORDS_BASE_FILE);
+            billInst.logIn(Constants.AAS_PHD);
+
+            StudentRecord studRec = billInst.getRecord(Constants.AAS_PHD);
+
+            billInst.editRecord(Constants.AAS_PHD, studRec, true);
+
+            billInst.logOut();
+            Assert.assertTrue(true);
+        }
+        catch(Exception e) {
+            Assert.assertTrue(false);
+        }
     }
 
     @After
